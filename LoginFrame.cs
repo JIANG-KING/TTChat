@@ -32,25 +32,34 @@ namespace SqlSeverFrame
             // 建立SqlDataAdapter和DataSet对象
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataSet ds = new DataSet();
-
-            int n = da.Fill(ds, "Login"); ;
-            if (n != 0)
+            //CreatCode();
+            int n = da.Fill(ds, "Login");
+            if ( this.CodeInput.Text.ToUpper()== CheckNumberText)
             {
-                MessageBox.Show("登录成功！", "提示");
-                MainFrame mainFrame = new MainFrame();
-                this.Visible=false;
-                mainFrame.ShowDialog(this);
-                sqlCnt.Close();
-                this.Close();
-                
-                
+                if (n != 0)
+                {
+                    MessageBox.Show("登录成功！", "提示");
+                    MainFrame mainFrame = new MainFrame();
+                    this.Visible = false;
+                    mainFrame.ShowDialog(this);
+                    sqlCnt.Close();
+                    this.Close();
+
+
+                }
+                else
+                {
+                    MessageBox.Show("用户名或密码错误，请重新输入！", "提示");
+                    PasswordInput.Text = "";
+                    AccountInput.Text = "";
+                    AccountInput.Focus();
+                }
             }
             else
             {
-                MessageBox.Show("用户名或密码错误，请重新输入！", "提示");
-                PasswordInput.Text = "";
-                AccountInput.Text = "";
-                AccountInput.Focus();
+                MessageBox.Show("验证码错误","提示");
+                CodeInput.Text = null;
+                CodeInput.Focus();
             }
             sqlCnt.Close();
         }
@@ -266,10 +275,16 @@ namespace SqlSeverFrame
             }
             #endregion
         }
-        private void LoginFrame_Load(object sender, EventArgs e)
+        string CheckNumberText;
+        public void CreatCode()
         {
             ValidCode validCode = new ValidCode(5, ValidCode.CodeType.Alphas);
             this.CheckNumber.Image = Bitmap.FromStream(validCode.CreateCheckCodeImage());
+            CheckNumberText = validCode.CheckCode;
+        }
+        private void LoginFrame_Load(object sender, EventArgs e)
+        {
+            CreatCode();
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -280,6 +295,11 @@ namespace SqlSeverFrame
         {
             CheckNumber pictureBox = new CheckNumber();
             pictureBox.ShowDialog(this);
+        }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            CreatCode();
         }
     }
 }

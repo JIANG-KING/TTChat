@@ -65,7 +65,8 @@ namespace SqlSeverFrame
 
         private void TextInput_TextChanged_1(object sender, EventArgs e)
         {
-            if (this.TextInput.Text == CheckNumberText)
+            
+            if (this.TextInput.Text.ToUpper() == CheckNumberText)
             {
                 this.CheckInformation.Text = "√";
             }
@@ -76,8 +77,8 @@ namespace SqlSeverFrame
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
-        {
-            if (this.TextInput.Text == CheckNumberText)
+        { 
+            if (this.TextInput.Text.ToUpper() == CheckNumberText)
             {
                 MessageBox.Show("验证码正确！", "提示");
                 CreatCode();

@@ -53,12 +53,13 @@ namespace SqlSeverFrame
 
         private void TimeMainFrame_Tick(object sender, EventArgs e)
         {
-            for(int i = 0; i <= 100; i++)
+            int i = 0;
+            for(i=0; i <=100; i++)
             {
                 this.LoadTime.Value = i;
-                Thread.Sleep(10);
+                Thread.Sleep(1);
             }
-            string con = "Server=yunking.database.windows.net;Database=LoginInfo;user id=jiangyun;pwd=Jy1019878449";  //这里是保存连接数据库的字符串  
+            string con = "Server=yunking.database.windows.netj,;Database=LoginInfo;user id=jiangyun;pwd=Jy1019878449";  //这里是保存连接数据库的字符串  
             SqlConnection sqlCnt = new SqlConnection(con);
             sqlCnt.Open();
             SqlCommand com = new SqlCommand("select * from 个人信息表", sqlCnt);
