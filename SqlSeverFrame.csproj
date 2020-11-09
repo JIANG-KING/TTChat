@@ -165,6 +165,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckNumber.Designer.cs">
+      <DependentUpon>CheckNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginFrame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +191,9 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CheckNumber.resx">
+      <DependentUpon>CheckNumber.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginFrame.resx">
       <DependentUpon>LoginFrame.cs</DependentUpon>
     </EmbeddedResource>

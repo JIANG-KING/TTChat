@@ -275,5 +275,11 @@ namespace SqlSeverFrame
         {
 
         }
+
+        private void NewButton_Click(object sender, EventArgs e)
+        {
+            CheckNumber pictureBox = new CheckNumber();
+            pictureBox.ShowDialog(this);
+        }
     }
 }
