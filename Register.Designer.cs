@@ -36,8 +36,9 @@
             this.ConfirmPassword = new System.Windows.Forms.TextBox();
             this.RegisterButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
-            this.image1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.image1)).BeginInit();
+            this.SelectHead = new System.Windows.Forms.Button();
+            this.imagehead = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.imagehead)).BeginInit();
             this.SuspendLayout();
             // 
             // LoginLabel
@@ -59,7 +60,6 @@
             this.PasswordLabel.Size = new System.Drawing.Size(138, 28);
             this.PasswordLabel.TabIndex = 1;
             this.PasswordLabel.Text = "密    码:";
-            this.PasswordLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // ConfirmPasswordLabel
             // 
@@ -78,13 +78,13 @@
             this.UserName.Name = "UserName";
             this.UserName.Size = new System.Drawing.Size(215, 38);
             this.UserName.TabIndex = 3;
-            this.UserName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Password
             // 
             this.Password.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Password.Location = new System.Drawing.Point(203, 159);
             this.Password.Name = "Password";
+            this.Password.PasswordChar = '*';
             this.Password.Size = new System.Drawing.Size(215, 38);
             this.Password.TabIndex = 4;
             // 
@@ -93,6 +93,7 @@
             this.ConfirmPassword.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ConfirmPassword.Location = new System.Drawing.Point(203, 264);
             this.ConfirmPassword.Name = "ConfirmPassword";
+            this.ConfirmPassword.PasswordChar = '*';
             this.ConfirmPassword.Size = new System.Drawing.Size(215, 38);
             this.ConfirmPassword.TabIndex = 5;
             // 
@@ -105,6 +106,7 @@
             this.RegisterButton.TabIndex = 6;
             this.RegisterButton.Text = "提交注册";
             this.RegisterButton.UseVisualStyleBackColor = true;
+            this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
             // 
             // ExitButton
             // 
@@ -114,23 +116,37 @@
             this.ExitButton.TabIndex = 7;
             this.ExitButton.Text = "返回";
             this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
-            // image1
+            // SelectHead
             // 
-            this.image1.Image = global::SqlSeverFrame.Properties.Resources._16047578051821;
-            this.image1.Location = new System.Drawing.Point(517, 62);
-            this.image1.Name = "image1";
-            this.image1.Size = new System.Drawing.Size(239, 240);
-            this.image1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.image1.TabIndex = 8;
-            this.image1.TabStop = false;
+            this.SelectHead.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SelectHead.Location = new System.Drawing.Point(576, 269);
+            this.SelectHead.Name = "SelectHead";
+            this.SelectHead.Size = new System.Drawing.Size(107, 31);
+            this.SelectHead.TabIndex = 9;
+            this.SelectHead.Text = "选择头像";
+            this.SelectHead.UseVisualStyleBackColor = true;
+            this.SelectHead.Click += new System.EventHandler(this.SelectHead_Click);
+            // 
+            // imagehead
+            // 
+            this.imagehead.Image = global::SqlSeverFrame.Properties.Resources._16047578051821;
+            this.imagehead.Location = new System.Drawing.Point(517, 22);
+            this.imagehead.Name = "imagehead";
+            this.imagehead.Size = new System.Drawing.Size(239, 240);
+            this.imagehead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imagehead.TabIndex = 8;
+            this.imagehead.TabStop = false;
             // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(794, 520);
-            this.Controls.Add(this.image1);
+            this.Controls.Add(this.SelectHead);
+            this.Controls.Add(this.imagehead);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.RegisterButton);
             this.Controls.Add(this.ConfirmPassword);
@@ -143,7 +159,7 @@
             this.Text = "注册";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Register_FormClosing);
             this.Load += new System.EventHandler(this.Register_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.image1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagehead)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,6 +175,7 @@
         private System.Windows.Forms.TextBox ConfirmPassword;
         private System.Windows.Forms.Button RegisterButton;
         private System.Windows.Forms.Button ExitButton;
-        private System.Windows.Forms.PictureBox image1;
+        private System.Windows.Forms.Button SelectHead;
+        public System.Windows.Forms.PictureBox imagehead;
     }
 }

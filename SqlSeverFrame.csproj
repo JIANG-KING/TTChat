@@ -117,8 +117,12 @@
     <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Net.Http.Headers.2.2.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Otp.NET, Version=1.2.2.0, Culture=neutral, PublicKeyToken=38a48df817e173a6, processorArchitecture=MSIL">
+      <HintPath>packages\Otp.NET.1.2.2\lib\net45\Otp.NET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -128,6 +132,7 @@
       <HintPath>packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
@@ -191,6 +196,13 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShowHead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowHead.Designer.cs">
+      <DependentUpon>ShowHead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SQLSeverConnect.cs" />
     <EmbeddedResource Include="CheckNumber.resx">
       <DependentUpon>CheckNumber.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,6 +225,9 @@
     <EmbeddedResource Include="Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ShowHead.resx">
+      <DependentUpon>ShowHead.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\MainFrame.datasource" />
     <None Include="Properties\Settings.settings">
@@ -224,6 +239,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -233,6 +249,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\16047578051821.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\75655621.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\f3ff55a22e70d76076d59b5e6ee26fe7854e3eef.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B7BB1B4C6CA92D08264D2DBD01F3065A.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\empty.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

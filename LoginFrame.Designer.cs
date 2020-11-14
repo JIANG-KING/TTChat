@@ -28,30 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.AccountText = new System.Windows.Forms.Label();
             this.PasswordText = new System.Windows.Forms.Label();
             this.AccountInput = new System.Windows.Forms.TextBox();
             this.PasswordInput = new System.Windows.Forms.TextBox();
             this.LoginButton = new System.Windows.Forms.Button();
             this.RegisterButton = new System.Windows.Forms.Button();
-            this.CheckNumber = new System.Windows.Forms.PictureBox();
             this.NewButton = new System.Windows.Forms.Button();
             this.CheckNumberLabel = new System.Windows.Forms.Label();
             this.CodeInput = new System.Windows.Forms.TextBox();
             this.RefreshButton = new System.Windows.Forms.Button();
+            this.AccountText = new System.Windows.Forms.Label();
+            this.ShowHead = new System.Windows.Forms.PictureBox();
+            this.CheckNumber = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.ShowHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckNumber)).BeginInit();
             this.SuspendLayout();
-            // 
-            // AccountText
-            // 
-            this.AccountText.AutoSize = true;
-            this.AccountText.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.AccountText.Location = new System.Drawing.Point(66, 98);
-            this.AccountText.Name = "AccountText";
-            this.AccountText.Size = new System.Drawing.Size(96, 28);
-            this.AccountText.TabIndex = 0;
-            this.AccountText.Text = "账  号";
-            this.AccountText.Click += new System.EventHandler(this.label1_Click);
             // 
             // PasswordText
             // 
@@ -62,23 +53,23 @@
             this.PasswordText.Size = new System.Drawing.Size(96, 28);
             this.PasswordText.TabIndex = 1;
             this.PasswordText.Text = "密  码";
-            this.PasswordText.Click += new System.EventHandler(this.PasswordText_Click);
             // 
             // AccountInput
             // 
-            this.AccountInput.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.AccountInput.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.AccountInput.Location = new System.Drawing.Point(181, 98);
             this.AccountInput.Name = "AccountInput";
-            this.AccountInput.Size = new System.Drawing.Size(240, 34);
+            this.AccountInput.Size = new System.Drawing.Size(240, 38);
             this.AccountInput.TabIndex = 2;
+            this.AccountInput.TextChanged += new System.EventHandler(this.AccountInput_TextChanged);
             // 
             // PasswordInput
             // 
-            this.PasswordInput.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.PasswordInput.Location = new System.Drawing.Point(181, 180);
+            this.PasswordInput.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.PasswordInput.Location = new System.Drawing.Point(181, 177);
             this.PasswordInput.Name = "PasswordInput";
             this.PasswordInput.PasswordChar = '*';
-            this.PasswordInput.Size = new System.Drawing.Size(240, 34);
+            this.PasswordInput.Size = new System.Drawing.Size(240, 38);
             this.PasswordInput.TabIndex = 3;
             // 
             // LoginButton
@@ -100,16 +91,6 @@
             this.RegisterButton.Text = "注册";
             this.RegisterButton.UseVisualStyleBackColor = true;
             this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
-            // 
-            // CheckNumber
-            // 
-            this.CheckNumber.Location = new System.Drawing.Point(300, 252);
-            this.CheckNumber.Name = "CheckNumber";
-            this.CheckNumber.Size = new System.Drawing.Size(106, 38);
-            this.CheckNumber.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.CheckNumber.TabIndex = 6;
-            this.CheckNumber.TabStop = false;
-            this.CheckNumber.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // NewButton
             // 
@@ -143,7 +124,7 @@
             // RefreshButton
             // 
             this.RefreshButton.AutoSize = true;
-            this.RefreshButton.Location = new System.Drawing.Point(412, 260);
+            this.RefreshButton.Location = new System.Drawing.Point(427, 261);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(137, 25);
             this.RefreshButton.TabIndex = 10;
@@ -151,11 +132,41 @@
             this.RefreshButton.UseVisualStyleBackColor = true;
             this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
+            // AccountText
+            // 
+            this.AccountText.AutoSize = true;
+            this.AccountText.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.AccountText.Location = new System.Drawing.Point(66, 98);
+            this.AccountText.Name = "AccountText";
+            this.AccountText.Size = new System.Drawing.Size(96, 28);
+            this.AccountText.TabIndex = 0;
+            this.AccountText.Text = "账  号";
+            // 
+            // ShowHead
+            // 
+            this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources.empty;
+            this.ShowHead.Location = new System.Drawing.Point(560, 48);
+            this.ShowHead.Name = "ShowHead";
+            this.ShowHead.Size = new System.Drawing.Size(200, 200);
+            this.ShowHead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ShowHead.TabIndex = 13;
+            this.ShowHead.TabStop = false;
+            // 
+            // CheckNumber
+            // 
+            this.CheckNumber.Location = new System.Drawing.Point(315, 252);
+            this.CheckNumber.Name = "CheckNumber";
+            this.CheckNumber.Size = new System.Drawing.Size(106, 38);
+            this.CheckNumber.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.CheckNumber.TabIndex = 6;
+            this.CheckNumber.TabStop = false;
+            // 
             // LoginFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ShowHead);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.CodeInput);
             this.Controls.Add(this.CheckNumberLabel);
@@ -170,6 +181,7 @@
             this.Name = "LoginFrame";
             this.Text = "登录窗口";
             this.Load += new System.EventHandler(this.LoginFrame_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ShowHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -177,8 +189,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label AccountText;
         private System.Windows.Forms.Label PasswordText;
         private System.Windows.Forms.TextBox AccountInput;
         private System.Windows.Forms.TextBox PasswordInput;
@@ -189,6 +199,8 @@
         private System.Windows.Forms.Label CheckNumberLabel;
         private System.Windows.Forms.TextBox CodeInput;
         private System.Windows.Forms.Button RefreshButton;
+        private System.Windows.Forms.PictureBox ShowHead;
+        private System.Windows.Forms.Label AccountText;
     }
 }
 

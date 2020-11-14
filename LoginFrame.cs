@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,23 +19,25 @@ namespace SqlSeverFrame
 {
     public partial class LoginFrame : Form
     {
+        public static Image Image = global::SqlSeverFrame.Properties.Resources.empty;
         public LoginFrame()
         {
             InitializeComponent();
         }
+        SQLSeverConnect SQLSeverConnect = new SQLSeverConnect();
         public void SQLConnectPackage()
         {
             string Account=this.AccountInput.Text;
             string Password = this.PasswordInput.Text;
-            string con = "Server=yunking.database.windows.net;Database=LoginInfo;user id=jiangyun;pwd=Jy1019878449";  //这里是保存连接数据库的字符串  
-            SqlConnection sqlCnt = new SqlConnection(con);
-            sqlCnt.Open();
-            SqlCommand com = new SqlCommand("select account,password from Login where account='" + Account + "' and password='" + Password + "'", sqlCnt);
-            // 建立SqlDataAdapter和DataSet对象
-            SqlDataAdapter da = new SqlDataAdapter(com);
+            //string con = "Server=yunking.database.windows.net;Database=LoginInfo;user id=jiangyun;pwd=Jy1019878449";  //这里是保存连接数据库的字符串  
+            //SqlConnection sqlCnt = new SqlConnection(con);
+            //sqlCnt.Open();
+            //SqlCommand com = new SqlCommand("select account,password from LoginInfo where account='" + Account + "' and password='" + Password + "'", sqlCnt);
+            //// 建立SqlDataAdapter和DataSet对象
+            //SqlDataAdapter da = new SqlDataAdapter(com);
             DataSet ds = new DataSet();
-            //CreatCode();
-            int n = da.Fill(ds, "Login");
+            ////CreatCode();
+            int n = SQLSeverConnect.SqlLogin(Account,Password).Fill(ds, "LoginInfo");
             if ( this.CodeInput.Text.ToUpper()== CheckNumberText)
             {
                 if (n != 0)
@@ -42,10 +46,8 @@ namespace SqlSeverFrame
                     MainFrame mainFrame = new MainFrame();
                     this.Visible = false;
                     mainFrame.ShowDialog(this);
-                    sqlCnt.Close();
+                    //sqlCnt.Close();
                     this.Close();
-
-
                 }
                 else
                 {
@@ -61,16 +63,7 @@ namespace SqlSeverFrame
                 CodeInput.Text = null;
                 CodeInput.Focus();
             }
-            sqlCnt.Close();
-        }
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PasswordText_Click(object sender, EventArgs e)
-        {
-
+            //sqlCnt.Close();
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -84,8 +77,6 @@ namespace SqlSeverFrame
         {
             Register Reg = new Register();
             Reg.ShowDialog(this);
-            this.Visible = false;
-            this.Close();
         }
         public class ValidCode
         {
@@ -286,10 +277,6 @@ namespace SqlSeverFrame
         {
             CreatCode();
         }
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void NewButton_Click(object sender, EventArgs e)
         {
@@ -300,6 +287,42 @@ namespace SqlSeverFrame
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             CreatCode();
+        }
+        public static string GetNumberAlpha(string source)
+        {
+            string pattern = "[A-Za-z0-9]";
+            string strRet = "";
+            MatchCollection results = Regex.Matches(source, pattern);
+            foreach (var v in results)
+            {
+                strRet += v.ToString();
+            }
+            return strRet;
+        }
+        private void AccountInput_TextChanged(object sender, EventArgs e)
+        {
+            if (this.AccountInput.Text != "") { 
+            //this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._1;
+            string s = GetNumberAlpha(SQLSeverConnect.SearchImage(this.AccountInput.Text));
+                if (s != "")
+                {
+
+                    switch (s)
+                    {
+                        case "head1": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._1; break;
+                        case "head2": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._2; break;
+                        case "head3": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._3; break;
+                        case "head4": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._4; break;
+                        case "head5": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._5; break;
+                        case "head6": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._6; break;
+                        case "head7": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._7; break;
+                        default: this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources.empty; break;
+                    }
+                }
+                else{
+                    this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources.empty;
+                }
+            }
         }
     }
 }

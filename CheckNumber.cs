@@ -19,15 +19,8 @@ namespace SqlSeverFrame
             InitializeComponent();
         }
 
-        private void textBox1_Enter(object sender, EventArgs e)
-        {
 
-        }
 
-        private void CheckNumber_Enter(object sender, EventArgs e)
-        {
-
-        }
         private string Notes = "看不请？点击图片更换！";
         private void TextInput_Enter(object sender, EventArgs e)
         {
