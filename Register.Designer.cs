@@ -156,6 +156,7 @@
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.LoginLabel);
             this.Name = "Register";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "注册";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Register_FormClosing);
             this.Load += new System.EventHandler(this.Register_Load);

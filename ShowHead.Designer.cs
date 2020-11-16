@@ -120,6 +120,7 @@
             this.Controls.Add(this.head2);
             this.Controls.Add(this.head1);
             this.Name = "ShowHead";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ShowHead";
             ((System.ComponentModel.ISupportInitialize)(this.head6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.head5)).EndInit();

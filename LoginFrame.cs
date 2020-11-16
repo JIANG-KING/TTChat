@@ -19,6 +19,7 @@ namespace SqlSeverFrame
 {
     public partial class LoginFrame : Form
     {
+        public static string username = "";
         public static Image Image = global::SqlSeverFrame.Properties.Resources.empty;
         public LoginFrame()
         {
@@ -275,6 +276,7 @@ namespace SqlSeverFrame
         }
         private void LoginFrame_Load(object sender, EventArgs e)
         {
+            //this.comboBox1.SelectedItem="在线";
             CreatCode();
         }
 
@@ -301,6 +303,7 @@ namespace SqlSeverFrame
         }
         private void AccountInput_TextChanged(object sender, EventArgs e)
         {
+            username = this.AccountInput.Text;
             if (this.AccountInput.Text != "") { 
             //this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._1;
             string s = GetNumberAlpha(SQLSeverConnect.SearchImage(this.AccountInput.Text));
@@ -309,20 +312,26 @@ namespace SqlSeverFrame
 
                     switch (s)
                     {
-                        case "head1": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._1; break;
-                        case "head2": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._2; break;
-                        case "head3": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._3; break;
-                        case "head4": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._4; break;
-                        case "head5": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._5; break;
-                        case "head6": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._6; break;
-                        case "head7": this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._7; break;
-                        default: this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources.empty; break;
+                        case "head1": Image = global::SqlSeverFrame.Properties.Resources._1; break;
+                        case "head2": Image = global::SqlSeverFrame.Properties.Resources._2; break;
+                        case "head3": Image = global::SqlSeverFrame.Properties.Resources._3; break;
+                        case "head4": Image = global::SqlSeverFrame.Properties.Resources._4; break;
+                        case "head5": Image = global::SqlSeverFrame.Properties.Resources._5; break;
+                        case "head6": Image = global::SqlSeverFrame.Properties.Resources._6; break;
+                        case "head7": Image = global::SqlSeverFrame.Properties.Resources._7; break;
+                        default: Image = global::SqlSeverFrame.Properties.Resources.empty; break;
                     }
                 }
                 else{
-                    this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources.empty;
+                    Image = global::SqlSeverFrame.Properties.Resources.empty;
                 }
             }
+            this.ShowHead.Image = Image;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show(this.comboBox1.Text, "提示");
         }
     }
 }

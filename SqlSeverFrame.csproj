@@ -182,6 +182,11 @@
     <Compile Include="LoginFrame.Designer.cs">
       <DependentUpon>LoginFrame.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginInfoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginInfoDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MainFrame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,6 +233,17 @@
     <EmbeddedResource Include="ShowHead.resx">
       <DependentUpon>ShowHead.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="LoginInfoDataSet.xsc">
+      <DependentUpon>LoginInfoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="LoginInfoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LoginInfoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="LoginInfoDataSet.xss">
+      <DependentUpon>LoginInfoDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\MainFrame.datasource" />
     <None Include="Properties\Settings.settings">

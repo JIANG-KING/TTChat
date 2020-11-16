@@ -28,71 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TextOutPut = new System.Windows.Forms.Label();
-            this.Table1 = new System.Windows.Forms.DataGridView();
-            this.LoadTime = new System.Windows.Forms.ProgressBar();
-            this.LoadText = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.Table1)).BeginInit();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.MainShowHead = new System.Windows.Forms.PictureBox();
+            this.WelcomeLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainShowHead)).BeginInit();
             this.SuspendLayout();
             // 
-            // TextOutPut
+            // dataGridView1
             // 
-            this.TextOutPut.AutoSize = true;
-            this.TextOutPut.Location = new System.Drawing.Point(12, 9);
-            this.TextOutPut.Name = "TextOutPut";
-            this.TextOutPut.Size = new System.Drawing.Size(67, 15);
-            this.TextOutPut.TabIndex = 0;
-            this.TextOutPut.Text = "示范文字";
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            this.dataGridView1.ColumnHeadersHeight = 29;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 274);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 27;
+            this.dataGridView1.Size = new System.Drawing.Size(470, 182);
+            this.dataGridView1.TabIndex = 4;
             // 
-            // Table1
+            // MainShowHead
             // 
-            this.Table1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Table1.Location = new System.Drawing.Point(-2, 110);
-            this.Table1.Name = "Table1";
-            this.Table1.RowHeadersWidth = 51;
-            this.Table1.RowTemplate.Height = 27;
-            this.Table1.Size = new System.Drawing.Size(760, 355);
-            this.Table1.TabIndex = 1;
+            this.MainShowHead.Location = new System.Drawing.Point(547, 12);
+            this.MainShowHead.Name = "MainShowHead";
+            this.MainShowHead.Size = new System.Drawing.Size(200, 200);
+            this.MainShowHead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.MainShowHead.TabIndex = 5;
+            this.MainShowHead.TabStop = false;
             // 
-            // LoadTime
+            // WelcomeLabel
             // 
-            this.LoadTime.Location = new System.Drawing.Point(467, 48);
-            this.LoadTime.Name = "LoadTime";
-            this.LoadTime.Size = new System.Drawing.Size(291, 56);
-            this.LoadTime.TabIndex = 2;
-            // 
-            // LoadText
-            // 
-            this.LoadText.AutoSize = true;
-            this.LoadText.Location = new System.Drawing.Point(406, 66);
-            this.LoadText.Name = "LoadText";
-            this.LoadText.Size = new System.Drawing.Size(52, 15);
-            this.LoadText.TabIndex = 3;
-            this.LoadText.Text = "加载中";
+            this.WelcomeLabel.AutoSize = true;
+            this.WelcomeLabel.Location = new System.Drawing.Point(13, 12);
+            this.WelcomeLabel.Name = "WelcomeLabel";
+            this.WelcomeLabel.Size = new System.Drawing.Size(67, 15);
+            this.WelcomeLabel.TabIndex = 6;
+            this.WelcomeLabel.Text = "示范文字";
             // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 468);
-            this.Controls.Add(this.LoadText);
-            this.Controls.Add(this.LoadTime);
-            this.Controls.Add(this.Table1);
-            this.Controls.Add(this.TextOutPut);
+            this.Controls.Add(this.WelcomeLabel);
+            this.Controls.Add(this.MainShowHead);
+            this.Controls.Add(this.dataGridView1);
             this.Name = "MainFrame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainFrame";
             this.Load += new System.EventHandler(this.MainFrame_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Table1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainShowHead)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label TextOutPut;
-        private System.Windows.Forms.DataGridView Table1;
-        private System.Windows.Forms.ProgressBar LoadTime;
-        private System.Windows.Forms.Label LoadText;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.PictureBox MainShowHead;
+        private System.Windows.Forms.Label WelcomeLabel;
     }
 }

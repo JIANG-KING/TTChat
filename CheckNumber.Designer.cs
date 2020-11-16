@@ -34,6 +34,7 @@
             this.TextBoxCheck = new System.Windows.Forms.PictureBox();
             this.CheckInformation = new System.Windows.Forms.Label();
             this.SubmitButton = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.TextBoxCheck)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,11 +101,25 @@
             this.SubmitButton.UseVisualStyleBackColor = true;
             this.SubmitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "在线",
+            "隐身",
+            "请勿打扰"});
+            this.comboBox1.Location = new System.Drawing.Point(44, 212);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 6;
+            // 
             // CheckNumber
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(711, 375);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.SubmitButton);
             this.Controls.Add(this.CheckInformation);
             this.Controls.Add(this.CheckNumberShow);
@@ -113,6 +128,8 @@
             this.Controls.Add(this.TextInput);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "CheckNumber";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.CheckNumber_Load);
             ((System.ComponentModel.ISupportInitialize)(this.TextBoxCheck)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -127,5 +144,6 @@
         private System.Windows.Forms.Label CheckNumberShow;
         private System.Windows.Forms.Label CheckInformation;
         private System.Windows.Forms.Button SubmitButton;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

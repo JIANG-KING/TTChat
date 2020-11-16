@@ -12,7 +12,7 @@ namespace SqlSeverFrame
     class SQLSeverConnect
     {
             //从配置文件中获取连接字符串   readonly修饰的变量只能在初始化或构造函数中赋值；其他地方只能读取
-        private static readonly string constr = "Server=yunking.database.windows.net;Database=LoginInfo;user id=jiangyun;pwd=Jy1019878449";
+        private static readonly string constr = "Server=yun2333.top;Database=Chattools;user id=sa;pwd=Jy1019878449";
         SqlConnection sqlCnt = new SqlConnection(constr);
         public SqlDataAdapter SqlLogin(string username,string password)
         {

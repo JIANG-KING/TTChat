@@ -40,6 +40,7 @@
             this.AccountText = new System.Windows.Forms.Label();
             this.ShowHead = new System.Windows.Forms.PictureBox();
             this.CheckNumber = new System.Windows.Forms.PictureBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.ShowHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckNumber)).BeginInit();
             this.SuspendLayout();
@@ -124,7 +125,7 @@
             // RefreshButton
             // 
             this.RefreshButton.AutoSize = true;
-            this.RefreshButton.Location = new System.Drawing.Point(427, 261);
+            this.RefreshButton.Location = new System.Drawing.Point(427, 266);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(137, 25);
             this.RefreshButton.TabIndex = 10;
@@ -145,7 +146,7 @@
             // ShowHead
             // 
             this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources.empty;
-            this.ShowHead.Location = new System.Drawing.Point(560, 48);
+            this.ShowHead.Location = new System.Drawing.Point(561, 15);
             this.ShowHead.Name = "ShowHead";
             this.ShowHead.Size = new System.Drawing.Size(200, 200);
             this.ShowHead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -161,11 +162,29 @@
             this.CheckNumber.TabIndex = 6;
             this.CheckNumber.TabStop = false;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "在线",
+            "隐身",
+            "离开",
+            "忙碌",
+            "请勿打扰",
+            "q我吧"});
+            this.comboBox1.Location = new System.Drawing.Point(561, 237);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 14;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // LoginFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.ShowHead);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.CodeInput);
@@ -179,6 +198,7 @@
             this.Controls.Add(this.PasswordText);
             this.Controls.Add(this.AccountText);
             this.Name = "LoginFrame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "登录窗口";
             this.Load += new System.EventHandler(this.LoginFrame_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ShowHead)).EndInit();
@@ -201,6 +221,7 @@
         private System.Windows.Forms.Button RefreshButton;
         private System.Windows.Forms.PictureBox ShowHead;
         private System.Windows.Forms.Label AccountText;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

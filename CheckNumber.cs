@@ -20,6 +20,7 @@ namespace SqlSeverFrame
         }
 
 
+       
 
         private string Notes = "看不请？点击图片更换！";
         private void TextInput_Enter(object sender, EventArgs e)
@@ -27,7 +28,7 @@ namespace SqlSeverFrame
             if (this.TextInput.Text == Notes)
             {
                 TextInput.ForeColor = Color.Black;
-                this.TextInput = null;
+                this.TextInput.Text = "";
             }
         }
 
@@ -53,20 +54,24 @@ namespace SqlSeverFrame
         }
         public void CheckNumber_Load(object sender, EventArgs e)
         {
+            this.comboBox1.SelectedItem = "在线";
             CreatCode();
         }
 
         private void TextInput_TextChanged_1(object sender, EventArgs e)
         {
-            
-            if (this.TextInput.Text.ToUpper() == CheckNumberText)
+            if (TextInput.Text != null)
+            {
+                if (this.TextInput.Text.ToUpper() == CheckNumberText)
             {
                 this.CheckInformation.Text = "√";
             }
             else
             {
                 this.CheckInformation.Text = "×";
+            } 
             }
+            
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
