@@ -248,21 +248,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\1604757805182.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\16047578051821.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\75655621.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\f3ff55a22e70d76076d59b5e6ee26fe7854e3eef.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\B7BB1B4C6CA92D08264D2DBD01F3065A.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\1.gif" />
   </ItemGroup>
   <ItemGroup>

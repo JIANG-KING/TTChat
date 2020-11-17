@@ -23,13 +23,18 @@ namespace SqlSeverFrame
         {
             this.UserState.SelectedItem = LoginFrame.LoginState.SelectedItem.ToString();
             this.MainShowHead.Image = LoginFrame.Image;
-            this.WelcomeLabel.Text = "欢迎！" +LoginFrame.username+"用户";
+            this.WelcomeLabel.Text = "欢迎！" +connect.SearchNickname(LoginFrame.username)+"用户";
         }
 
 
         private void MainFrame_FormClosed(object sender, FormClosedEventArgs e)
         {
             connect.UpdateState(LoginFrame.username, "离线");
+        }
+
+        private void UserState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            connect.UpdateState(LoginFrame.username, this.UserState.SelectedItem.ToString());
         }
     }
 }

@@ -31,15 +31,16 @@
             this.MainShowHead = new System.Windows.Forms.PictureBox();
             this.WelcomeLabel = new System.Windows.Forms.Label();
             this.UserState = new System.Windows.Forms.ComboBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.MainShowHead)).BeginInit();
             this.SuspendLayout();
             // 
             // MainShowHead
             // 
-            this.MainShowHead.Location = new System.Drawing.Point(751, 13);
-            this.MainShowHead.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MainShowHead.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.MainShowHead.Location = new System.Drawing.Point(668, 11);
             this.MainShowHead.Name = "MainShowHead";
-            this.MainShowHead.Size = new System.Drawing.Size(225, 240);
+            this.MainShowHead.Size = new System.Drawing.Size(200, 200);
             this.MainShowHead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.MainShowHead.TabIndex = 5;
             this.MainShowHead.TabStop = false;
@@ -47,9 +48,9 @@
             // WelcomeLabel
             // 
             this.WelcomeLabel.AutoSize = true;
-            this.WelcomeLabel.Location = new System.Drawing.Point(15, 14);
+            this.WelcomeLabel.Location = new System.Drawing.Point(13, 12);
             this.WelcomeLabel.Name = "WelcomeLabel";
-            this.WelcomeLabel.Size = new System.Drawing.Size(80, 18);
+            this.WelcomeLabel.Size = new System.Drawing.Size(67, 15);
             this.WelcomeLabel.TabIndex = 6;
             this.WelcomeLabel.Text = "示范文字";
             // 
@@ -64,20 +65,35 @@
             "忙碌",
             "请勿打扰",
             "q我吧"});
-            this.UserState.Location = new System.Drawing.Point(751, 277);
+            this.UserState.Location = new System.Drawing.Point(668, 231);
+            this.UserState.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserState.Name = "UserState";
-            this.UserState.Size = new System.Drawing.Size(121, 26);
+            this.UserState.Size = new System.Drawing.Size(108, 23);
             this.UserState.TabIndex = 7;
+            this.UserState.SelectedIndexChanged += new System.EventHandler(this.UserState_SelectedIndexChanged);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Items.AddRange(new object[] {
+            "qq",
+            "ww",
+            "123456"});
+            this.listBox1.Location = new System.Drawing.Point(148, 78);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(341, 259);
+            this.listBox1.TabIndex = 8;
             // 
             // MainFrame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(988, 600);
+            this.ClientSize = new System.Drawing.Size(878, 500);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.UserState);
             this.Controls.Add(this.WelcomeLabel);
             this.Controls.Add(this.MainShowHead);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainFrame";
@@ -93,5 +109,6 @@
         private System.Windows.Forms.PictureBox MainShowHead;
         private System.Windows.Forms.Label WelcomeLabel;
         private System.Windows.Forms.ComboBox UserState;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

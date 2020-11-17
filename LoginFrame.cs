@@ -19,36 +19,28 @@ namespace SqlSeverFrame
 {
     public partial class LoginFrame : Form
     {
-        public static string username = "";
-        public static Image Image = global::SqlSeverFrame.Properties.Resources.empty;
+        public static string username = "";//暂存用户名，让其他窗体能检测到用户名，减少数据库查询次数
+        public static Image Image = global::SqlSeverFrame.Properties.Resources.empty;//设定登录页面的初始用户头像
         public LoginFrame()
         {
             InitializeComponent();
         }
-        SQLSeverConnect SQLSeverConnect = new SQLSeverConnect();
+        SQLSeverConnect SQLSeverConnect = new SQLSeverConnect();//新建数据库连接对象
         public void SQLConnectPackage()
         {
             string Account=this.AccountInput.Text;
             string Password = this.PasswordInput.Text;
-            //string con = "Server=yunking.database.windows.net;Database=LoginInfo;user id=jiangyun;pwd=Jy1019878449";  //这里是保存连接数据库的字符串  
-            //SqlConnection sqlCnt = new SqlConnection(con);
-            //sqlCnt.Open();
-            //SqlCommand com = new SqlCommand("select account,password from LoginInfo where account='" + Account + "' and password='" + Password + "'", sqlCnt);
-            //// 建立SqlDataAdapter和DataSet对象
-            //SqlDataAdapter da = new SqlDataAdapter(com);
             DataSet ds = new DataSet();
-            ////CreatCode();
             int n = SQLSeverConnect.SqlLogin(Account,Password).Fill(ds, "LoginInfo");
-            if ( this.CodeInput.Text.ToUpper()== CheckNumberText)
+            if ( this.CodeInput.Text.ToUpper()== CheckNumberText)//判断验证码是否正确，验证码不分大小写，统一转换为大写对比
             {
-                if (n != 0)
+                if (n != 0)//n!=0,代表数据库中有该账户，登录成功。转移到主界面
                 {
                     MessageBox.Show("登录成功！", "提示");
                     SQLSeverConnect.UpdateState(username,LoginState.Text);
                     MainFrame mainFrame = new MainFrame();
                     this.Visible = false;
                     mainFrame.ShowDialog(this);
-                    //sqlCnt.Close();
                     this.Close();
                 }
                 else
@@ -65,7 +57,6 @@ namespace SqlSeverFrame
                 CodeInput.Text = null;
                 CodeInput.Focus();
             }
-            //sqlCnt.Close();
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -80,7 +71,7 @@ namespace SqlSeverFrame
             Register Reg = new Register();
             Reg.ShowDialog(this);
         }
-        public class ValidCode
+        public class ValidCode//验证码生成类
         {
             #region Private Fields
             private const double PI = 3.1415926535897932384626433832795;
@@ -269,13 +260,13 @@ namespace SqlSeverFrame
             #endregion
         }
         string CheckNumberText;
-        public void CreatCode()
+        public void CreatCode()//将验证码加载进验证码窗体中，并且实现每次都能生成不一样的验证码
         {
             ValidCode validCode = new ValidCode(5, ValidCode.CodeType.Alphas);
             this.CheckNumber.Image = Bitmap.FromStream(validCode.CreateCheckCodeImage());
             CheckNumberText = validCode.CheckCode;
         }
-        private void LoginFrame_Load(object sender, EventArgs e)
+        private void LoginFrame_Load(object sender, EventArgs e)//加载验证码，设置默认在线状态
         {
             LoginState.SelectedItem="在线";
             CreatCode();
@@ -287,11 +278,11 @@ namespace SqlSeverFrame
             pictureBox.ShowDialog(this);
         }
 
-        private void RefreshButton_Click(object sender, EventArgs e)
+        private void RefreshButton_Click(object sender, EventArgs e)//刷新验证码
         {
             CreatCode();
         }
-        public static string GetNumberAlpha(string source)
+        public static string GetNumberAlpha(string source)//去除数据库中查询数据中的空格，防止无法匹配头像
         {
             string pattern = "[A-Za-z0-9]";
             string strRet = "";
@@ -302,11 +293,10 @@ namespace SqlSeverFrame
             }
             return strRet;
         }
-        private void AccountInput_TextChanged(object sender, EventArgs e)
+        private void AccountInput_TextChanged(object sender, EventArgs e)//用户输入框的值改变时自动匹配用户头像
         {
             username = this.AccountInput.Text;
             if (this.AccountInput.Text != "") { 
-            //this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources._1;
             string s = GetNumberAlpha(SQLSeverConnect.SearchImage(this.AccountInput.Text));
                 if (s != "")
                 {

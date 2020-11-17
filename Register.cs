@@ -45,7 +45,7 @@ namespace SqlSeverFrame
                         {
                             if (connect.sqlSearch(this.UserName.Text) == 0)
                             {
-                                if (connect.sqlInsert(this.UserName.Text, this.Password.Text, HeadName) != 0)
+                                if (connect.sqlInsert(this.UserName.Text, this.Password.Text, HeadName,this.NickNameInput.Text) != 0)
                                 {
                                     this.Close();
                                     }
@@ -90,7 +90,7 @@ namespace SqlSeverFrame
 
         }
 
-        private void SelectHead_Click(object sender, EventArgs e)
+        private void SelectHead_Click(object sender, EventArgs e)//生成选择头像窗口
         {
             ShowHead showHead = new ShowHead();
             showHead.ShowDialog(this);
