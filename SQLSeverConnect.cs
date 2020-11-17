@@ -70,5 +70,17 @@ namespace SqlSeverFrame
             sqlCnt.Close();
             return result;
         }
+        public string SearchUserState(string username)
+        {
+            sqlCnt.Open();
+            SqlCommand com = new SqlCommand("select AccountState from LoginInfo where Account=" + username, sqlCnt);
+            SqlDataReader dr;//创建DataReader对象
+            dr = com.ExecuteReader();
+            string s = "";
+            if (dr.Read())
+                s = dr["AccountState"].ToString();
+            sqlCnt.Close();
+            return s;
+        }
     }
     }
