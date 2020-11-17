@@ -18,10 +18,10 @@ namespace SqlSeverFrame
         {
             InitializeComponent();
         }
-
+        SQLSeverConnect connect = new SQLSeverConnect();
         private void MainFrame_Load(object sender, EventArgs e)
         {
-            SQLSeverConnect connect = new SQLSeverConnect();
+            
             DataSet ds = new DataSet();
             connect.sqlDataReader().Fill(ds, "个人信息表");
             dataGridView1.DataSource = ds.Tables[0];
@@ -45,5 +45,9 @@ namespace SqlSeverFrame
         }
 
 
+        private void MainFrame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            connect.UpdateState(LoginFrame.username, "离线");
+        }
     }
 }

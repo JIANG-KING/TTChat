@@ -45,9 +45,9 @@
             // 
             this.LoginLabel.AutoSize = true;
             this.LoginLabel.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LoginLabel.Location = new System.Drawing.Point(59, 72);
+            this.LoginLabel.Location = new System.Drawing.Point(66, 86);
             this.LoginLabel.Name = "LoginLabel";
-            this.LoginLabel.Size = new System.Drawing.Size(138, 28);
+            this.LoginLabel.Size = new System.Drawing.Size(165, 33);
             this.LoginLabel.TabIndex = 0;
             this.LoginLabel.Text = "用 户 名:";
             // 
@@ -55,9 +55,9 @@
             // 
             this.PasswordLabel.AutoSize = true;
             this.PasswordLabel.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.PasswordLabel.Location = new System.Drawing.Point(59, 169);
+            this.PasswordLabel.Location = new System.Drawing.Point(66, 203);
             this.PasswordLabel.Name = "PasswordLabel";
-            this.PasswordLabel.Size = new System.Drawing.Size(138, 28);
+            this.PasswordLabel.Size = new System.Drawing.Size(166, 33);
             this.PasswordLabel.TabIndex = 1;
             this.PasswordLabel.Text = "密    码:";
             // 
@@ -65,44 +65,48 @@
             // 
             this.ConfirmPasswordLabel.AutoSize = true;
             this.ConfirmPasswordLabel.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ConfirmPasswordLabel.Location = new System.Drawing.Point(59, 267);
+            this.ConfirmPasswordLabel.Location = new System.Drawing.Point(66, 320);
             this.ConfirmPasswordLabel.Name = "ConfirmPasswordLabel";
-            this.ConfirmPasswordLabel.Size = new System.Drawing.Size(138, 28);
+            this.ConfirmPasswordLabel.Size = new System.Drawing.Size(164, 33);
             this.ConfirmPasswordLabel.TabIndex = 2;
             this.ConfirmPasswordLabel.Text = "确认密码:";
             // 
             // UserName
             // 
             this.UserName.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.UserName.Location = new System.Drawing.Point(203, 69);
+            this.UserName.Location = new System.Drawing.Point(228, 83);
+            this.UserName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.UserName.Name = "UserName";
-            this.UserName.Size = new System.Drawing.Size(215, 38);
+            this.UserName.Size = new System.Drawing.Size(241, 44);
             this.UserName.TabIndex = 3;
             // 
             // Password
             // 
             this.Password.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Password.Location = new System.Drawing.Point(203, 159);
+            this.Password.Location = new System.Drawing.Point(228, 191);
+            this.Password.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Password.Name = "Password";
             this.Password.PasswordChar = '*';
-            this.Password.Size = new System.Drawing.Size(215, 38);
+            this.Password.Size = new System.Drawing.Size(241, 44);
             this.Password.TabIndex = 4;
             // 
             // ConfirmPassword
             // 
             this.ConfirmPassword.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ConfirmPassword.Location = new System.Drawing.Point(203, 264);
+            this.ConfirmPassword.Location = new System.Drawing.Point(228, 317);
+            this.ConfirmPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ConfirmPassword.Name = "ConfirmPassword";
             this.ConfirmPassword.PasswordChar = '*';
-            this.ConfirmPassword.Size = new System.Drawing.Size(215, 38);
+            this.ConfirmPassword.Size = new System.Drawing.Size(241, 44);
             this.ConfirmPassword.TabIndex = 5;
             // 
             // RegisterButton
             // 
             this.RegisterButton.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.RegisterButton.Location = new System.Drawing.Point(203, 413);
+            this.RegisterButton.Location = new System.Drawing.Point(168, 440);
+            this.RegisterButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.RegisterButton.Name = "RegisterButton";
-            this.RegisterButton.Size = new System.Drawing.Size(215, 65);
+            this.RegisterButton.Size = new System.Drawing.Size(242, 78);
             this.RegisterButton.TabIndex = 6;
             this.RegisterButton.Text = "提交注册";
             this.RegisterButton.UseVisualStyleBackColor = true;
@@ -110,9 +114,10 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(541, 413);
+            this.ExitButton.Location = new System.Drawing.Point(557, 440);
+            this.ExitButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(215, 65);
+            this.ExitButton.Size = new System.Drawing.Size(242, 78);
             this.ExitButton.TabIndex = 7;
             this.ExitButton.Text = "返回";
             this.ExitButton.UseVisualStyleBackColor = true;
@@ -121,9 +126,10 @@
             // SelectHead
             // 
             this.SelectHead.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.SelectHead.Location = new System.Drawing.Point(576, 269);
+            this.SelectHead.Location = new System.Drawing.Point(648, 323);
+            this.SelectHead.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SelectHead.Name = "SelectHead";
-            this.SelectHead.Size = new System.Drawing.Size(107, 31);
+            this.SelectHead.Size = new System.Drawing.Size(120, 37);
             this.SelectHead.TabIndex = 9;
             this.SelectHead.Text = "选择头像";
             this.SelectHead.UseVisualStyleBackColor = true;
@@ -131,20 +137,20 @@
             // 
             // imagehead
             // 
-            this.imagehead.Image = global::SqlSeverFrame.Properties.Resources._16047578051821;
-            this.imagehead.Location = new System.Drawing.Point(517, 22);
+            this.imagehead.Location = new System.Drawing.Point(582, 26);
+            this.imagehead.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.imagehead.Name = "imagehead";
-            this.imagehead.Size = new System.Drawing.Size(239, 240);
+            this.imagehead.Size = new System.Drawing.Size(269, 288);
             this.imagehead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imagehead.TabIndex = 8;
             this.imagehead.TabStop = false;
             // 
             // Register
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(794, 520);
+            this.ClientSize = new System.Drawing.Size(893, 554);
             this.Controls.Add(this.SelectHead);
             this.Controls.Add(this.imagehead);
             this.Controls.Add(this.ExitButton);
@@ -155,6 +161,7 @@
             this.Controls.Add(this.ConfirmPasswordLabel);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.LoginLabel);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Register";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "注册";

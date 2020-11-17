@@ -44,6 +44,7 @@ namespace SqlSeverFrame
                 if (n != 0)
                 {
                     MessageBox.Show("登录成功！", "提示");
+                    SQLSeverConnect.UpdateState(username,this.LoginState.Text);
                     MainFrame mainFrame = new MainFrame();
                     this.Visible = false;
                     mainFrame.ShowDialog(this);
@@ -276,7 +277,7 @@ namespace SqlSeverFrame
         }
         private void LoginFrame_Load(object sender, EventArgs e)
         {
-            //this.comboBox1.SelectedItem="在线";
+            this.LoginState.SelectedItem="在线";
             CreatCode();
         }
 
@@ -327,11 +328,6 @@ namespace SqlSeverFrame
                 }
             }
             this.ShowHead.Image = Image;
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show(this.comboBox1.Text, "提示");
         }
     }
 }

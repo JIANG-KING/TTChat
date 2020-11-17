@@ -58,5 +58,12 @@ namespace SqlSeverFrame
             Register.HeadName = this.head6.Name;
             this.Close();
         }
+
+        private void head7_Click(object sender, EventArgs e)
+        {
+            Register.HeadImage = global::SqlSeverFrame.Properties.Resources._7;
+            Register.HeadName = this.head7.Name;
+            this.Close();
+        }
     }
 }

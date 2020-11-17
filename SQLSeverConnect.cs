@@ -29,6 +29,7 @@ namespace SqlSeverFrame
             SqlCommand com = new SqlCommand("select * from 个人信息表", sqlCnt);
             // 建立SqlDataAdapter和DataSet对象
             SqlDataAdapter da = new SqlDataAdapter(com);
+            sqlCnt.Close();
             return da;
         }
         public int sqlSearch(string Account)
@@ -60,6 +61,14 @@ namespace SqlSeverFrame
                 s=dr["imagehead"].ToString().Substring(0,5);
             sqlCnt.Close();
             return s;
+        }
+        public int UpdateState(string username,string LoginState)
+        {
+            sqlCnt.Open();
+            SqlCommand com = new SqlCommand("update LoginInfo set AccountState=N'"+LoginState+"' where Account="+username, sqlCnt);
+            int result = com.ExecuteNonQuery();
+            sqlCnt.Close();
+            return result;
         }
     }
     }

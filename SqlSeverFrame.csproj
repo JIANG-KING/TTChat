@@ -203,9 +203,11 @@
     </Compile>
     <Compile Include="ShowHead.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="ShowHead.Designer.cs">
       <DependentUpon>ShowHead.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="SQLSeverConnect.cs" />
     <EmbeddedResource Include="CheckNumber.resx">
@@ -232,6 +234,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShowHead.resx">
       <DependentUpon>ShowHead.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Include="LoginInfoDataSet.xsc">
       <DependentUpon>LoginInfoDataSet.xsd</DependentUpon>
