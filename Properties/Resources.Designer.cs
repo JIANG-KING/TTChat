@@ -47,8 +47,8 @@ namespace SqlSeverFrame.Properties {
         }
         
         /// <summary>
-        ///   重写当前线程的 CurrentUICulture 属性
-        ///   重写当前线程的 CurrentUICulture 属性。
+        ///   重写当前线程的 CurrentUICulture 属性，对
+        ///   使用此强类型资源类的所有资源查找执行重写。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Globalization.CultureInfo Culture {
@@ -66,26 +66,6 @@ namespace SqlSeverFrame.Properties {
         internal static System.Drawing.Bitmap _1 {
             get {
                 object obj = ResourceManager.GetObject("1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap _1604757805182 {
-            get {
-                object obj = ResourceManager.GetObject("1604757805182", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap _16047578051821 {
-            get {
-                object obj = ResourceManager.GetObject("16047578051821", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,39 +133,9 @@ namespace SqlSeverFrame.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _75655621 {
-            get {
-                object obj = ResourceManager.GetObject("75655621", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap B7BB1B4C6CA92D08264D2DBD01F3065A {
-            get {
-                object obj = ResourceManager.GetObject("B7BB1B4C6CA92D08264D2DBD01F3065A", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         internal static System.Drawing.Bitmap empty {
             get {
                 object obj = ResourceManager.GetObject("empty", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap f3ff55a22e70d76076d59b5e6ee26fe7854e3eef {
-            get {
-                object obj = ResourceManager.GetObject("f3ff55a22e70d76076d59b5e6ee26fe7854e3eef", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

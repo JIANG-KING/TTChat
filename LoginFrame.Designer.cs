@@ -61,7 +61,7 @@
             this.AccountInput.Location = new System.Drawing.Point(181, 98);
             this.AccountInput.Name = "AccountInput";
             this.AccountInput.Size = new System.Drawing.Size(240, 38);
-            this.AccountInput.TabIndex = 2;
+            this.AccountInput.TabIndex = 1;
             this.AccountInput.TextChanged += new System.EventHandler(this.AccountInput_TextChanged);
             // 
             // PasswordInput
@@ -71,36 +71,36 @@
             this.PasswordInput.Name = "PasswordInput";
             this.PasswordInput.PasswordChar = '*';
             this.PasswordInput.Size = new System.Drawing.Size(240, 38);
-            this.PasswordInput.TabIndex = 3;
+            this.PasswordInput.TabIndex = 2;
             // 
             // LoginButton
             // 
-            this.LoginButton.Location = new System.Drawing.Point(181, 329);
+            this.LoginButton.Location = new System.Drawing.Point(120, 329);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(161, 43);
-            this.LoginButton.TabIndex = 4;
+            this.LoginButton.TabIndex = 5;
             this.LoginButton.Text = "登录";
             this.LoginButton.UseVisualStyleBackColor = true;
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
             // RegisterButton
             // 
-            this.RegisterButton.Location = new System.Drawing.Point(370, 329);
+            this.RegisterButton.Location = new System.Drawing.Point(341, 329);
             this.RegisterButton.Name = "RegisterButton";
             this.RegisterButton.Size = new System.Drawing.Size(159, 42);
-            this.RegisterButton.TabIndex = 5;
+            this.RegisterButton.TabIndex = 6;
             this.RegisterButton.Text = "注册";
             this.RegisterButton.UseVisualStyleBackColor = true;
             this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
             // 
             // NewButton
             // 
-            this.NewButton.Location = new System.Drawing.Point(586, 329);
+            this.NewButton.Location = new System.Drawing.Point(561, 330);
             this.NewButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NewButton.Name = "NewButton";
             this.NewButton.Size = new System.Drawing.Size(140, 42);
             this.NewButton.TabIndex = 7;
-            this.NewButton.Text = "验证";
+            this.NewButton.Text = "修改密码";
             this.NewButton.UseVisualStyleBackColor = true;
             this.NewButton.Click += new System.EventHandler(this.NewButton_Click);
             // 
@@ -120,7 +120,7 @@
             this.CodeInput.Location = new System.Drawing.Point(181, 252);
             this.CodeInput.Name = "CodeInput";
             this.CodeInput.Size = new System.Drawing.Size(100, 38);
-            this.CodeInput.TabIndex = 9;
+            this.CodeInput.TabIndex = 3;
             // 
             // RefreshButton
             // 
@@ -128,7 +128,7 @@
             this.RefreshButton.Location = new System.Drawing.Point(427, 266);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(144, 25);
-            this.RefreshButton.TabIndex = 10;
+            this.RefreshButton.TabIndex = 4;
             this.RefreshButton.Text = "看不清？换一个！";
             this.RefreshButton.UseVisualStyleBackColor = true;
             this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
@@ -197,6 +197,7 @@
             this.Controls.Add(this.AccountInput);
             this.Controls.Add(this.PasswordText);
             this.Controls.Add(this.AccountText);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "LoginFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "登录窗口";
@@ -221,7 +222,7 @@
         private System.Windows.Forms.Button RefreshButton;
         private System.Windows.Forms.PictureBox ShowHead;
         private System.Windows.Forms.Label AccountText;
-        public static System.Windows.Forms.ComboBox LoginState;
+        public static  System.Windows.Forms.ComboBox LoginState;
     }
 }
 

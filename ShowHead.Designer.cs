@@ -47,10 +47,9 @@
             // head6
             // 
             this.head6.Image = global::SqlSeverFrame.Properties.Resources._6;
-            this.head6.Location = new System.Drawing.Point(598, 280);
-            this.head6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.head6.Location = new System.Drawing.Point(532, 233);
             this.head6.Name = "head6";
-            this.head6.Size = new System.Drawing.Size(225, 240);
+            this.head6.Size = new System.Drawing.Size(200, 200);
             this.head6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.head6.TabIndex = 5;
             this.head6.TabStop = false;
@@ -59,10 +58,9 @@
             // head5
             // 
             this.head5.Image = global::SqlSeverFrame.Properties.Resources._5;
-            this.head5.Location = new System.Drawing.Point(306, 280);
-            this.head5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.head5.Location = new System.Drawing.Point(272, 233);
             this.head5.Name = "head5";
-            this.head5.Size = new System.Drawing.Size(225, 240);
+            this.head5.Size = new System.Drawing.Size(200, 200);
             this.head5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.head5.TabIndex = 4;
             this.head5.TabStop = false;
@@ -71,10 +69,9 @@
             // head4
             // 
             this.head4.Image = global::SqlSeverFrame.Properties.Resources._4;
-            this.head4.Location = new System.Drawing.Point(14, 280);
-            this.head4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.head4.Location = new System.Drawing.Point(12, 233);
             this.head4.Name = "head4";
-            this.head4.Size = new System.Drawing.Size(225, 240);
+            this.head4.Size = new System.Drawing.Size(200, 200);
             this.head4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.head4.TabIndex = 3;
             this.head4.TabStop = false;
@@ -83,10 +80,9 @@
             // head3
             // 
             this.head3.Image = global::SqlSeverFrame.Properties.Resources._3;
-            this.head3.Location = new System.Drawing.Point(598, 14);
-            this.head3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.head3.Location = new System.Drawing.Point(532, 12);
             this.head3.Name = "head3";
-            this.head3.Size = new System.Drawing.Size(225, 240);
+            this.head3.Size = new System.Drawing.Size(200, 200);
             this.head3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.head3.TabIndex = 2;
             this.head3.TabStop = false;
@@ -95,10 +91,9 @@
             // head2
             // 
             this.head2.Image = global::SqlSeverFrame.Properties.Resources._2;
-            this.head2.Location = new System.Drawing.Point(306, 14);
-            this.head2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.head2.Location = new System.Drawing.Point(272, 12);
             this.head2.Name = "head2";
-            this.head2.Size = new System.Drawing.Size(225, 240);
+            this.head2.Size = new System.Drawing.Size(200, 200);
             this.head2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.head2.TabIndex = 1;
             this.head2.TabStop = false;
@@ -107,10 +102,9 @@
             // head1
             // 
             this.head1.Image = global::SqlSeverFrame.Properties.Resources._1;
-            this.head1.Location = new System.Drawing.Point(14, 14);
-            this.head1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.head1.Location = new System.Drawing.Point(12, 12);
             this.head1.Name = "head1";
-            this.head1.Size = new System.Drawing.Size(225, 240);
+            this.head1.Size = new System.Drawing.Size(200, 200);
             this.head1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.head1.TabIndex = 0;
             this.head1.TabStop = false;
@@ -119,9 +113,10 @@
             // head7
             // 
             this.head7.Image = global::SqlSeverFrame.Properties.Resources._7;
-            this.head7.Location = new System.Drawing.Point(13, 552);
+            this.head7.Location = new System.Drawing.Point(12, 460);
+            this.head7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.head7.Name = "head7";
-            this.head7.Size = new System.Drawing.Size(225, 240);
+            this.head7.Size = new System.Drawing.Size(200, 200);
             this.head7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.head7.TabIndex = 6;
             this.head7.TabStop = false;
@@ -129,9 +124,9 @@
             // 
             // ShowHead
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 774);
+            this.ClientSize = new System.Drawing.Size(853, 645);
             this.Controls.Add(this.head7);
             this.Controls.Add(this.head6);
             this.Controls.Add(this.head5);
@@ -139,10 +134,9 @@
             this.Controls.Add(this.head3);
             this.Controls.Add(this.head2);
             this.Controls.Add(this.head1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ShowHead";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ShowHead";
+            this.Text = "请选择你的头像";
             ((System.ComponentModel.ISupportInitialize)(this.head6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.head5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.head4)).EndInit();

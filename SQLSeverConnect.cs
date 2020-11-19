@@ -1,4 +1,5 @@
-﻿using System;
+﻿using java.lang;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -11,17 +12,17 @@ namespace SqlSeverFrame
 {
     class SQLSeverConnect
     {
-            //从配置文件中获取连接字符串   readonly修饰的变量只能在初始化或构造函数中赋值；其他地方只能读取
+        //从配置文件中获取连接字符串   readonly修饰的变量只能在初始化或构造函数中赋值；其他地方只能读取
         private static readonly string constr = "Server=yun2333.top;Database=Chattools;user id=sa;pwd=Jy1019878449";
         SqlConnection sqlCnt = new SqlConnection(constr);
-        public SqlDataAdapter SqlLogin(string username,string password)//登录验证
+        public SqlDataAdapter SqlLogin(string username, string password)//登录验证
         {
             sqlCnt.Open();
             SqlCommand com = new SqlCommand("select account,password from LoginInfo where account='" + username + "' and password='" + password + "'", sqlCnt);
             SqlDataAdapter da = new SqlDataAdapter(com);
             sqlCnt.Close();
             return da;
-            
+
         }
         public SqlDataAdapter sqlDataReader()
         {
@@ -35,37 +36,37 @@ namespace SqlSeverFrame
         public int sqlSearch(string Account)//查询指定用户
         {
             sqlCnt.Open();
-            SqlCommand str = new SqlCommand("select account from LoginInfo where account=" + Account,sqlCnt);
+            SqlCommand str = new SqlCommand("select account from LoginInfo where account=" + Account, sqlCnt);
             SqlDataAdapter da = new SqlDataAdapter(str);
             DataSet ds = new DataSet();
-            int a=da.Fill(ds, "LoginInfo");
+            int a = da.Fill(ds, "LoginInfo");
             sqlCnt.Close();
             return a;
         }
-        public int  sqlInsert(string Account, string Password,string image,string NickName)//插入一个用户，用户注册时使用
+        public int sqlInsert(string Account, string Password, string image, string NickName)//插入一个用户，用户注册时使用
         {
             sqlCnt.Open();
-            SqlCommand com = new SqlCommand("INSERT INTO [dbo].[LoginInfo] ([Account],[Password],[ImageHead],[NickName]) VALUES (" + Account + "," + Password +",'"+image+"',+N'"+NickName+"')", sqlCnt);
-            int result= com.ExecuteNonQuery();
+            SqlCommand com = new SqlCommand("INSERT INTO [dbo].[LoginInfo] ([Account],[Password],[ImageHead],[NickName]) VALUES (" + Account + "," + Password + ",'" + image + "',+N'" + NickName + "')", sqlCnt);
+            int result = com.ExecuteNonQuery();
             sqlCnt.Close();
             return result;
         }
-        public string  SearchImage(string username)//查找用户的头像
+        public string SearchImage(string username)//查找用户的头像
         {
             sqlCnt.Open();
-            SqlCommand com = new SqlCommand("select ImageHead from LoginInfo where Account="+username, sqlCnt);
+            SqlCommand com = new SqlCommand("select ImageHead from LoginInfo where Account=" + username, sqlCnt);
             SqlDataReader dr;//创建DataReader对象
             dr = com.ExecuteReader();
             string s = "";
-            if(dr.Read())
-                s=dr["imagehead"].ToString().Substring(0,5);
+            if (dr.Read())
+                s = dr["imagehead"].ToString().Substring(0, 5);
             sqlCnt.Close();
             return s;
         }
-        public int UpdateState(string username,string LoginState)//更新用户的状态，在线，隐身，忙碌，请勿打扰，q我吧
+        public int UpdateState(string username, string LoginState)//更新用户的状态，在线，隐身，忙碌，请勿打扰，q我吧
         {
             sqlCnt.Open();
-            SqlCommand com = new SqlCommand("update LoginInfo set AccountState=N'"+LoginState+"' where Account="+username, sqlCnt);
+            SqlCommand com = new SqlCommand("update LoginInfo set AccountState=N'" + LoginState + "' where Account=" + username, sqlCnt);
             int result = com.ExecuteNonQuery();
             sqlCnt.Close();
             return result;
@@ -94,5 +95,85 @@ namespace SqlSeverFrame
             sqlCnt.Close();
             return s;
         }
+        public int UpdateIsAlive(string username, string IsAlive)//修改用户的登录状态
+        {
+            sqlCnt.Open();
+            SqlCommand com = new SqlCommand("update LoginInfo set IsAlive=" + IsAlive + " where Account=" + username, sqlCnt);
+            int result = com.ExecuteNonQuery();
+            sqlCnt.Close();
+            return result;
         }
+        public int SearchIsAlive(string username)//查找用户是否已登录
+        {
+            sqlCnt.Open();
+            SqlCommand com = new SqlCommand("select IsAlive from LoginInfo where Account=" + username, sqlCnt);
+            SqlDataReader dr;//创建DataReader对象
+            dr = com.ExecuteReader();
+            string s = "";
+            if (dr.Read())
+                s = dr["IsALive"].ToString();
+            sqlCnt.Close();
+            return Integer.parseInt(s);
+        }
+        public string[] SearchFriends(string username)//查找用户的好友
+        {
+            sqlCnt.Open();
+            SqlCommand com = new SqlCommand("select Friends from Friends where UserName=" + username, sqlCnt);
+            SqlDataReader dr;//创建DataReader对象
+            dr = com.ExecuteReader();
+            string[] User = new string[2000];
+            int i = 0;
+            while (dr.Read())
+            {
+                User[i] = dr["Friends"].ToString();
+                i++;
+
+            }
+            sqlCnt.Close();
+            return User;
+        }
+        public string[] SearchMessage(string username, string Receiver)//查找用户收到的消息
+        {
+            sqlCnt.Open();
+            SqlCommand com = new SqlCommand("SELECT top(10)  [Message] FROM [Chattools].[dbo].[MeassageBox] where Sender=" + username + "And Receiver=" + Receiver + " ORDER by SerialNumber deSC ", sqlCnt);
+            SqlDataReader dr;//创建DataReader对象
+            dr = com.ExecuteReader();
+            string[] User = new string[10];
+            int i = 0;
+            while (dr.Read())
+            {
+                User[i] = dr["Message"].ToString();
+                i++;
+
+            }
+            sqlCnt.Close();
+            return User;
+        }
+        public int SendMessage(string Sender, string Message, string Recevier)//将发送的消息上传到数据库
+        {
+            sqlCnt.Open();
+            SqlCommand com = new SqlCommand("INSERT INTO [dbo].[LoginInfo] ([Sender],[Message],[Recevier]) VALUES (" + Sender + ",N'" + Message + "'," + Recevier + ")", sqlCnt);
+            int result = com.ExecuteNonQuery();
+            sqlCnt.Close();
+            return result;
+        }
+        public int[] SearchNUmbers(string username, string Receiver)//查找用户收到的消息
+        {
+            sqlCnt.Open();
+            SqlCommand com = new SqlCommand("SELECT top(10)  [SerialNumber] FROM [Chattools].[dbo].[MeassageBox] where Sender=" + username + "And Receiver=" + Receiver + " ORDER by SerialNumber deSC ", sqlCnt);
+            SqlDataReader dr;//创建DataReader对象
+            dr = com.ExecuteReader();
+            int[] User = new int[10];
+            int i = 0;
+            while (dr.Read())
+            {
+                User[i] = Integer.parseInt(dr["SerialNumber"].ToString());
+                i++;
+
+            }
+            sqlCnt.Close();
+            return User;
+
+        }
+    }
     }

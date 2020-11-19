@@ -79,7 +79,7 @@
             this.UserName.Location = new System.Drawing.Point(204, 137);
             this.UserName.Name = "UserName";
             this.UserName.Size = new System.Drawing.Size(215, 38);
-            this.UserName.TabIndex = 3;
+            this.UserName.TabIndex = 4;
             // 
             // Password
             // 
@@ -88,7 +88,7 @@
             this.Password.Name = "Password";
             this.Password.PasswordChar = '*';
             this.Password.Size = new System.Drawing.Size(215, 38);
-            this.Password.TabIndex = 4;
+            this.Password.TabIndex = 5;
             // 
             // ConfirmPassword
             // 
@@ -97,7 +97,7 @@
             this.ConfirmPassword.Name = "ConfirmPassword";
             this.ConfirmPassword.PasswordChar = '*';
             this.ConfirmPassword.Size = new System.Drawing.Size(215, 38);
-            this.ConfirmPassword.TabIndex = 5;
+            this.ConfirmPassword.TabIndex = 6;
             // 
             // RegisterButton
             // 
@@ -105,7 +105,7 @@
             this.RegisterButton.Location = new System.Drawing.Point(149, 367);
             this.RegisterButton.Name = "RegisterButton";
             this.RegisterButton.Size = new System.Drawing.Size(215, 65);
-            this.RegisterButton.TabIndex = 6;
+            this.RegisterButton.TabIndex = 9;
             this.RegisterButton.Text = "提交注册";
             this.RegisterButton.UseVisualStyleBackColor = true;
             this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
@@ -115,7 +115,7 @@
             this.ExitButton.Location = new System.Drawing.Point(495, 367);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(215, 65);
-            this.ExitButton.TabIndex = 7;
+            this.ExitButton.TabIndex = 10;
             this.ExitButton.Text = "返回";
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
@@ -126,7 +126,7 @@
             this.SelectHead.Location = new System.Drawing.Point(576, 269);
             this.SelectHead.Name = "SelectHead";
             this.SelectHead.Size = new System.Drawing.Size(107, 31);
-            this.SelectHead.TabIndex = 9;
+            this.SelectHead.TabIndex = 7;
             this.SelectHead.Text = "选择头像";
             this.SelectHead.UseVisualStyleBackColor = true;
             this.SelectHead.Click += new System.EventHandler(this.SelectHead_Click);
@@ -137,7 +137,7 @@
             this.imagehead.Name = "imagehead";
             this.imagehead.Size = new System.Drawing.Size(239, 240);
             this.imagehead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imagehead.TabIndex = 8;
+            this.imagehead.TabIndex =8 ;
             this.imagehead.TabStop = false;
             // 
             // NickNameLabel
@@ -147,7 +147,7 @@
             this.NickNameLabel.Location = new System.Drawing.Point(59, 71);
             this.NickNameLabel.Name = "NickNameLabel";
             this.NickNameLabel.Size = new System.Drawing.Size(138, 28);
-            this.NickNameLabel.TabIndex = 10;
+            this.NickNameLabel.TabIndex = 11;
             this.NickNameLabel.Text = "昵    称:";
             // 
             // NickNameInput
@@ -156,7 +156,7 @@
             this.NickNameInput.Location = new System.Drawing.Point(204, 68);
             this.NickNameInput.Name = "NickNameInput";
             this.NickNameInput.Size = new System.Drawing.Size(214, 38);
-            this.NickNameInput.TabIndex = 11;
+            this.NickNameInput.TabIndex = 3;
             // 
             // Register
             // 

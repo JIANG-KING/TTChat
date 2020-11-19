@@ -19,16 +19,16 @@ namespace SqlSeverFrame
         }
         private void Register_Load(object sender, EventArgs e)
         {
-
+            NickNameInput.Focus();
         }
 
         private void Register_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MessageBox.Show("即将返回主页面", "提示");
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("即将返回主页面", "提示");
             this.Close();
         }
 
