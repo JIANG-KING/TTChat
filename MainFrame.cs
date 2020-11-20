@@ -20,24 +20,28 @@ namespace SqlSeverFrame
         }
         public static string Friends;
         public static string FriendsName;
-        SQLSeverConnect connect = new SQLSeverConnect();
+        static  SQLSeverConnect  connect = new SQLSeverConnect();
+
+        string[] s = new string[MainFrame.connect.SearchFriends(LoginFrame.username).Length];
         private void MainFrame_Load(object sender, EventArgs e)
         {
 
-            string s;
             this.UserState.SelectedItem = LoginFrame.LoginState.SelectedItem.ToString().Replace("\\s*", "");
             this.MainShowHead.Image = LoginFrame.Image;
-            this.WelcomeLabel.Text = "欢迎！" +connect.SearchNickname(LoginFrame.username)+"用户";
+            this.WelcomeLabel.Text = "欢迎！" +connect.SearchNickname(LoginFrame.username).Replace("\\s*", "") + "用户";
+            int[] count = new int[connect.SearchFriends(LoginFrame.username).Length];
             for(int i = 0; i <connect.SearchFriends(LoginFrame.username).Length; i++)
             {
                 if (connect.SearchFriends(LoginFrame.username)[i] != null)
                 {
-                    s = connect.SearchFriends(LoginFrame.username)[i];
-                    FriendsName = s;
-                    MessageBox.Show(connect.SearchFriends(LoginFrame.username)[i], "提示");
-                    this.FriendsList.Items.Add(connect.SearchNickname(s)+"("+s+")");
+                    
+                    s[i] = connect.SearchFriends(LoginFrame.username)[i];
+                    this.FriendsList.Items.Add(connect.SearchNickname(s[i]).Replace("\\s*", "") + "("+s[i]+")");
                 }
-                else { break; }
+                else {
+                    s[i] = "";
+                    break;
+                }
             }
             connect.UpdateIsAlive(LoginFrame.username, "1");
         }
@@ -57,6 +61,7 @@ namespace SqlSeverFrame
         private void FriendsList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Friends = this.FriendsList.SelectedItem.ToString();
+            FriendsName = s[this.FriendsList.SelectedIndex];
             var frm = new Chatting();
             frm.Show();
         }

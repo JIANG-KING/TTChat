@@ -30,30 +30,30 @@ namespace SqlSeverFrame
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.textBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox2 = new System.Windows.Forms.RichTextBox();
+            this.ShowMessage = new System.Windows.Forms.RichTextBox();
+            this.MessageInput = new System.Windows.Forms.RichTextBox();
             this.ReciveMessage = new System.Windows.Forms.Timer(this.components);
             this.SengButton = new System.Windows.Forms.Button();
             this.DropButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // ShowMessage
             // 
-            this.textBox1.Location = new System.Drawing.Point(24, 12);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(841, 285);
-            this.textBox1.TabIndex = 1;
+            this.ShowMessage.Location = new System.Drawing.Point(24, 12);
+            this.ShowMessage.Name = "ShowMessage";
+            this.ShowMessage.ReadOnly = true;
+            this.ShowMessage.Size = new System.Drawing.Size(841, 285);
+            this.ShowMessage.TabIndex = 1;
+            this.ShowMessage.Text = "";
+            this.ShowMessage.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // textBox2
+            // MessageInput
             // 
-            this.textBox2.Location = new System.Drawing.Point(24, 316);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(841, 122);
-            this.textBox2.TabIndex = 0;
+            this.MessageInput.Location = new System.Drawing.Point(24, 316);
+            this.MessageInput.Name = "MessageInput";
+            this.MessageInput.Size = new System.Drawing.Size(841, 122);
+            this.MessageInput.TabIndex = 0;
+            this.MessageInput.Text = "";
             // 
             // ReciveMessage
             // 
@@ -71,6 +71,7 @@ namespace SqlSeverFrame
             this.SengButton.TabIndex = 2;
             this.SengButton.Text = "发送";
             this.SengButton.UseVisualStyleBackColor = true;
+            this.SengButton.Click += new System.EventHandler(this.SengButton_Click);
             // 
             // DropButton
             // 
@@ -90,8 +91,8 @@ namespace SqlSeverFrame
             this.ClientSize = new System.Drawing.Size(945, 532);
             this.Controls.Add(this.DropButton);
             this.Controls.Add(this.SengButton);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.MessageInput);
+            this.Controls.Add(this.ShowMessage);
             this.Name = "Chatting";
             this.Text = "Chatting";
             this.Load += new System.EventHandler(this.Chatting_Load);
@@ -102,8 +103,8 @@ namespace SqlSeverFrame
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox textBox1;
-        private System.Windows.Forms.RichTextBox textBox2;
+        private System.Windows.Forms.RichTextBox ShowMessage;
+        private System.Windows.Forms.RichTextBox MessageInput;
         private System.Windows.Forms.Timer ReciveMessage;
         private System.Windows.Forms.Button SengButton;
         private System.Windows.Forms.Button DropButton;

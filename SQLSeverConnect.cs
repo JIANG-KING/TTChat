@@ -149,15 +149,15 @@ namespace SqlSeverFrame
             sqlCnt.Close();
             return User;
         }
-        public int SendMessage(string Sender, string Message, string Recevier)//将发送的消息上传到数据库
+        public int SendMessage(string Sender, string Message, string Receiver)//将发送的消息上传到数据库
         {
             sqlCnt.Open();
-            SqlCommand com = new SqlCommand("INSERT INTO [dbo].[LoginInfo] ([Sender],[Message],[Recevier]) VALUES (" + Sender + ",N'" + Message + "'," + Recevier + ")", sqlCnt);
+            SqlCommand com = new SqlCommand("INSERT INTO [dbo].[MeassageBox] ([Sender],[Message],[Receiver]) VALUES (" + Sender + ",N'" + Message + "'," + Receiver + ")", sqlCnt);
             int result = com.ExecuteNonQuery();
             sqlCnt.Close();
             return result;
         }
-        public int[] SearchNUmbers(string username, string Receiver)//查找用户收到的消息
+        public int[] SearchNumbers(string username, string Receiver)//查找用户收到或发送的消息的序号
         {
             sqlCnt.Open();
             SqlCommand com = new SqlCommand("SELECT top(10)  [SerialNumber] FROM [Chattools].[dbo].[MeassageBox] where Sender=" + username + "And Receiver=" + Receiver + " ORDER by SerialNumber deSC ", sqlCnt);
@@ -175,5 +175,38 @@ namespace SqlSeverFrame
             return User;
 
         }
+        public string SearchMessageByNumber(string SerialNumber)//按序号查询消息发送人和接受人
+        {
+            sqlCnt.Open();
+            SqlCommand com = new SqlCommand("select Message  from MeassageBox where SerialNumber="+SerialNumber, sqlCnt);
+            // 建立SqlDataAdapter和DataSet对象
+            SqlDataReader dr;//创建DataReader对象
+            dr = com.ExecuteReader();
+
+            string s="";
+            if (dr.Read())
+            {
+                s = dr["Message"].ToString();
+            }
+            sqlCnt.Close();
+            return s;
+        }
+        public string SearchSenDerByNumber(string SerialNumber)//按序号查询消息发送人和接受人
+        {
+            sqlCnt.Open();
+            SqlCommand com = new SqlCommand("select Sender  from MeassageBox where SerialNumber=" + SerialNumber, sqlCnt);
+            // 建立SqlDataAdapter和DataSet对象
+            SqlDataReader dr;//创建DataReader对象
+            dr = com.ExecuteReader();
+            string s="";
+            if (dr.Read())
+            {
+                s = dr["Sender"].ToString();
+            }
+
+            sqlCnt.Close();
+            return s;
+        }
+
     }
     }
