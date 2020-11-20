@@ -1,4 +1,5 @@
-﻿using System;
+﻿using java.lang;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,29 +18,40 @@ namespace SqlSeverFrame
         {
             InitializeComponent();
         }
-
+        int max;
         SQLSeverConnect connect = new SQLSeverConnect();
         private void ReciveMessage_Tick(object sender, EventArgs e)
         {
-            
-            
+            int[] ReceviverNumber = connect.SearchNumbers(MainFrame.FriendsName, LoginFrame.username);
+            Array.Sort(ReceviverNumber);
+            for(int i = 0; i <ReceviverNumber.Length; i++)
+            {
+                if (ReceviverNumber[i] > max)
+                {
+                    string s = "";
+                    s += connect.SearchNickname(connect.SearchSenDerByNumber(ReceviverNumber[i].ToString())) + "(" + connect.SearchSenDerByNumber(ReceviverNumber[i].ToString()) + ")" + DateTime.Now + "\r\n";
+                    s += connect.SearchMessageByNumber(ReceviverNumber[i].ToString()) + "\r\n";
+                    this.ShowMessage.Text += s;
+                    max = ReceviverNumber[i];
+                }
+            }
+
+
 
         }
 
         private void Chatting_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(MainFrame.FriendsName.ToString(),"");
             this.Text = "正在与" + MainFrame.Friends+"聊天";
             string[] ReceiverMessage = connect.SearchMessage(MainFrame.FriendsName,LoginFrame.username);
             int[] ReceviverNumber = connect.SearchNumbers(MainFrame.FriendsName, LoginFrame.username);
+            max = ReceviverNumber.Max();
             string[] SendMessage = connect.SearchMessage(LoginFrame.username, MainFrame.FriendsName);
             int[] SendNumber = connect.SearchNumbers(LoginFrame.username, MainFrame.FriendsName);
-            MessageBox.Show(SendNumber[9].ToString(), "");
             int[] MainNumber = SendNumber.Concat(ReceviverNumber).ToArray();
             Array.Sort(MainNumber);
             for (int i = 0; i<MainNumber.Length; i++)
             {
-                //MessageBox.Show(MainNumber[i].ToString(), "");
                 if (MainNumber[i] != 0)
                 {
                     string s="";
@@ -61,8 +73,10 @@ namespace SqlSeverFrame
 
         private void SengButton_Click(object sender, EventArgs e)
         {
+
+            Thread.sleep(500);
             connect.SendMessage(LoginFrame.username,  this.MessageInput.Text,MainFrame.FriendsName);
-            this.ShowMessage.Text += connect.SearchNickname(LoginFrame.username) +"(" +LoginFrame.username +")"+ "\r\n" + this.MessageInput.Text+ "\r\n";
+            this.ShowMessage.Text += connect.SearchNickname(LoginFrame.username) +"(" +LoginFrame.username +")"+ DateTime.Now + "\r\n" + this.MessageInput.Text+ "\r\n";
             this.MessageInput.Text = " ";
         }
     }

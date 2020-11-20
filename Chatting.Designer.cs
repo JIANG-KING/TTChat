@@ -58,7 +58,7 @@ namespace SqlSeverFrame
             // ReciveMessage
             // 
             this.ReciveMessage.Enabled = true;
-            this.ReciveMessage.Interval = 1000;
+            this.ReciveMessage.Interval = 500;
             this.ReciveMessage.Tick += new System.EventHandler(this.ReciveMessage_Tick);
             // 
             // SengButton
