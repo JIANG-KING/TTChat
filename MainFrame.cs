@@ -60,10 +60,13 @@ namespace SqlSeverFrame
 
         private void FriendsList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (this.FriendsList.SelectedItem != null) {
             Friends = this.FriendsList.SelectedItem.ToString();
             FriendsName = s[this.FriendsList.SelectedIndex];
             var frm = new Chatting();
-            frm.Show();
+            frm.Show(); 
+            }
+            
         }
     }
 }

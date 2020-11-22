@@ -197,7 +197,7 @@
             this.Controls.Add(this.AccountInput);
             this.Controls.Add(this.PasswordText);
             this.Controls.Add(this.AccountText);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "LoginFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "登录窗口";
@@ -222,7 +222,7 @@
         private System.Windows.Forms.Button RefreshButton;
         private System.Windows.Forms.PictureBox ShowHead;
         private System.Windows.Forms.Label AccountText;
-        public static  System.Windows.Forms.ComboBox LoginState;
+        public static System.Windows.Forms.ComboBox LoginState;
     }
 }
 

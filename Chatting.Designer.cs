@@ -58,7 +58,7 @@ namespace SqlSeverFrame
             // ReciveMessage
             // 
             this.ReciveMessage.Enabled = true;
-            this.ReciveMessage.Interval = 500;
+            this.ReciveMessage.Interval = 200;
             this.ReciveMessage.Tick += new System.EventHandler(this.ReciveMessage_Tick);
             // 
             // SengButton
@@ -83,6 +83,7 @@ namespace SqlSeverFrame
             this.DropButton.TabIndex = 3;
             this.DropButton.Text = "清除";
             this.DropButton.UseVisualStyleBackColor = true;
+            this.DropButton.Click += new System.EventHandler(this.DropButton_Click);
             // 
             // Chatting
             // 

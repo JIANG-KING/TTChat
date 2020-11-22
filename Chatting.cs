@@ -74,10 +74,15 @@ namespace SqlSeverFrame
         private void SengButton_Click(object sender, EventArgs e)
         {
 
-            Thread.sleep(500);
+            Thread.sleep(200);
             connect.SendMessage(LoginFrame.username,  this.MessageInput.Text,MainFrame.FriendsName);
             this.ShowMessage.Text += connect.SearchNickname(LoginFrame.username) +"(" +LoginFrame.username +")"+ DateTime.Now + "\r\n" + this.MessageInput.Text+ "\r\n";
-            this.MessageInput.Text = " ";
+            this.MessageInput.Text = "";
+        }
+
+        private void DropButton_Click(object sender, EventArgs e)
+        {
+            this.MessageInput.Text = "";
         }
     }
 }
