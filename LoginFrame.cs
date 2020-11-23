@@ -32,6 +32,8 @@ namespace SqlSeverFrame
             string Password = this.PasswordInput.Text;
             DataSet ds = new DataSet();
             int n = SQLSeverConnect.SqlLogin(Account,Password).Fill(ds, "LoginInfo");
+            DataTable tbl = ds.Tables[0];
+            DataRow row = tbl.Rows[0];
             if (this.CodeInput.Text.ToUpper() == CheckNumberText)//判断验证码是否正确，验证码不分大小写，统一转换为大写对比
             {
                 if (SQLSeverConnect.SearchIsAlive(username)==0)//判断账号是否登录，为0时代表账号未登录
@@ -40,13 +42,20 @@ namespace SqlSeverFrame
 
                     if (n != 0)//n!=0,代表数据库中有该账户，登录成功。转移到主界面
                     {
-                        MessageBox.Show("登录成功！", "提示");
-                        SQLSeverConnect.UpdateState(username, LoginState.Text);
+                        if (GetNumberAlpha(row["Account"].ToString()) == this.AccountInput.Text && GetNumberAlpha(row["Password"].ToString()) == this.PasswordInput.Text)
+                        {
+                            MessageBox.Show("登录成功！", "提示");
+                            SQLSeverConnect.UpdateState(username, LoginState.Text);
 
-                        MainFrame mainFrame = new MainFrame();
-                        this.Visible = false;
-                        mainFrame.ShowDialog(this);
-                        this.Close();
+                            MainFrame mainFrame = new MainFrame();
+                            this.Visible = false;
+                            mainFrame.ShowDialog(this);
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("出现问题"+ GetNumberAlpha(row["Password"].ToString()), "");
+                        }
                     }
                     else
                     {
