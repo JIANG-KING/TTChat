@@ -18,6 +18,17 @@ namespace SqlSeverFrame
         public SqlDataAdapter SqlLogin(string username, string password)//登录验证
         {
             sqlCnt.Open();
+
+
+            string strSQL = "select account,password from LoginInfo where account=@id and password=@pwd";
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = strSQL;
+            cmd.Parameters.Add("@id", SqlDbType.NVarChar, 20).Value=username;
+            cmd.Parameters.Add("@pwd", SqlDbType.NVarChar, 20).Value = password;
+
+
+
+
             SqlCommand com = new SqlCommand("select account,password from LoginInfo where account='" + username + "' and password='" + password + "'", sqlCnt);
             SqlDataAdapter da = new SqlDataAdapter(com);
             sqlCnt.Close();
