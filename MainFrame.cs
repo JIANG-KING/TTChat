@@ -1,41 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SqlSeverFrame
 {
     public partial class MainFrame : Form
     {
+        UserInfo UserInfo;
         public MainFrame()
         {
             InitializeComponent();
+        }
+        public MainFrame(UserInfo userInfo)
+        {
+            InitializeComponent();
+            this.UserInfo = userInfo;
         }
         public static string Friends;
         public static string FriendsName;
         static  SQLSeverConnect  connect = new SQLSeverConnect();
 
-        string[] s = new string[MainFrame.connect.SearchFriends(LoginFrame.username).Length];
+        string[] s;
         private void MainFrame_Load(object sender, EventArgs e)
         {
-
-            this.UserState.SelectedItem = LoginFrame.LoginState.SelectedItem.ToString().Replace("\\s*", "");
+            s = new string[connect.SearchFriends(UserInfo.getUserName()).Length];
+            this.UserState.SelectedItem = UserInfo.getUserState();
             this.MainShowHead.Image = LoginFrame.Image;
-            this.WelcomeLabel.Text = "欢迎！" +connect.SearchNickname(LoginFrame.username).Replace("\\s*", "") + "用户";
-            int[] count = new int[connect.SearchFriends(LoginFrame.username).Length];
-            for(int i = 0; i <connect.SearchFriends(LoginFrame.username).Length; i++)
+            this.WelcomeLabel.Text = "欢迎！" +connect.SearchNickname(UserInfo.getUserName()).Replace("\\s*", "")+"("+UserInfo.getUserName()+")" + "用户";
+            int[] count = new int[connect.SearchFriends(UserInfo.getUserName()).Length];
+            for(int i = 0; i <connect.SearchFriends(UserInfo.getUserName()).Length; i++)
             {
-                if (connect.SearchFriends(LoginFrame.username)[i] != null)
+                if (connect.SearchFriends(UserInfo.getUserName())[i] != null)
                 {
                     
-                    s[i] = connect.SearchFriends(LoginFrame.username)[i];
+                    s[i] = connect.SearchFriends(UserInfo.getUserName())[i];
                     this.FriendsList.Items.Add(connect.SearchNickname(s[i]).Replace("\\s*", "") + "("+s[i]+")");
                 }
                 else {
@@ -43,19 +40,19 @@ namespace SqlSeverFrame
                     break;
                 }
             }
-            connect.UpdateIsAlive(LoginFrame.username, "1");
+            connect.UpdateIsAlive(UserInfo.getUserName(), "1");
         }
 
 
         private void MainFrame_FormClosed(object sender, FormClosedEventArgs e)
         {
-            connect.UpdateState(LoginFrame.username, "离线");
-            connect.UpdateIsAlive(LoginFrame.username, "0");
+            connect.UpdateState(UserInfo.getUserName(), "离线");
+            connect.UpdateIsAlive(UserInfo.getUserName(), "0");
         }
 
         private void UserState_SelectedIndexChanged(object sender, EventArgs e)
         {
-            connect.UpdateState(LoginFrame.username, this.UserState.SelectedItem.ToString());
+            connect.UpdateState(UserInfo.getUserName(), this.UserState.SelectedItem.ToString());
         }
 
         private void FriendsList_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -63,7 +60,7 @@ namespace SqlSeverFrame
             if (this.FriendsList.SelectedItem != null) {
             Friends = this.FriendsList.SelectedItem.ToString();
             FriendsName = s[this.FriendsList.SelectedIndex];
-            var frm = new Chatting();
+            var frm = new Chatting(UserInfo);
             frm.Show(); 
             }
             

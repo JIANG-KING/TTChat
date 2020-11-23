@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace SqlSeverFrame
 {
     public partial class Register : Form
     {
-        public static Image HeadImage=global::SqlSeverFrame.Properties.Resources.empty;
-        public static string HeadName="emty";
+        public static Image HeadImage = global::SqlSeverFrame.Properties.Resources.empty;
+        public static string HeadName = "emty";
         public Register()
         {
             InitializeComponent();
@@ -45,15 +39,15 @@ namespace SqlSeverFrame
                         {
                             if (connect.sqlSearch(this.UserName.Text) == 0)
                             {
-                                if (connect.sqlInsert(this.UserName.Text, this.Password.Text, HeadName,this.NickNameInput.Text) != 0)
+                                if (connect.sqlInsert(this.UserName.Text, this.Password.Text, HeadName, this.NickNameInput.Text) != 0)
                                 {
                                     this.Close();
-                                    }
+                                }
                                 else
                                 {
                                     MessageBox.Show("服务错误，稍后再试", "提示");
                                 }
-                                
+
                             }
                             else
                             {

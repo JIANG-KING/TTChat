@@ -303,6 +303,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="SQLSeverConnect.cs" />
+    <Compile Include="UserInfo.cs" />
     <EmbeddedResource Include="Chatting.resx">
       <DependentUpon>Chatting.cs</DependentUpon>
     </EmbeddedResource>

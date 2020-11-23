@@ -1,25 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SqlSeverFrame
 {
     public partial class LoginFrame : Form
     {
-        public static string username = "";//暂存用户名，让其他窗体能检测到用户名，减少数据库查询次数
+        public UserInfo UserInfo = new UserInfo();
         public static Image Image = global::SqlSeverFrame.Properties.Resources.empty;//设定登录页面的初始用户头像
         public LoginFrame()
         {
@@ -36,18 +27,20 @@ namespace SqlSeverFrame
             DataRow row = tbl.Rows[0];
             if (this.CodeInput.Text.ToUpper() == CheckNumberText)//判断验证码是否正确，验证码不分大小写，统一转换为大写对比
             {
-                if (SQLSeverConnect.SearchIsAlive(username)==0)//判断账号是否登录，为0时代表账号未登录
+                if (SQLSeverConnect.SearchIsAlive(this.AccountInput.Text)==0)//判断账号是否登录，为0时代表账号未登录
                 {
 
 
                     if (n != 0)//n!=0,代表数据库中有该账户，登录成功。转移到主界面
                     {
-                        if (GetNumberAlpha(row["Account"].ToString()) == this.AccountInput.Text && GetNumberAlpha(row["Password"].ToString()) == this.PasswordInput.Text)
+                        if (GetNumberAlpha(row["Account"].ToString()) == this.AccountInput.Text && GetNumberAlpha(row["Password"].ToString()) == this.PasswordInput.Text)//判断查询的数据是否和输入的一致，防止sql注入
                         {
                             MessageBox.Show("登录成功！", "提示");
-                            SQLSeverConnect.UpdateState(username, LoginState.Text);
-
-                            MainFrame mainFrame = new MainFrame();
+                            SQLSeverConnect.UpdateState(this.AccountInput.Text, LoginState.Text);
+                            UserInfo.setPassword(Account);
+                            UserInfo.setUserName(Password);
+                            UserInfo.setUserState(LoginState.Text);
+                            MainFrame mainFrame = new MainFrame(UserInfo);
                             this.Visible = false;
                             mainFrame.ShowDialog(this);
                             this.Close();
@@ -96,8 +89,6 @@ namespace SqlSeverFrame
         {
             #region Private Fields
             private const double PI = 3.1415926535897932384626433832795;
-            private const double PI2 = 6.283185307179586476925286766559;
-            //private readonly int _wordsLen = 4;
             private int _len;
             private CodeType _codetype;
             private readonly Single _jianju = (float)18.0;
@@ -184,7 +175,7 @@ namespace SqlSeverFrame
                     for (int j = 0; j < destBmp.Height; j++)
                     {
                         double dx = 0;
-                        dx = bXDir ? (PI2 * (double)j) / dBaseAxisLen : (PI2 * (double)i) / dBaseAxisLen;
+                        dx = bXDir ? (PI * (double)j) / dBaseAxisLen : (PI * (double)i) / dBaseAxisLen;
                         dx += dPhase;
                         double dy = Math.Sin(dx);
                         // 取得当前点的颜色
@@ -317,7 +308,7 @@ namespace SqlSeverFrame
         }
         private void AccountInput_TextChanged(object sender, EventArgs e)//用户输入框的值改变时自动匹配用户头像
         {
-            username = this.AccountInput.Text;
+
             if (this.AccountInput.Text != "") { 
             string s = GetNumberAlpha(SQLSeverConnect.SearchImage(this.AccountInput.Text));
                 if (s != "")
@@ -340,6 +331,23 @@ namespace SqlSeverFrame
                 }
             }
             this.ShowHead.Image = Image;
+        }
+
+        private void AccountInput_KeyPress(object sender, KeyPressEventArgs e)//处理用户输入，防止SQL注入
+        {
+            if (e.KeyChar == 0x20) e.KeyChar = (char)0;  //禁止空格键 
+            if ((e.KeyChar == 0x2D) && (((TextBox)sender).Text.Length == 0)) return;   //处理负数 
+            if (e.KeyChar > 0x20)
+            {
+                try
+                {
+                    double.Parse(((TextBox)sender).Text + e.KeyChar.ToString());
+                }
+                catch
+                {
+                    e.KeyChar = (char)0;   //处理非法字符 
+                }
+            }
         }
     }
 }

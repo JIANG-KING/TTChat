@@ -40,7 +40,7 @@
             this.AccountText = new System.Windows.Forms.Label();
             this.ShowHead = new System.Windows.Forms.PictureBox();
             this.CheckNumber = new System.Windows.Forms.PictureBox();
-            LoginState = new System.Windows.Forms.ComboBox();
+            this.LoginState = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.ShowHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckNumber)).BeginInit();
             this.SuspendLayout();
@@ -63,6 +63,7 @@
             this.AccountInput.Size = new System.Drawing.Size(240, 38);
             this.AccountInput.TabIndex = 1;
             this.AccountInput.TextChanged += new System.EventHandler(this.AccountInput_TextChanged);
+            this.AccountInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AccountInput_KeyPress);
             // 
             // PasswordInput
             // 
@@ -165,26 +166,26 @@
             // 
             // LoginState
             // 
-            LoginState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            LoginState.FormattingEnabled = true;
-            LoginState.Items.AddRange(new object[] {
+            this.LoginState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoginState.FormattingEnabled = true;
+            this.LoginState.Items.AddRange(new object[] {
             "在线",
             "隐身",
             "离开",
             "忙碌",
             "请勿打扰",
             "q我吧"});
-            LoginState.Location = new System.Drawing.Point(561, 237);
-            LoginState.Name = "LoginState";
-            LoginState.Size = new System.Drawing.Size(121, 23);
-            LoginState.TabIndex = 14;
+            this.LoginState.Location = new System.Drawing.Point(561, 237);
+            this.LoginState.Name = "LoginState";
+            this.LoginState.Size = new System.Drawing.Size(121, 23);
+            this.LoginState.TabIndex = 14;
             // 
             // LoginFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(LoginState);
+            this.Controls.Add(this.LoginState);
             this.Controls.Add(this.ShowHead);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.CodeInput);
@@ -222,7 +223,7 @@
         private System.Windows.Forms.Button RefreshButton;
         private System.Windows.Forms.PictureBox ShowHead;
         private System.Windows.Forms.Label AccountText;
-        public static System.Windows.Forms.ComboBox LoginState;
+        private System.Windows.Forms.ComboBox LoginState;
     }
 }
 
