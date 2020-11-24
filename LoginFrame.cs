@@ -287,8 +287,9 @@ namespace SqlSeverFrame
 
         private void NewButton_Click(object sender, EventArgs e)
         {
+            PictureBoxTest pictureBoxTest = new PictureBoxTest();
             ResetPassword resetPassword = new ResetPassword();
-            resetPassword.ShowDialog(this);
+            pictureBoxTest.ShowDialog(this);
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)//刷新验证码
