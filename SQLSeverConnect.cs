@@ -11,18 +11,12 @@ namespace SqlSeverFrame
         public SqlDataAdapter SqlLogin(string username, string password)//登录验证
         {
             sqlCnt.Open();
-
-
             string strSQL = "select account,password from LoginInfo where account=@id and password=@pwd";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
             cmd.Parameters.AddWithValue("@id", username);
-            cmd.Parameters.AddWithValue("@pwd", username);
+            cmd.Parameters.AddWithValue("@pwd", password);
             cmd.Connection = sqlCnt;
-
-
-
-
             SqlCommand com = new SqlCommand("select account,password from LoginInfo where account='" + username + "' and password='" + password + "'", sqlCnt);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             sqlCnt.Close();
@@ -41,8 +35,20 @@ namespace SqlSeverFrame
         public int sqlSearch(string Account)//查询指定用户
         {
             sqlCnt.Open();
+
+
+
+            string strSQL = "select account from LoginInfo where account=@id";
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = strSQL;
+            cmd.Parameters.AddWithValue("@id", Account);
+            cmd.Connection = sqlCnt;
+
+
+
+
             SqlCommand str = new SqlCommand("select account from LoginInfo where account=" + Account, sqlCnt);
-            SqlDataAdapter da = new SqlDataAdapter(str);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             int a = da.Fill(ds, "LoginInfo");
             sqlCnt.Close();
@@ -51,8 +57,19 @@ namespace SqlSeverFrame
         public int sqlInsert(string Account, string Password, string image, string NickName)//插入一个用户，用户注册时使用
         {
             sqlCnt.Open();
+
+            string strSQL = "INSERT INTO [dbo].[LoginInfo] ([Account],[Password],[ImageHead],[NickName]) VALUES (@id,@pwd,@image,@NickName)";
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = strSQL;
+            cmd.Parameters.AddWithValue("@id", Account);
+            cmd.Parameters.AddWithValue("@pwd", Password);
+            cmd.Parameters.AddWithValue("@image", image);
+            cmd.Parameters.AddWithValue("@NickName", NickName);
+            cmd.Connection = sqlCnt;
+
+
             SqlCommand com = new SqlCommand("INSERT INTO [dbo].[LoginInfo] ([Account],[Password],[ImageHead],[NickName]) VALUES (" + Account + "," + Password + ",'" + image + "',+N'" + NickName + "')", sqlCnt);
-            int result = com.ExecuteNonQuery();
+            int result = cmd.ExecuteNonQuery();
             sqlCnt.Close();
             return result;
         }
@@ -67,7 +84,6 @@ namespace SqlSeverFrame
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
             cmd.Parameters.AddWithValue("@id", username);
-            //cmd.Parameters.AddWithValue("@pwd", username);
             cmd.Connection = sqlCnt;
 
 

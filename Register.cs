@@ -41,6 +41,7 @@ namespace SqlSeverFrame
                             {
                                 if (connect.sqlInsert(this.UserName.Text, this.Password.Text, HeadName, this.NickNameInput.Text) != 0)
                                 {
+                                    MessageBox.Show("注册成功，即将返回主页面", "提示");
                                     this.Close();
                                 }
                                 else

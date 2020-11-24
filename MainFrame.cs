@@ -5,7 +5,7 @@ namespace SqlSeverFrame
 {
     public partial class MainFrame : Form
     {
-        UserInfo UserInfo;
+        public UserInfo UserInfo;
         public MainFrame()
         {
             InitializeComponent();
@@ -54,6 +54,9 @@ namespace SqlSeverFrame
         {
             connect.UpdateState(UserInfo.getUserName(), this.UserState.SelectedItem.ToString());
         }
+
+        
+        
 
         private void FriendsList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
