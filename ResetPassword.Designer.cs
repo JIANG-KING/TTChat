@@ -117,11 +117,11 @@ namespace SqlSeverFrame
             // NoteLabel
             // 
             this.NoteLabel.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.NoteLabel.Location = new System.Drawing.Point(543, 101);
+            this.NoteLabel.Location = new System.Drawing.Point(566, 63);
             this.NoteLabel.Name = "NoteLabel";
-            this.NoteLabel.Size = new System.Drawing.Size(189, 201);
+            this.NoteLabel.Size = new System.Drawing.Size(222, 249);
             this.NoteLabel.TabIndex = 8;
-            this.NoteLabel.Text = "请在左侧输入要修改的账号以及新密码，手机令牌为注册时设置的key，忘记key请使用管理员账户找回";
+            this.NoteLabel.Text = "请在左侧输入要修改的账号以及新密码，手机令牌为注册时设置的key，将key填入手机APP，谷歌身份验证器或者微软身份验证器，忘记key请使用管理员账户找回";
             // 
             // ConfirmButton
             // 
