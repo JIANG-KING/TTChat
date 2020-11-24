@@ -23,14 +23,15 @@ namespace SqlSeverFrame
             string strSQL = "select account,password from LoginInfo where account=@id and password=@pwd";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
-            cmd.Parameters.Add("@id", SqlDbType.NVarChar, 20).Value=username;
-            cmd.Parameters.Add("@pwd", SqlDbType.NVarChar, 20).Value = password;
+            cmd.Parameters.AddWithValue("@id", username);
+            cmd.Parameters.AddWithValue("@pwd", username);
+            cmd.Connection = sqlCnt;
 
 
 
 
             SqlCommand com = new SqlCommand("select account,password from LoginInfo where account='" + username + "' and password='" + password + "'", sqlCnt);
-            SqlDataAdapter da = new SqlDataAdapter(com);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
             sqlCnt.Close();
             return da;
 
@@ -65,9 +66,23 @@ namespace SqlSeverFrame
         public string SearchImage(string username)//查找用户的头像
         {
             sqlCnt.Open();
+
+
+
+
+            string strSQL = "select ImageHead from LoginInfo where account=@id";
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = strSQL;
+            cmd.Parameters.AddWithValue("@id", username);
+            //cmd.Parameters.AddWithValue("@pwd", username);
+            cmd.Connection = sqlCnt;
+
+
+
+
             SqlCommand com = new SqlCommand("select ImageHead from LoginInfo where Account=" + username, sqlCnt);
             SqlDataReader dr;//创建DataReader对象
-            dr = com.ExecuteReader();
+            dr = cmd.ExecuteReader();
             string s = "";
             if (dr.Read())
                 s = dr["imagehead"].ToString().Substring(0, 5);
