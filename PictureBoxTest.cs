@@ -80,5 +80,20 @@ namespace SqlSeverFrame
             }
         }
 
-}
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                pictureBox1.WaitOnLoad = false;
+                pictureBox1.LoadAsync(this.textBox1.Text);
+
+            }
+            catch
+            {
+
+                MessageBox.Show("网络连接失败");
+            }
+        }
+    }
 }
