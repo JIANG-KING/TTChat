@@ -267,6 +267,12 @@
     <Compile Include="CheckNumber.Designer.cs">
       <DependentUpon>CheckNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="FriendsMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FriendsMain.Designer.cs">
+      <DependentUpon>FriendsMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginFrame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -315,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CheckNumber.resx">
       <DependentUpon>CheckNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FriendsMain.resx">
+      <DependentUpon>FriendsMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginFrame.resx">
       <DependentUpon>LoginFrame.cs</DependentUpon>

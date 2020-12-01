@@ -27,8 +27,7 @@ namespace SqlSeverFrame
 
         private void PictureBoxTest_Load(object sender, EventArgs e)
         {
-            pictureBox1.LoadAsync(
-"https://imgchr.com/i/DNdc40");
+            pictureBox1.LoadAsync("https://imgchr.com/i/DNdc40");
         }
 
 
@@ -87,6 +86,7 @@ namespace SqlSeverFrame
                 
                 pictureBox1.WaitOnLoad = false;
                 pictureBox1.LoadAsync(this.textBox1.Text);
+
 
             }
             catch

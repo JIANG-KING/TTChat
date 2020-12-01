@@ -342,6 +342,20 @@ namespace SqlSeverFrame
             sqlCnt.Close();
             return s;
         }
+        public int  AddFriends(string username,string Friends)//添加好友
+        {
+            sqlCnt.Open();
+
+            string strSQL = "insert into Friends (Username,friends) values(@Username,@Friends)";
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = strSQL;
+            cmd.Parameters.AddWithValue("Username", username);
+            cmd.Parameters.AddWithValue("Friedns", Friends);
+            cmd.Connection = sqlCnt;
+            int result = cmd.ExecuteNonQuery();
+            sqlCnt.Close();
+            return result;
+        }
 
     }
     }
