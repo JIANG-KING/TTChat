@@ -32,7 +32,7 @@ namespace SqlSeverFrame
             sqlCnt.Close();
             return da;
         }
-        public int sqlSearch(string Account)//查询指定用户
+        public int SqlSearch(string Account)//查询指定用户
         {
             sqlCnt.Open();
 
@@ -220,6 +220,20 @@ namespace SqlSeverFrame
             sqlCnt.Close();
             return User;
         }
+        public int  IsFriends(string username,string friends)//查找用户的好友
+        {
+            sqlCnt.Open();
+
+
+            string strSQL = "select Friends from Friends where UserName=@id and friends=@friends";
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = strSQL;
+            cmd.Parameters.AddWithValue("@id", username);
+            cmd.Parameters.AddWithValue("friedns", friends);
+            cmd.Connection = sqlCnt;
+            int result = cmd.ExecuteNonQuery();
+            return result;
+        }
         public string[] SearchMessage(string username, string Receiver)//查找用户收到的消息
         {
             sqlCnt.Open();
@@ -351,6 +365,21 @@ namespace SqlSeverFrame
             cmd.CommandText = strSQL;
             cmd.Parameters.AddWithValue("Username", username);
             cmd.Parameters.AddWithValue("Friedns", Friends);
+            cmd.Connection = sqlCnt;
+            int result = cmd.ExecuteNonQuery();
+            sqlCnt.Close();
+            return result;
+        }
+        public int SendFriendApplication(string sender,string message, string Friends)//发送好友申请
+        {
+            sqlCnt.Open();
+
+            string strSQL = "insert into FriendsApplication (sender,message,receiver) values(@sender,@message,@receiver)";
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = strSQL;
+            cmd.Parameters.AddWithValue("sender", sender);
+            cmd.Parameters.AddWithValue("message", message);
+            cmd.Parameters.AddWithValue("receiver", Friends);
             cmd.Connection = sqlCnt;
             int result = cmd.ExecuteNonQuery();
             sqlCnt.Close();

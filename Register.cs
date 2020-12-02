@@ -37,7 +37,7 @@ namespace SqlSeverFrame
                     {
                         if (this.ConfirmPassword.Text == this.Password.Text)
                         {
-                            if (connect.sqlSearch(this.UserName.Text) == 0)
+                            if (connect.SqlSearch(this.UserName.Text) == 0)
                             {
                                 if (connect.sqlInsert(this.UserName.Text, this.Password.Text, HeadName, this.NickNameInput.Text) != 0)
                                 {

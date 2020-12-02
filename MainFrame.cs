@@ -95,7 +95,8 @@ namespace SqlSeverFrame
 
         private void AddFriendsButton_Click(object sender, EventArgs e)
         {
-
+            FriendsMain friends = new FriendsMain(UserInfo);
+            friends.Show(this);
         }
     }
 }
