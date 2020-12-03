@@ -220,7 +220,7 @@ namespace SqlSeverFrame
             sqlCnt.Close();
             return User;
         }
-        public int  IsFriends(string username,string friends)//查找用户的好友
+        public int  IsFriends(string username,string friends)//查找是否已经是用户好友
         {
             sqlCnt.Open();
 
@@ -229,9 +229,10 @@ namespace SqlSeverFrame
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
             cmd.Parameters.AddWithValue("@id", username);
-            cmd.Parameters.AddWithValue("friedns", friends);
+            cmd.Parameters.AddWithValue("@friends", friends);
             cmd.Connection = sqlCnt;
             int result = cmd.ExecuteNonQuery();
+            sqlCnt.Close();
             return result;
         }
         public string[] SearchMessage(string username, string Receiver)//查找用户收到的消息
@@ -380,6 +381,86 @@ namespace SqlSeverFrame
             cmd.Parameters.AddWithValue("sender", sender);
             cmd.Parameters.AddWithValue("message", message);
             cmd.Parameters.AddWithValue("receiver", Friends);
+            cmd.Connection = sqlCnt;
+            int result = cmd.ExecuteNonQuery();
+            sqlCnt.Close();
+            return result;
+        }
+
+
+
+
+        public string[] SearchFriendsApplication(string username)//查找用户的好友申请
+        {
+            sqlCnt.Open();
+
+
+            string strSQL = "select sender from FriendsApplication where receiver=@id";
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = strSQL;
+            cmd.Parameters.AddWithValue("@id", username);
+            cmd.Connection = sqlCnt;
+            SqlDataReader dr;//创建DataReader对象
+            dr = cmd.ExecuteReader();
+            string[] User = new string[2000];
+            int i = 0;
+            while (dr.Read())
+            {
+                if (i >= 2000) break;
+                User[i] = dr["sender"].ToString();
+                i++;
+
+            }
+            sqlCnt.Close();
+            return User;
+        }
+
+
+        public string SearchFriendsApplicationMessage(string sender,string receiver)//查找用户的好友申请信息
+        {
+            sqlCnt.Open();
+
+
+            string strSQL = "select message from FriendsApplication where sender=@sender and receiver=@receiver";
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = strSQL;
+            cmd.Parameters.AddWithValue("@sender", sender);
+            cmd.Parameters.AddWithValue("@receiver", receiver);
+            cmd.Connection = sqlCnt;
+            SqlDataReader dr;//创建DataReader对象
+            dr = cmd.ExecuteReader();
+            string User="";
+            if (dr.Read()) {User = dr["message"].ToString(); }
+            
+            sqlCnt.Close();
+            return User;
+        }
+
+        public int DeleteApplication(string sender)//删除好友申请
+        {
+            sqlCnt.Open();
+            string strSQL = "delete from FriendsApplication where sender = @id";
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = strSQL;
+            cmd.Parameters.AddWithValue("@id", sender);
+            cmd.Connection = sqlCnt;
+            int result = cmd.ExecuteNonQuery();
+            sqlCnt.Close();
+            return result;
+            ;
+        }
+
+
+
+
+        public int  IsSendApplication(string sender,string receiver)//查找是否已经存在好友申请
+        {
+            sqlCnt.Open();
+            string strSQL = "select sender from FriendsApplication where sender=@id and receiver=@receiver";
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = strSQL;
+            cmd.Parameters.AddWithValue("@id", sender);
+            cmd.Parameters.AddWithValue("@receiver", receiver);
             cmd.Connection = sqlCnt;
             int result = cmd.ExecuteNonQuery();
             sqlCnt.Close();

@@ -98,5 +98,11 @@ namespace SqlSeverFrame
             FriendsMain friends = new FriendsMain(UserInfo);
             friends.Show(this);
         }
+
+        private void FriendApplication_Click(object sender, EventArgs e)
+        {
+            FriendsApplication application = new FriendsApplication( UserInfo);
+            application.Show(this);
+        }
     }
 }

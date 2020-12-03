@@ -74,8 +74,11 @@ namespace SqlSeverFrame
         {
             if (SQLSeverConnect.IsFriends(UserInfo.getUserName(), this.FriendsAccountInput.Text) != 1)
             {
-                if (this.FriendsAccountInput.Text != UserInfo.getUserName()) {
-                
+
+                if (SQLSeverConnect.IsSendApplication(UserInfo.getUserName(), this.FriendsAccountInput.Text) == 0)
+                { 
+                    if (this.FriendsAccountInput.Text != UserInfo.getUserName()) 
+                    {                
                 string Message = Interaction.InputBox("请输入验证消息", "提示", "", 100, 100);
                 SQLSeverConnect.SendFriendApplication(UserInfo.getUserName(), Message, this.FriendsAccountInput.Text);
                 MessageBox.Show("发送成功", "提示");
@@ -84,6 +87,20 @@ namespace SqlSeverFrame
             {
                 MessageBox.Show("你不能添加自己为好友", "提示");
             }
+                }
+                else
+                {
+                    DialogResult r1=MessageBox.Show(" 已经发送过好友申请了，继续发送将覆盖好友申请 "," 提示",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+                    if (r1.ToString() == "yes")
+                    {
+                        SQLSeverConnect.DeleteApplication(UserInfo.getUserName());
+                        string Message = Interaction.InputBox("请输入验证消息", "提示", "", 100, 100);
+                        SQLSeverConnect.SendFriendApplication(UserInfo.getUserName(), Message, this.FriendsAccountInput.Text);
+                        MessageBox.Show("发送成功", "提示");
+                    }
+                }
+                
+
             }
             else
             {
