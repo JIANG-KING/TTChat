@@ -65,6 +65,7 @@ namespace SqlSeverFrame
             this.Agree.TabIndex = 2;
             this.Agree.Text = "同  意";
             this.Agree.UseVisualStyleBackColor = true;
+            this.Agree.Click += new System.EventHandler(this.Agree_Click);
             // 
             // FriendsApplication
             // 

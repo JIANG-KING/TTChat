@@ -46,5 +46,14 @@ namespace SqlSeverFrame
 
 
         }
+
+        private void Agree_Click(object sender, EventArgs e)
+        {
+            if (this.ShowFriends.SelectedItem != null)
+            {
+
+            }
+
+        }
     }
 }

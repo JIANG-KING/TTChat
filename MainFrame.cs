@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SqlSeverFrame
@@ -6,6 +7,7 @@ namespace SqlSeverFrame
     public partial class MainFrame : Form
     {
         public UserInfo UserInfo;
+        public UserInfo FriendsInfo=new UserInfo();
         public MainFrame()
         {
             InitializeComponent();
@@ -18,7 +20,7 @@ namespace SqlSeverFrame
         public static string Friends;
         public static string FriendsName;
         static  SQLSeverConnect  connect = new SQLSeverConnect();
-
+        public static Dictionary<Form, string> dc = new Dictionary<Form, string>();
         string[] s;
         private void MainFrame_Load(object sender, EventArgs e)
         {
@@ -60,17 +62,22 @@ namespace SqlSeverFrame
 
         private void FriendsList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (this.FriendsList.SelectedItem != null) {
+            FriendsInfo.setUserName(s[this.FriendsList.SelectedIndex]);
+            if (this.FriendsList.SelectedItem != null&&!dc.ContainsValue(FriendsInfo.getUserName())) 
+            {
+
             Friends = this.FriendsList.SelectedItem.ToString();
             FriendsName = s[this.FriendsList.SelectedIndex];
-            var frm = new Chatting(UserInfo);
-            frm.Show(); 
+            var frm = new Chatting(UserInfo,FriendsInfo);
+            frm.Show();
+             dc.Add(frm, FriendsInfo.getUserName());
             }
             
         }
 
         private void ReFreshButton_Click(object sender, EventArgs e)
         {
+            this.FriendsList.Items.Clear();
             s = new string[connect.SearchFriends(UserInfo.getUserName()).Length];
             this.UserState.SelectedItem = UserInfo.getUserState();
             this.MainShowHead.Image = LoginFrame.Image;

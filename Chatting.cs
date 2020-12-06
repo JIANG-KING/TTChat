@@ -8,21 +8,23 @@ namespace SqlSeverFrame
     public partial class Chatting : Form
     {
         UserInfo UserInfo = new UserInfo();
+        UserInfo FriendsInfo = new UserInfo();
         public Chatting()
         {
             InitializeComponent();
         }
-        public Chatting(UserInfo userInfo)
+        public Chatting(UserInfo userInfo,UserInfo FriendsInfo)
         {
             InitializeComponent();
             this.UserInfo = userInfo;
+            this.FriendsInfo = FriendsInfo;
 
         }
         int max;
         SQLSeverConnect connect = new SQLSeverConnect();
         private void ReciveMessage_Tick(object sender, EventArgs e)
         {
-            int[] ReceviverNumber = connect.SearchNumbers(MainFrame.FriendsName, UserInfo.getUserName());
+            int[] ReceviverNumber = connect.SearchNumbers(FriendsInfo.getUserName(), UserInfo.getUserName());
             Array.Sort(ReceviverNumber);
             for(int i = 0; i <ReceviverNumber.Length; i++)
             {
@@ -42,12 +44,12 @@ namespace SqlSeverFrame
 
         private void Chatting_Load(object sender, EventArgs e)
         {
-            this.Text = "正在与" + MainFrame.Friends+"聊天";
-            string[] ReceiverMessage = connect.SearchMessage(MainFrame.FriendsName,UserInfo.getUserName());
-            int[] ReceviverNumber = connect.SearchNumbers(MainFrame.FriendsName, UserInfo.getUserName());
+            this.Text = "正在与" + connect.SearchNickname(FriendsInfo.getUserName())+"("+FriendsInfo.getUserName()+")"+"聊天";
+            string[] ReceiverMessage = connect.SearchMessage(FriendsInfo.getUserName(),UserInfo.getUserName());
+            int[] ReceviverNumber = connect.SearchNumbers(FriendsInfo.getUserName(), UserInfo.getUserName());
             max = ReceviverNumber.Max();
-            string[] SendMessage = connect.SearchMessage(UserInfo.getUserName(), MainFrame.FriendsName);
-            int[] SendNumber = connect.SearchNumbers(UserInfo.getUserName(), MainFrame.FriendsName);
+            string[] SendMessage = connect.SearchMessage(UserInfo.getUserName(), FriendsInfo.getUserName());
+            int[] SendNumber = connect.SearchNumbers(UserInfo.getUserName(), FriendsInfo.getUserName());
             int[] MainNumber = SendNumber.Concat(ReceviverNumber).ToArray();
             Array.Sort(MainNumber);
             for (int i = 0; i<MainNumber.Length; i++)
@@ -75,7 +77,7 @@ namespace SqlSeverFrame
         {
 
             Thread.sleep(200);
-            connect.SendMessage(UserInfo.getUserName(),  this.MessageInput.Text,MainFrame.FriendsName);
+            connect.SendMessage(UserInfo.getUserName(),  this.MessageInput.Text,FriendsInfo.getUserName());
             this.ShowMessage.Text += connect.SearchNickname(UserInfo.getUserName()) +"(" +UserInfo.getUserName() +")"+ DateTime.Now + "\r\n" + this.MessageInput.Text+ "\r\n";
             this.MessageInput.Text = "";
         }
@@ -83,6 +85,12 @@ namespace SqlSeverFrame
         private void DropButton_Click(object sender, EventArgs e)
         {
             this.MessageInput.Text = "";
+        }
+
+        private void Chatting_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MessageBox.Show(this.FindForm().Text,"提示");
+            
         }
     }
 }
