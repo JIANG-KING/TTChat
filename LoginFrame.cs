@@ -19,59 +19,66 @@ namespace SqlSeverFrame
         SQLSeverConnect SQLSeverConnect = new SQLSeverConnect();//新建数据库连接对象
         public void SQLConnectPackage()
         {
-            string Account=this.AccountInput.Text;
+            string Account = this.AccountInput.Text;
             string Password = this.PasswordInput.Text;
             DataSet ds = new DataSet();
-            int n = SQLSeverConnect.SqlLogin(Account,Password).Fill(ds, "LoginInfo");
-            DataTable tbl = ds.Tables[0];
-            DataRow row = tbl.Rows[0];
+            int n = SQLSeverConnect.SqlLogin(Account, Password).Fill(ds, "LoginInfo");
+
             if (this.CodeInput.Text.ToUpper() == CheckNumberText)//判断验证码是否正确，验证码不分大小写，统一转换为大写对比
             {
-                if (SQLSeverConnect.SearchIsAlive(this.AccountInput.Text)==0)//判断账号是否登录，为0时代表账号未登录
+                if (SQLSeverConnect.SqlSearch(this.AccountInput.Text) != 0)
                 {
-
-
-                    if (n != 0)//n!=0,代表数据库中有该账户，登录成功。转移到主界面
+                    if (SQLSeverConnect.SearchIsAlive(this.AccountInput.Text) != 1)
                     {
-                        if (GetNumberAlpha(row["Account"].ToString()) == this.AccountInput.Text && GetNumberAlpha(row["Password"].ToString()) == this.PasswordInput.Text)//判断查询的数据是否和输入的一致，防止sql注入
+                        if (SQLSeverConnect.SqlLogin(Account, Password).Fill(ds, "LoginInfo") != 0)
                         {
-                            MessageBox.Show("登录成功！", "提示");
-                            SQLSeverConnect.UpdateState(this.AccountInput.Text, LoginState.Text);
-                            UserInfo.setPassword(Account);
-                            UserInfo.setUserName(Password);
-                            UserInfo.setUserState(LoginState.Text);
-                            MainFrame mainFrame = new MainFrame(UserInfo);
-                            this.Visible = false;
-                            mainFrame.ShowDialog(this);
-                            this.Close();
+                            DataTable tbl = ds.Tables[0];
+                            DataRow row = tbl.Rows[0];
+                            if (GetNumberAlpha(row["Account"].ToString()) == this.AccountInput.Text && GetNumberAlpha(row["Password"].ToString()) == this.PasswordInput.Text)//判断查询的数据是否和输入的一致，防止sql注入
+                            {
+                                MessageBox.Show("登录成功！", "提示");
+                                SQLSeverConnect.UpdateState(this.AccountInput.Text, LoginState.Text);
+                                UserInfo.setPassword(Account);
+                                UserInfo.setUserName(Password);
+                                UserInfo.setUserState(LoginState.Text);
+                                MainFrame mainFrame = new MainFrame(UserInfo);
+                                this.Visible = false;
+                                mainFrame.ShowDialog(this);
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("服务异常，请重试！", "提示");
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("出现问题"+ GetNumberAlpha(row["Password"].ToString()), "");
+                            MessageBox.Show("账号或者密码错误", "提示");
+                            AccountInput.Focus();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("用户名或密码错误，请重新输入！", "提示");
-                        PasswordInput.Text = "";
-                        AccountInput.Text = "";
-                        AccountInput.Focus();
+                        MessageBox.Show("账号已登录，请重置密码或者寻求管理员帮助", "提示");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("账号已登录,请退出其他地点的登录后重新登陆。若其他设备登录，请修改密码后登录", "提示");
+                    MessageBox.Show("账号不存在", "提示");
+                    this.AccountInput.Text = "";
+                    this.PasswordInput.Text = "";
+                    this.CodeInput.Text = "";
+                    AccountInput.Focus();
                 }
             }
             else
             {
-                MessageBox.Show("验证码错误", "提示");
-                CodeInput.Text = null;
+                MessageBox.Show("服务异常，请重试！", "提示");
+                this.CodeInput.Text = "";
                 CodeInput.Focus();
             }
-                }
-        
 
+        }
         private void LoginButton_Click(object sender, EventArgs e)
         {
             SQLConnectPackage();
@@ -279,8 +286,7 @@ namespace SqlSeverFrame
             CheckNumberText = validCode.CheckCode;
         }
         private void LoginFrame_Load(object sender, EventArgs e)//加载验证码，设置默认在线状态
-        {
-            
+        {          
             LoginState.SelectedItem="在线";
             CreatCode();
         }
@@ -289,7 +295,7 @@ namespace SqlSeverFrame
         {
             PictureBoxTest pictureBoxTest = new PictureBoxTest();
             ResetPassword resetPassword = new ResetPassword();
-            pictureBoxTest.ShowDialog(this);
+            resetPassword.ShowDialog(this);
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)//刷新验证码

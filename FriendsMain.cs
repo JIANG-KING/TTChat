@@ -72,40 +72,87 @@ namespace SqlSeverFrame
 
         private void SendFriendsApplication_Click(object sender, EventArgs e)
         {
-            if (SQLSeverConnect.IsFriends(UserInfo.getUserName(), this.FriendsAccountInput.Text) != 1)
-            {
 
-                if (SQLSeverConnect.IsSendApplication(UserInfo.getUserName(), this.FriendsAccountInput.Text) == 0)
-                { 
-                    if (this.FriendsAccountInput.Text != UserInfo.getUserName()) 
-                    {                
-                string Message = Interaction.InputBox("请输入验证消息", "提示", "", 100, 100);
-                SQLSeverConnect.SendFriendApplication(UserInfo.getUserName(), Message, this.FriendsAccountInput.Text);
-                MessageBox.Show("发送成功", "提示");
-            }
-            else
+            if (SQLSeverConnect.SqlSearch(this.FriendsAccountInput.Text)==1)
             {
-                MessageBox.Show("你不能添加自己为好友", "提示");
-            }
-                }
-                else
+                if(SQLSeverConnect.IsFriends(UserInfo.getUserName(), this.FriendsAccountInput.Text) != 1)
                 {
-                    DialogResult r1=MessageBox.Show(" 已经发送过好友申请了，继续发送将覆盖好友申请 "," 提示",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
-                    if (r1.ToString() == "yes")
+                    MessageBox.Show(SQLSeverConnect.IsFriends(UserInfo.getUserName(), this.FriendsAccountInput.Text).ToString(), "");
+                    if(this.FriendsAccountInput.Text != UserInfo.getUserName())
                     {
-                        SQLSeverConnect.DeleteApplication(UserInfo.getUserName());
-                        string Message = Interaction.InputBox("请输入验证消息", "提示", "", 100, 100);
-                        SQLSeverConnect.SendFriendApplication(UserInfo.getUserName(), Message, this.FriendsAccountInput.Text);
-                        MessageBox.Show("发送成功", "提示");
+                        if(SQLSeverConnect.IsSendApplication(UserInfo.getUserName(), this.FriendsAccountInput.Text) == 0)
+                        {
+                            string Message = Interaction.InputBox("请输入验证消息", "提示", "", 100, 100);
+                            SQLSeverConnect.SendFriendApplication(UserInfo.getUserName(), Message, this.FriendsAccountInput.Text);
+                            MessageBox.Show("发送成功", "提示");
+                        }
+                        else
+                        {
+                            DialogResult r1 = MessageBox.Show(" 已经发送过好友申请了，继续发送将覆盖好友申请 ", " 提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                            MessageBox.Show(r1.ToString(), "");
+                            if (r1.ToString() == "OK")
+                            {
+                            SQLSeverConnect.DeleteApplication(UserInfo.getUserName(),this.FriendsAccountInput.Text);
+                            string Message = Interaction.InputBox("请输入验证消息", "提示", "", 100, 100);
+                            SQLSeverConnect.SendFriendApplication(UserInfo.getUserName(), Message, this.FriendsAccountInput.Text);
+                            MessageBox.Show("发送成功", "提示");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("你不能添加自己为好友", "提示");
                     }
                 }
-                
+                else 
+                {
+                    MessageBox.Show("你们已经是好友了", "提示");
+                }
+
 
             }
             else
             {
-                MessageBox.Show("你们已经是好友了", "提示");
+                MessageBox.Show("用户不存在", "提示");
             }
+
+
+
+            //if (SQLSeverConnect.IsFriends(UserInfo.getUserName(), this.FriendsAccountInput.Text) != 1)
+            //{
+
+            //    if (this.FriendsAccountInput.Text != UserInfo.getUserName())
+            //    { 
+            //        if (SQLSeverConnect.IsSendApplication(UserInfo.getUserName(), this.FriendsAccountInput.Text) == 0) 
+            //        {                
+            //    string Message = Interaction.InputBox("请输入验证消息", "提示", "", 100, 100);
+            //    SQLSeverConnect.SendFriendApplication(UserInfo.getUserName(), Message, this.FriendsAccountInput.Text);
+            //    MessageBox.Show("发送成功", "提示");
+            //}
+            //else
+            //{
+            //            DialogResult r1 = MessageBox.Show(" 已经发送过好友申请了，继续发送将覆盖好友申请 ", " 提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            //            if (r1.ToString() == "yes")
+            //            {
+            //                SQLSeverConnect.DeleteApplication(UserInfo.getUserName());
+            //                string Message = Interaction.InputBox("请输入验证消息", "提示", "", 100, 100);
+            //                SQLSeverConnect.SendFriendApplication(UserInfo.getUserName(), Message, this.FriendsAccountInput.Text);
+            //                MessageBox.Show("发送成功", "提示");
+            //            }
+                        
+            //}
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("你不能添加自己为好友", "提示");
+            //    }
+                
+
+            //}
+            //else
+            //{
+            //    MessageBox.Show("你们已经是好友了", "提示");
+            //}
             
             
         }

@@ -23,31 +23,14 @@ namespace SqlSeverFrame
             return da;
 
         }
-        public SqlDataAdapter sqlDataReader()
-        {
-            sqlCnt.Open();
-            SqlCommand com = new SqlCommand("select * from 个人信息表", sqlCnt);
-            // 建立SqlDataAdapter和DataSet对象
-            SqlDataAdapter da = new SqlDataAdapter(com);
-            sqlCnt.Close();
-            return da;
-        }
         public int SqlSearch(string Account)//查询指定用户
         {
             sqlCnt.Open();
-
-
-
             string strSQL = "select account from LoginInfo where account=@id";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
             cmd.Parameters.AddWithValue("@id", Account);
             cmd.Connection = sqlCnt;
-
-
-
-
-            //SqlCommand str = new SqlCommand("select account from LoginInfo where account=" + Account, sqlCnt);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             int a = da.Fill(ds, "LoginInfo");
@@ -76,20 +59,11 @@ namespace SqlSeverFrame
         public string SearchImage(string username)//查找用户的头像
         {
             sqlCnt.Open();
-
-
-
-
             string strSQL = "select ImageHead from LoginInfo where account=@id";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
             cmd.Parameters.AddWithValue("@id", username);
             cmd.Connection = sqlCnt;
-
-
-
-
-            //SqlCommand com = new SqlCommand("select ImageHead from LoginInfo where Account=" + username, sqlCnt);
             SqlDataReader dr;//创建DataReader对象
             dr = cmd.ExecuteReader();
             string s = "";
@@ -101,19 +75,12 @@ namespace SqlSeverFrame
         public int UpdateState(string username, string LoginState)//更新用户的状态，在线，隐身，忙碌，请勿打扰，q我吧
         {
             sqlCnt.Open();
-
-
-
             string strSQL = "update LoginInfo set AccountState=@LoginState  where Account=@id";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
             cmd.Parameters.AddWithValue("@id", username);
             cmd.Parameters.AddWithValue("@LoginState", LoginState);
             cmd.Connection = sqlCnt;
-
-
-
-            //SqlCommand com = new SqlCommand("update LoginInfo set AccountState=N'" + LoginState + "' where Account=" + username, sqlCnt);
             int result = cmd.ExecuteNonQuery();
             sqlCnt.Close();
             return result;
@@ -127,8 +94,6 @@ namespace SqlSeverFrame
             cmd.CommandText = strSQL;
             cmd.Parameters.AddWithValue("@id", username);
             cmd.Connection = sqlCnt;
-
-            //SqlCommand cmd = new SqlCommand("select AccountState from LoginInfo where Account=" + username, sqlCnt);
             SqlDataReader dr;//创建DataReader对象
             dr = cmd.ExecuteReader();
             string s = "";
@@ -140,15 +105,11 @@ namespace SqlSeverFrame
         public string SearchNickname(string username)//查找用户的昵称
         {
             sqlCnt.Open();
-
-
             string strSQL = "select NickName from LoginInfo where Account=@id";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
             cmd.Parameters.AddWithValue("@id", username);
             cmd.Connection = sqlCnt;
-
-            //SqlCommand com = new SqlCommand("select NickName from LoginInfo where Account=" + username, sqlCnt);
             SqlDataReader dr;//创建DataReader对象
             dr = cmd.ExecuteReader();
             string s = "";
@@ -167,8 +128,6 @@ namespace SqlSeverFrame
             cmd.Parameters.AddWithValue("@id", username);
             cmd.Parameters.AddWithValue("@IsAlive", IsAlive);
             cmd.Connection = sqlCnt;
-
-            //SqlCommand com = new SqlCommand("update LoginInfo set IsAlive=" + IsAlive + " where Account=" + username, sqlCnt);
             int result = cmd.ExecuteNonQuery();
             sqlCnt.Close();
             return result;
@@ -176,17 +135,11 @@ namespace SqlSeverFrame
         public int SearchIsAlive(string username)//查找用户是否已登录
         {
             sqlCnt.Open();
-
-
-
             string strSQL = "select IsAlive from LoginInfo where Account=@id";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
             cmd.Parameters.AddWithValue("@id", username);
             cmd.Connection = sqlCnt;
-
-
-            //SqlCommand com = new SqlCommand("select IsAlive from LoginInfo where Account=" + username, sqlCnt);
             SqlDataReader dr;//创建DataReader对象
             dr = cmd.ExecuteReader();
             string s = "";
@@ -198,15 +151,11 @@ namespace SqlSeverFrame
         public string[] SearchFriends(string username)//查找用户的好友
         {
             sqlCnt.Open();
-
-
             string strSQL = "select Friends from Friends where UserName=@id";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
             cmd.Parameters.AddWithValue("@id", username);
             cmd.Connection = sqlCnt;
-
-            //SqlCommand com = new SqlCommand("select Friends from Friends where UserName=" + username, sqlCnt);
             SqlDataReader dr;//创建DataReader对象
             dr = cmd.ExecuteReader();
             string[] User = new string[2000];
@@ -223,8 +172,6 @@ namespace SqlSeverFrame
         public int  IsFriends(string username,string friends)//查找是否已经是用户好友
         {
             sqlCnt.Open();
-
-
             string strSQL = "select Friends from Friends where UserName=@id and friends=@friends";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
@@ -235,19 +182,15 @@ namespace SqlSeverFrame
             sqlCnt.Close();
             return result;
         }
-        public string[] SearchMessage(string username, string Receiver)//查找用户收到的消息
+        public string[] SearchMessage(string username, string Receiver)//查找用户收到的消息最近的十条
         {
             sqlCnt.Open();
-
-
             string strSQL = "SELECT top(10)  [Message] FROM [Chattools].[dbo].[MeassageBox] where Sender=@id And Receiver=@Receiver ORDER by SerialNumber deSC ";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
             cmd.Parameters.AddWithValue("@id", username);
             cmd.Parameters.AddWithValue("@Receiver", Receiver);
             cmd.Connection = sqlCnt;
-
-            //SqlCommand com = new SqlCommand("SELECT top(10)  [Message] FROM [Chattools].[dbo].[MeassageBox] where Sender=" + username + "And Receiver=" + Receiver + " ORDER by SerialNumber deSC ", sqlCnt);
             SqlDataReader dr;//创建DataReader对象
             dr = cmd.ExecuteReader();
             string[] User = new string[10];
@@ -264,9 +207,6 @@ namespace SqlSeverFrame
         public int SendMessage(string Sender, string Message, string Receiver)//将发送的消息上传到数据库
         {
             sqlCnt.Open();
-
-
-
             string strSQL = "INSERT INTO [dbo].[MeassageBox] ([Sender],[Message],[Receiver]) VALUES (@Sender,@Message ,@Receiver)";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
@@ -274,11 +214,7 @@ namespace SqlSeverFrame
             cmd.Parameters.AddWithValue("@Receiver", Receiver);
             cmd.Parameters.AddWithValue("Message", Message);
             cmd.Connection = sqlCnt;
-
-
-
-            //SqlCommand com = new SqlCommand("INSERT INTO [dbo].[MeassageBox] ([Sender],[Message],[Receiver]) VALUES (" + Sender + ",N'" + Message + "'," + Receiver + ")", sqlCnt);
-            int result = cmd.ExecuteNonQuery();
+           int result = cmd.ExecuteNonQuery();
             sqlCnt.Close();
             return result;
         }
@@ -292,9 +228,6 @@ namespace SqlSeverFrame
             cmd.Parameters.AddWithValue("@username", username);
             cmd.Parameters.AddWithValue("@Receiver", Receiver);
             cmd.Connection = sqlCnt;
-
-
-            //SqlCommand com = new SqlCommand("SELECT top(10)  [SerialNumber] FROM [Chattools].[dbo].[MeassageBox] where Sender=" + username + "And Receiver=" + Receiver + " ORDER by SerialNumber deSC ", sqlCnt);
             SqlDataReader dr;//创建DataReader对象
             dr = cmd.ExecuteReader();
             int[] User = new int[10];
@@ -364,8 +297,8 @@ namespace SqlSeverFrame
             string strSQL = "insert into Friends (Username,friends) values(@Username,@Friends)";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
-            cmd.Parameters.AddWithValue("Username", username);
-            cmd.Parameters.AddWithValue("Friedns", Friends);
+            cmd.Parameters.AddWithValue("@Username", username);
+            cmd.Parameters.AddWithValue("@Friends", Friends);
             cmd.Connection = sqlCnt;
             int result = cmd.ExecuteNonQuery();
             sqlCnt.Close();
@@ -436,13 +369,14 @@ namespace SqlSeverFrame
             return User;
         }
 
-        public int DeleteApplication(string sender)//删除好友申请
+        public int DeleteApplication(string sender,string receiver)//删除好友申请
         {
             sqlCnt.Open();
-            string strSQL = "delete from FriendsApplication where sender = @id";
+            string strSQL = "delete from FriendsApplication where sender = @id and receiver=@receiver";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = strSQL;
             cmd.Parameters.AddWithValue("@id", sender);
+            cmd.Parameters.AddWithValue("@receiver", receiver);
             cmd.Connection = sqlCnt;
             int result = cmd.ExecuteNonQuery();
             sqlCnt.Close();
@@ -462,7 +396,11 @@ namespace SqlSeverFrame
             cmd.Parameters.AddWithValue("@id", sender);
             cmd.Parameters.AddWithValue("@receiver", receiver);
             cmd.Connection = sqlCnt;
-            int result = cmd.ExecuteNonQuery();
+            //int result = cmd.ExecuteNonQuery();
+            DataSet dataSet = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            int result=da.Fill(dataSet, "sender");
             sqlCnt.Close();
             return result;
         }

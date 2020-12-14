@@ -261,12 +261,6 @@
     <Compile Include="Chatting.Designer.cs">
       <DependentUpon>Chatting.cs</DependentUpon>
     </Compile>
-    <Compile Include="CheckNumber.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CheckNumber.Designer.cs">
-      <DependentUpon>CheckNumber.cs</DependentUpon>
-    </Compile>
     <Compile Include="FriendsApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -324,9 +318,6 @@
     <Compile Include="UserInfo.cs" />
     <EmbeddedResource Include="Chatting.resx">
       <DependentUpon>Chatting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CheckNumber.resx">
-      <DependentUpon>CheckNumber.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FriendsApplication.resx">
       <DependentUpon>FriendsApplication.cs</DependentUpon>

@@ -42,6 +42,8 @@ namespace SqlSeverFrame
             this.ShowFriends.Name = "ShowFriends";
             this.ShowFriends.Size = new System.Drawing.Size(360, 409);
             this.ShowFriends.TabIndex = 0;
+            this.ShowFriends.SelectedIndexChanged += new System.EventHandler(this.ShowFriends_SelectedIndexChanged);
+            this.ShowFriends.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ShowFriends_MouseDoubleClick);
             // 
             // refresh
             // 
@@ -53,6 +55,7 @@ namespace SqlSeverFrame
             this.refresh.TabIndex = 1;
             this.refresh.Text = "刷  新";
             this.refresh.UseVisualStyleBackColor = true;
+            this.refresh.Click += new System.EventHandler(this.refresh_Click);
             // 
             // Agree
             // 

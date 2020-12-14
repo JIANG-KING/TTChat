@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SqlSeverFrame
@@ -17,16 +18,36 @@ namespace SqlSeverFrame
             InitializeComponent();
             this.UserInfo = userInfo;
         }
-        public static string Friends;
-        public static string FriendsName;
-        static  SQLSeverConnect  connect = new SQLSeverConnect();
-        public static Dictionary<Form, string> dc = new Dictionary<Form, string>();
+          SQLSeverConnect  connect = new SQLSeverConnect();
         string[] s;
+        Image Image;
+        string head;
         private void MainFrame_Load(object sender, EventArgs e)
         {
             s = new string[connect.SearchFriends(UserInfo.getUserName()).Length];
             this.UserState.SelectedItem = UserInfo.getUserState();
-            this.MainShowHead.Image = LoginFrame.Image;
+                head = connect.SearchImage(UserInfo.getUserName());
+                if (head!= "")
+                {
+
+                    switch (head)
+                    {
+                        case "head1": Image = global::SqlSeverFrame.Properties.Resources._1; break;
+                        case "head2": Image = global::SqlSeverFrame.Properties.Resources._2; break;
+                        case "head3": Image = global::SqlSeverFrame.Properties.Resources._3; break;
+                        case "head4": Image = global::SqlSeverFrame.Properties.Resources._4; break;
+                        case "head5": Image = global::SqlSeverFrame.Properties.Resources._5; break;
+                        case "head6": Image = global::SqlSeverFrame.Properties.Resources._6; break;
+                        case "head7": Image = global::SqlSeverFrame.Properties.Resources._7; break;
+                        default: Image = global::SqlSeverFrame.Properties.Resources.empty; break;
+                    }
+                }
+                else
+                {
+                    Image = global::SqlSeverFrame.Properties.Resources.empty;
+                }
+            
+            this.MainShowHead.Image = Image;
             this.WelcomeLabel.Text = "欢迎！" +connect.SearchNickname(UserInfo.getUserName()).Replace("\\s*", "")+"("+UserInfo.getUserName()+")" + "用户";
             int[] count = new int[connect.SearchFriends(UserInfo.getUserName()).Length];
             for(int i = 0; i <connect.SearchFriends(UserInfo.getUserName()).Length; i++)
@@ -57,20 +78,28 @@ namespace SqlSeverFrame
             connect.UpdateState(UserInfo.getUserName(), this.UserState.SelectedItem.ToString());
         }
 
-        
-        
 
+
+        public static Dictionary<string, string> dc = new Dictionary<string, string>();
         private void FriendsList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             FriendsInfo.setUserName(s[this.FriendsList.SelectedIndex]);
-            if (this.FriendsList.SelectedItem != null&&!dc.ContainsValue(FriendsInfo.getUserName())) 
+            if (this.FriendsList.SelectedItem != null) 
             {
+                var frm = new Chatting(UserInfo, FriendsInfo);
 
-            Friends = this.FriendsList.SelectedItem.ToString();
-            FriendsName = s[this.FriendsList.SelectedIndex];
-            var frm = new Chatting(UserInfo,FriendsInfo);
-            frm.Show();
-             dc.Add(frm, FriendsInfo.getUserName());
+                if (!dc.ContainsValue(FriendsInfo.getUserName()))
+                {
+                    
+                    frm.Show();
+                    dc.Add(FriendsInfo.getUserName(), FriendsInfo.getUserName());
+                }
+                else
+                {
+                    frm.TopMost = true;
+                }
+                
+
             }
             
         }
@@ -79,8 +108,31 @@ namespace SqlSeverFrame
         {
             this.FriendsList.Items.Clear();
             s = new string[connect.SearchFriends(UserInfo.getUserName()).Length];
-            this.UserState.SelectedItem = UserInfo.getUserState();
-            this.MainShowHead.Image = LoginFrame.Image;
+            this.UserState.SelectedItem = connect.SearchUserState(UserInfo.getUserName());
+            UserInfo.setUserState(connect.SearchUserState(UserInfo.getUserName()));
+            if(head!= connect.SearchImage(UserInfo.getUserName()))
+            {
+                if (head != "")
+                {
+                    switch (head)
+                    {
+                        case "head1": Image = global::SqlSeverFrame.Properties.Resources._1; break;
+                        case "head2": Image = global::SqlSeverFrame.Properties.Resources._2; break;
+                        case "head3": Image = global::SqlSeverFrame.Properties.Resources._3; break;
+                        case "head4": Image = global::SqlSeverFrame.Properties.Resources._4; break;
+                        case "head5": Image = global::SqlSeverFrame.Properties.Resources._5; break;
+                        case "head6": Image = global::SqlSeverFrame.Properties.Resources._6; break;
+                        case "head7": Image = global::SqlSeverFrame.Properties.Resources._7; break;
+                        default: Image = global::SqlSeverFrame.Properties.Resources.empty; break;
+                    }
+                }
+                else
+                {
+                    Image = global::SqlSeverFrame.Properties.Resources.empty;
+                }
+
+                this.MainShowHead.Image = Image;
+            }
             this.WelcomeLabel.Text = "欢迎！" + connect.SearchNickname(UserInfo.getUserName()).Replace("\\s*", "") + "(" + UserInfo.getUserName() + ")" + "用户";
             int[] count = new int[connect.SearchFriends(UserInfo.getUserName()).Length];
             for (int i = 0; i < connect.SearchFriends(UserInfo.getUserName()).Length; i++)

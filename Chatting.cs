@@ -89,7 +89,7 @@ namespace SqlSeverFrame
 
         private void Chatting_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MessageBox.Show(this.FindForm().Text,"提示");
+            MainFrame.dc.Remove(FriendsInfo.getUserName());
             
         }
     }
