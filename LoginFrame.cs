@@ -22,8 +22,6 @@ namespace SqlSeverFrame
             string Account = this.AccountInput.Text;
             string Password = this.PasswordInput.Text;
             DataSet ds = new DataSet();
-            int n = SQLSeverConnect.SqlLogin(Account, Password).Fill(ds, "LoginInfo");
-
             if (this.CodeInput.Text.ToUpper() == CheckNumberText)//判断验证码是否正确，验证码不分大小写，统一转换为大写对比
             {
                 if (SQLSeverConnect.SqlSearch(this.AccountInput.Text) != 0)
@@ -73,7 +71,7 @@ namespace SqlSeverFrame
             }
             else
             {
-                MessageBox.Show("服务异常，请重试！", "提示");
+                MessageBox.Show("验证码错误！", "提示");
                 this.CodeInput.Text = "";
                 CodeInput.Focus();
             }
