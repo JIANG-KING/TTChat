@@ -8,5 +8,15 @@ namespace SqlSeverFrame
         {
             InitializeComponent();
         }
+
+        private void ReturnButton_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ConfirmButton_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

@@ -7,6 +7,13 @@ namespace SqlSeverFrame
     {
         private static readonly string constr = "Server=yun2333.top;Database=Chattools;user id=jiangyun;pwd=Jy1019878449";
         SqlConnection sqlCnt = new SqlConnection(constr);
+
+        /// <summary>
+        /// 防止sql注入
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <param name="letter1">第一个传入的sql关键词</param>
+        /// <returns></returns>
         public SqlCommand Injection(string sql, string letter1)
         {
             SqlCommand command = new SqlCommand();
@@ -15,6 +22,13 @@ namespace SqlSeverFrame
             command.Connection = sqlCnt;
             return command;
         }
+        /// <summary>
+        /// 双参数的
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="letter1"></param>
+        /// <param name="letter2"></param>
+        /// <returns></returns>
         public SqlCommand Injection(string sql, string letter1, string letter2)
         {
             SqlCommand command = new SqlCommand();
@@ -24,6 +38,14 @@ namespace SqlSeverFrame
             command.Connection = sqlCnt;
             return command;
         }
+        /// <summary>
+        /// 三参数
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="letter1"></param>
+        /// <param name="letter2"></param>
+        /// <param name="letter3"></param>
+        /// <returns></returns>
         public SqlCommand Injection(string sql, string letter1, string letter2, string letter3)
         {
             SqlCommand command = new SqlCommand();
@@ -34,6 +56,15 @@ namespace SqlSeverFrame
             command.Connection = sqlCnt;
             return command;
         }
+        /// <summary>
+        /// 四个参数
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="letter1"></param>
+        /// <param name="letter2"></param>
+        /// <param name="letter3"></param>
+        /// <param name="letter4"></param>
+        /// <returns></returns>
         public SqlCommand Injection(string sql, string letter1, string letter2, string letter3, string letter4)
         {
             SqlCommand command = new SqlCommand();
@@ -45,14 +76,25 @@ namespace SqlSeverFrame
             command.Connection = sqlCnt;
             return command;
         }
-        public SqlDataAdapter SqlLogin(string username, string password)//登录验证
+        /// <summary>
+        /// 登录验证
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <param name="password">密码</param>
+        /// <returns></returns>
+        public SqlDataAdapter SqlLogin(string username, string password)
         {
             string strSQL = "select account,password from LoginInfo where account=@letter1 and password=@letter2";
             SqlCommand cmd = Injection(strSQL,username,password);        
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             return da;
         }
-        public int SqlSearch(string Account)//查询指定用户
+        /// <summary>
+        /// 查询指定用户
+        /// </summary>
+        /// <param name="Account"></param>
+        /// <returns></returns>
+        public int SqlSearch(string Account)
         {
             string strSQL = "select account from LoginInfo where account=@letter1";
             SqlCommand cmd = Injection(strSQL, Account);
