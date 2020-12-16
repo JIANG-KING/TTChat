@@ -105,9 +105,11 @@ namespace SqlSeverFrame
         }
         public int sqlInsert(string Account, string Password, string image, string NickName)//插入一个用户，用户注册时使用
         {
+            sqlCnt.Open();
             string strSQL = "INSERT INTO [dbo].[LoginInfo] ([Account],[Password],[ImageHead],[NickName]) VALUES (@letter1,@letter2,@letter3,@letter4)";
             SqlCommand cmd = Injection(strSQL,Account,Password,image,NickName);
             int result = cmd.ExecuteNonQuery();
+            sqlCnt.Close();
             return result;
         }
         public string SearchImage(string username)//查找用户的头像
@@ -125,9 +127,11 @@ namespace SqlSeverFrame
         }
         public int UpdateState(string username, string LoginState)//更新用户的状态，在线，隐身，忙碌，请勿打扰，q我吧
         {
+            sqlCnt.Open();
             string strSQL = "update LoginInfo set AccountState=@letter1  where Account=@letter2";
             SqlCommand cmd = Injection(strSQL,username,LoginState);
             int result = cmd.ExecuteNonQuery();
+            sqlCnt.Close();
             return result;
         }
         public string SearchUserState(string username)//查找用户的在线状态
@@ -158,11 +162,11 @@ namespace SqlSeverFrame
         }
         public int UpdateIsAlive(string username, string IsAlive)//修改用户的登录状态
         {
-            //sqlCnt.Open();
+            sqlCnt.Open();
             string strSQL = "update LoginInfo set IsAlive=@letter1 where Account=@letter2";
             SqlCommand cmd = Injection(strSQL,username,IsAlive);
             int result = cmd.ExecuteNonQuery();
-            //sqlCnt.Close();
+            sqlCnt.Close();
             return result;
         }
         public int SearchIsAlive(string username)//查找用户是否已登录
@@ -221,9 +225,11 @@ namespace SqlSeverFrame
         }
         public int SendMessage(string Sender, string Message, string Receiver)//将发送的消息上传到数据库
         {
+            sqlCnt.Open();
             string strSQL = "INSERT INTO [dbo].[MeassageBox] ([Sender],[Message],[Receiver]) VALUES (@letter1,@letter2 ,@letter3)";
             SqlCommand cmd = Injection(strSQL,Sender,Message,Receiver);
            int result = cmd.ExecuteNonQuery();
+            sqlCnt.Close();
             return result;
         }
         public int[] SearchNumbers(string username, string Receiver)//查找用户收到或发送的消息的序号
@@ -275,16 +281,20 @@ namespace SqlSeverFrame
         }
         public int  AddFriends(string username,string Friends)//添加好友
         {
+            sqlCnt.Open();
             string strSQL = "insert into Friends (Username,friends) values(@letter1,@letter2)";
             SqlCommand cmd = Injection(strSQL, username,Friends);
             int result = cmd.ExecuteNonQuery();
+            sqlCnt.Close();
             return result;
         }
         public int SendFriendApplication(string sender,string message, string Friends)//发送好友申请
         {
+            sqlCnt.Open();
             string strSQL = "insert into FriendsApplication (sender,message,receiver) values(@letter1,@letter2,@letter3)";
             SqlCommand cmd = Injection(strSQL, sender,message, Friends);
             int result = cmd.ExecuteNonQuery();
+            sqlCnt.Close();
             return result;
         }
         public string[] SearchFriendsApplication(string username)//查找用户的好友申请
@@ -334,6 +344,16 @@ namespace SqlSeverFrame
             DataSet dataSet = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             int result=da.Fill(dataSet, "sender");
+            sqlCnt.Close();
+            return result;
+        }
+
+        public int UpdatePassword(string username, string password)//修改用户的登录状态
+        {
+            sqlCnt.Open();
+            string strSQL = "update LoginInfo set password=@letter1 where Account=@letter2";
+            SqlCommand cmd = Injection(strSQL, password, username);
+            int result = cmd.ExecuteNonQuery();
             sqlCnt.Close();
             return result;
         }
