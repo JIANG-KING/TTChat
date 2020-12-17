@@ -28,27 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.MainShowHead = new System.Windows.Forms.PictureBox();
             this.WelcomeLabel = new System.Windows.Forms.Label();
             this.UserState = new System.Windows.Forms.ComboBox();
             this.FriendsList = new System.Windows.Forms.ListBox();
             this.FriendsListLabel = new System.Windows.Forms.Label();
             this.ReFreshButton = new System.Windows.Forms.Button();
-            this.ResetPasswordButton = new System.Windows.Forms.Button();
+            this.ReSetPasswordButton = new System.Windows.Forms.Button();
             this.AddFriendsButton = new System.Windows.Forms.Button();
             this.FriendApplication = new System.Windows.Forms.Button();
+            this.newApplication = new System.Windows.Forms.PictureBox();
+            this.MainShowHead = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.newApplication)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainShowHead)).BeginInit();
             this.SuspendLayout();
-            // 
-            // MainShowHead
-            // 
-            this.MainShowHead.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.MainShowHead.Location = new System.Drawing.Point(668, 11);
-            this.MainShowHead.Name = "MainShowHead";
-            this.MainShowHead.Size = new System.Drawing.Size(200, 200);
-            this.MainShowHead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.MainShowHead.TabIndex = 5;
-            this.MainShowHead.TabStop = false;
             // 
             // WelcomeLabel
             // 
@@ -108,16 +101,16 @@
             this.ReFreshButton.UseVisualStyleBackColor = true;
             this.ReFreshButton.Click += new System.EventHandler(this.ReFreshButton_Click);
             // 
-            // ResetPasswordButton
+            // ReSetPasswordButton
             // 
-            this.ResetPasswordButton.AutoSize = true;
-            this.ResetPasswordButton.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ResetPasswordButton.Location = new System.Drawing.Point(668, 359);
-            this.ResetPasswordButton.Name = "ResetPasswordButton";
-            this.ResetPasswordButton.Size = new System.Drawing.Size(140, 38);
-            this.ResetPasswordButton.TabIndex = 11;
-            this.ResetPasswordButton.Text = "修改密码";
-            this.ResetPasswordButton.UseVisualStyleBackColor = true;
+            this.ReSetPasswordButton.AutoSize = true;
+            this.ReSetPasswordButton.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ReSetPasswordButton.Location = new System.Drawing.Point(668, 359);
+            this.ReSetPasswordButton.Name = "ReSetPasswordButton";
+            this.ReSetPasswordButton.Size = new System.Drawing.Size(140, 38);
+            this.ReSetPasswordButton.TabIndex = 11;
+            this.ReSetPasswordButton.Text = "修改密码";
+            this.ReSetPasswordButton.UseVisualStyleBackColor = true;
             // 
             // AddFriendsButton
             // 
@@ -144,14 +137,46 @@
             this.FriendApplication.UseVisualStyleBackColor = true;
             this.FriendApplication.Click += new System.EventHandler(this.FriendApplication_Click);
             // 
+            // newApplication
+            // 
+            this.newApplication.Image = global::SqlSeverFrame.Properties.Resources.newmessage;
+            this.newApplication.Location = new System.Drawing.Point(187, 369);
+            this.newApplication.Name = "newApplication";
+            this.newApplication.Size = new System.Drawing.Size(39, 39);
+            this.newApplication.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.newApplication.TabIndex = 14;
+            this.newApplication.TabStop = false;
+            // 
+            // MainShowHead
+            // 
+            this.MainShowHead.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.MainShowHead.Location = new System.Drawing.Point(668, 11);
+            this.MainShowHead.Name = "MainShowHead";
+            this.MainShowHead.Size = new System.Drawing.Size(200, 200);
+            this.MainShowHead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.MainShowHead.TabIndex = 5;
+            this.MainShowHead.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(668, 448);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(140, 40);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "注销";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 500);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.newApplication);
             this.Controls.Add(this.FriendApplication);
             this.Controls.Add(this.AddFriendsButton);
-            this.Controls.Add(this.ResetPasswordButton);
+            this.Controls.Add(this.ReSetPasswordButton);
             this.Controls.Add(this.ReFreshButton);
             this.Controls.Add(this.FriendsListLabel);
             this.Controls.Add(this.FriendsList);
@@ -160,9 +185,10 @@
             this.Controls.Add(this.MainShowHead);
             this.Name = "MainFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainFrame";
+            this.Text = "欢迎使用TT";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainFrame_FormClosed);
             this.Load += new System.EventHandler(this.MainFrame_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.newApplication)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainShowHead)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -176,8 +202,10 @@
         private System.Windows.Forms.ListBox FriendsList;
         private System.Windows.Forms.Label FriendsListLabel;
         private System.Windows.Forms.Button ReFreshButton;
-        private System.Windows.Forms.Button ResetPasswordButton;
+        private System.Windows.Forms.Button ReSetPasswordButton;
         private System.Windows.Forms.Button AddFriendsButton;
         private System.Windows.Forms.Button FriendApplication;
+        private System.Windows.Forms.PictureBox newApplication;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -10,52 +10,52 @@ namespace SqlSeverFrame
             InitializeComponent();
         }
 
-        private void head1_Click(object sender, EventArgs e)
+        private void Head1_Click(object sender, EventArgs e)
         {
             Register.HeadImage = global::SqlSeverFrame.Properties.Resources._1;
-            Register.HeadName = this.head1.Name;
+            Register.HeadName = "head1";
             this.Close();
         }
 
-        private void head2_Click(object sender, EventArgs e)
+        private void Head2_Click(object sender, EventArgs e)
         {
             Register.HeadImage = global::SqlSeverFrame.Properties.Resources._2;
-            Register.HeadName = this.head2.Name;
+            Register.HeadName = "head2";
             this.Close();
         }
 
-        private void hed3_Click(object sender, EventArgs e)
+        private void Head3_Click(object sender, EventArgs e)
         {
             Register.HeadImage = global::SqlSeverFrame.Properties.Resources._3;
-            Register.HeadName = this.head3.Name;
+            Register.HeadName = "head3";
             this.Close();
         }
 
-        private void head4_Click(object sender, EventArgs e)
+        private void Head4_Click(object sender, EventArgs e)
         {
             Register.HeadImage = global::SqlSeverFrame.Properties.Resources._4;
-            Register.HeadName = this.head4.Name;
+            Register.HeadName = "head4";
             this.Close();
         }
 
-        private void head5_Click(object sender, EventArgs e)
+        private void Head5_Click(object sender, EventArgs e)
         {
             Register.HeadImage = global::SqlSeverFrame.Properties.Resources._5;
-            Register.HeadName = this.head5.Name;
+            Register.HeadName = "head5";
             this.Close();
         }
 
-        private void head6_Click(object sender, EventArgs e)
+        private void Head6_Click(object sender, EventArgs e)
         {
             Register.HeadImage = global::SqlSeverFrame.Properties.Resources._6;
-            Register.HeadName = this.head6.Name;
+            Register.HeadName = "head6";
             this.Close();
         }
 
-        private void head7_Click(object sender, EventArgs e)
+        private void Head7_Click(object sender, EventArgs e)
         {
             Register.HeadImage = global::SqlSeverFrame.Properties.Resources._7;
-            Register.HeadName = this.head7.Name;
+            Register.HeadName = "head7";
             this.Close();
         }
     }

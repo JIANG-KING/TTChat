@@ -5,12 +5,12 @@
         //用户名
         private string username;
         //获取用户名
-        public string getUserName()
+        public string GetUserName()
         {
             return username;
         }
         //设置用户名
-        public void setUserName( string username)
+        public void SetUserName( string username)
         {
             this.username = username;
         }
@@ -19,24 +19,24 @@
         //密码
         private string Password;
         //获取密码
-        public string getPassword()
+        public string GetPassword()
         {
-            return username;
+            return Password;
         }
         //设置密码
-        public void setPassword(string Password)
+        public void SetPassword(string Password)
         {
             this.Password = Password;
         }
         //登录状态
         private string UserState;
 
-        public string getUserState()
+        public string GtUserState()
         {
             return UserState;
         }
 
-        public void setUserState(string UserState)
+        public void SetUserState(string UserState)
         {
 
             this.UserState = UserState;

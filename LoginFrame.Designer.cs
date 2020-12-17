@@ -33,14 +33,14 @@
             this.PasswordInput = new System.Windows.Forms.TextBox();
             this.LoginButton = new System.Windows.Forms.Button();
             this.RegisterButton = new System.Windows.Forms.Button();
-            this.NewButton = new System.Windows.Forms.Button();
+            this.UpdatePasswordButton = new System.Windows.Forms.Button();
             this.CheckNumberLabel = new System.Windows.Forms.Label();
             this.CodeInput = new System.Windows.Forms.TextBox();
             this.RefreshButton = new System.Windows.Forms.Button();
             this.AccountText = new System.Windows.Forms.Label();
+            this.LoginState = new System.Windows.Forms.ComboBox();
             this.ShowHead = new System.Windows.Forms.PictureBox();
             this.CheckNumber = new System.Windows.Forms.PictureBox();
-            this.LoginState = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.ShowHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckNumber)).BeginInit();
             this.SuspendLayout();
@@ -73,6 +73,8 @@
             this.PasswordInput.PasswordChar = '*';
             this.PasswordInput.Size = new System.Drawing.Size(240, 38);
             this.PasswordInput.TabIndex = 2;
+            this.PasswordInput.TextChanged += new System.EventHandler(this.PasswordInput_TextChanged);
+            this.PasswordInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PasswordInput_KeyPress);
             // 
             // LoginButton
             // 
@@ -94,16 +96,16 @@
             this.RegisterButton.UseVisualStyleBackColor = true;
             this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
             // 
-            // NewButton
+            // UpdatePasswordButton
             // 
-            this.NewButton.Location = new System.Drawing.Point(561, 330);
-            this.NewButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.NewButton.Name = "NewButton";
-            this.NewButton.Size = new System.Drawing.Size(140, 42);
-            this.NewButton.TabIndex = 7;
-            this.NewButton.Text = "修改密码";
-            this.NewButton.UseVisualStyleBackColor = true;
-            this.NewButton.Click += new System.EventHandler(this.NewButton_Click);
+            this.UpdatePasswordButton.Location = new System.Drawing.Point(561, 330);
+            this.UpdatePasswordButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UpdatePasswordButton.Name = "UpdatePasswordButton";
+            this.UpdatePasswordButton.Size = new System.Drawing.Size(140, 42);
+            this.UpdatePasswordButton.TabIndex = 7;
+            this.UpdatePasswordButton.Text = "修改密码";
+            this.UpdatePasswordButton.UseVisualStyleBackColor = true;
+            this.UpdatePasswordButton.Click += new System.EventHandler(this.NewButton_Click);
             // 
             // CheckNumberLabel
             // 
@@ -120,13 +122,13 @@
             this.CodeInput.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.CodeInput.Location = new System.Drawing.Point(181, 252);
             this.CodeInput.Name = "CodeInput";
-            this.CodeInput.Size = new System.Drawing.Size(100, 38);
+            this.CodeInput.Size = new System.Drawing.Size(112, 38);
             this.CodeInput.TabIndex = 3;
             // 
             // RefreshButton
             // 
             this.RefreshButton.AutoSize = true;
-            this.RefreshButton.Location = new System.Drawing.Point(427, 266);
+            this.RefreshButton.Location = new System.Drawing.Point(443, 266);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(144, 25);
             this.RefreshButton.TabIndex = 4;
@@ -144,26 +146,6 @@
             this.AccountText.TabIndex = 0;
             this.AccountText.Text = "账  号";
             // 
-            // ShowHead
-            // 
-            this.ShowHead.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources.empty;
-            this.ShowHead.Location = new System.Drawing.Point(561, 15);
-            this.ShowHead.Name = "ShowHead";
-            this.ShowHead.Size = new System.Drawing.Size(200, 200);
-            this.ShowHead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ShowHead.TabIndex = 13;
-            this.ShowHead.TabStop = false;
-            // 
-            // CheckNumber
-            // 
-            this.CheckNumber.Location = new System.Drawing.Point(315, 252);
-            this.CheckNumber.Name = "CheckNumber";
-            this.CheckNumber.Size = new System.Drawing.Size(106, 38);
-            this.CheckNumber.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.CheckNumber.TabIndex = 6;
-            this.CheckNumber.TabStop = false;
-            // 
             // LoginState
             // 
             this.LoginState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -180,6 +162,27 @@
             this.LoginState.Size = new System.Drawing.Size(121, 23);
             this.LoginState.TabIndex = 14;
             // 
+            // ShowHead
+            // 
+            this.ShowHead.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources.empty;
+            this.ShowHead.Location = new System.Drawing.Point(561, 15);
+            this.ShowHead.Name = "ShowHead";
+            this.ShowHead.Size = new System.Drawing.Size(200, 200);
+            this.ShowHead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ShowHead.TabIndex = 13;
+            this.ShowHead.TabStop = false;
+            // 
+            // CheckNumber
+            // 
+            this.CheckNumber.Location = new System.Drawing.Point(299, 253);
+            this.CheckNumber.Name = "CheckNumber";
+            this.CheckNumber.Size = new System.Drawing.Size(122, 38);
+            this.CheckNumber.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.CheckNumber.TabIndex = 6;
+            this.CheckNumber.TabStop = false;
+            this.CheckNumber.Click += new System.EventHandler(this.CheckNumber_Click);
+            // 
             // LoginFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -190,7 +193,7 @@
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.CodeInput);
             this.Controls.Add(this.CheckNumberLabel);
-            this.Controls.Add(this.NewButton);
+            this.Controls.Add(this.UpdatePasswordButton);
             this.Controls.Add(this.CheckNumber);
             this.Controls.Add(this.RegisterButton);
             this.Controls.Add(this.LoginButton);
@@ -217,7 +220,7 @@
         private System.Windows.Forms.Button LoginButton;
         private System.Windows.Forms.Button RegisterButton;
         private System.Windows.Forms.PictureBox CheckNumber;
-        private System.Windows.Forms.Button NewButton;
+        private System.Windows.Forms.Button UpdatePasswordButton;
         private System.Windows.Forms.Label CheckNumberLabel;
         private System.Windows.Forms.TextBox CodeInput;
         private System.Windows.Forms.Button RefreshButton;

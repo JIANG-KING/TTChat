@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 namespace SqlSeverFrame
 {
@@ -23,6 +25,7 @@ namespace SqlSeverFrame
         private void ExitButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("即将返回主页面", "提示");
+            this.Owner.Visible = true;
             this.Close();
         }
 
@@ -39,7 +42,7 @@ namespace SqlSeverFrame
                         {
                             if (connect.SqlSearch(this.UserName.Text) == 0)
                             {
-                                if (connect.sqlInsert(this.UserName.Text, this.Password.Text, HeadName, this.NickNameInput.Text) != 0)
+                                if (connect.SqlInsert(this.UserName.Text, this.Password.Text, HeadName, this.NickNameInput.Text) != 0)
                                 {
                                     MessageBox.Show("注册成功，即将返回主页面", "提示");
                                     this.Close();
@@ -90,6 +93,111 @@ namespace SqlSeverFrame
             ShowHead showHead = new ShowHead();
             showHead.ShowDialog(this);
             this.imagehead.Image = HeadImage;
+        }
+
+        private void UserName_TextChanged(object sender, EventArgs e)
+        {
+            var reg = new Regex("^^[A-Za-z0-9]*$");
+            var str = UserName.Text.Trim();
+            var sb = new StringBuilder();
+            if (!reg.IsMatch(str))
+            {
+                for (int i = 0; i < str.Length; i++)
+                {
+                    if (reg.IsMatch(str[i].ToString()))
+                    {
+                        sb.Append(str[i].ToString());
+                    }
+                }
+                UserName.Text = sb.ToString();
+                //定义输入焦点在最后一个字符
+                UserName.SelectionStart = UserName.Text.Length;
+            }
+        }
+
+        private void UserName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            UserName.ImeMode = ImeMode.Close;
+            if (e.KeyChar == 0x20) e.KeyChar = (char)0;  //禁止空格键 
+            if ((e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z')
+                || (e.KeyChar >= '0' && e.KeyChar <= '9') || (e.KeyChar == 8))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Password_TextChanged(object sender, EventArgs e)
+        {
+            var reg = new Regex("^^[A-Za-z0-9]*$");
+            var str = Password.Text.Trim();
+            var sb = new StringBuilder();
+            if (!reg.IsMatch(str))
+            {
+                for (int i = 0; i < str.Length; i++)
+                {
+                    if (reg.IsMatch(str[i].ToString()))
+                    {
+                        sb.Append(str[i].ToString());
+                    }
+                }
+                Password.Text = sb.ToString();
+                //定义输入焦点在最后一个字符
+                Password.SelectionStart = Password.Text.Length;
+            }
+        }
+
+        private void ConfirmPassword_TextChanged(object sender, EventArgs e)
+        {
+            var reg = new Regex("^^[A-Za-z0-9]*$");
+            var str = ConfirmPassword.Text.Trim();
+            var sb = new StringBuilder();
+            if (!reg.IsMatch(str))
+            {
+                for (int i = 0; i < str.Length; i++)
+                {
+                    if (reg.IsMatch(str[i].ToString()))
+                    {
+                        sb.Append(str[i].ToString());
+                    }
+                }
+                ConfirmPassword.Text = sb.ToString();
+                //定义输入焦点在最后一个字符
+                ConfirmPassword.SelectionStart = ConfirmPassword.Text.Length;
+            }
+        }
+
+        private void Password_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Password.ImeMode = ImeMode.Close;
+            if (e.KeyChar == 0x20) e.KeyChar = (char)0;  //禁止空格键 
+            if ((e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z')
+                || (e.KeyChar >= '0' && e.KeyChar <= '9') || (e.KeyChar == 8))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ConfirmPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ConfirmPassword.ImeMode = ImeMode.Close;
+            if (e.KeyChar == 0x20) e.KeyChar = (char)0;  //禁止空格键 
+            if ((e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z')
+                || (e.KeyChar >= '0' && e.KeyChar <= '9') || (e.KeyChar == 8))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -90,20 +90,20 @@ namespace SqlSeverFrame
             return da;
         }
         /// <summary>
-        /// 查询指定用户
+        /// 查询指定用户是否存在
         /// </summary>
         /// <param name="Account"></param>
         /// <returns></returns>
         public int SqlSearch(string Account)
         {
-            string strSQL = "select account from LoginInfo where account=@letter1";
+            string strSQL = "select Account from LoginInfo where Account=@letter1";
             SqlCommand cmd = Injection(strSQL, Account);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             int a = da.Fill(ds, "LoginInfo");
             return a;
         }
-        public int sqlInsert(string Account, string Password, string image, string NickName)//插入一个用户，用户注册时使用
+        public int SqlInsert(string Account, string Password, string image, string NickName)//插入一个用户，用户注册时使用
         {
             sqlCnt.Open();
             string strSQL = "INSERT INTO [dbo].[LoginInfo] ([Account],[Password],[ImageHead],[NickName]) VALUES (@letter1,@letter2,@letter3,@letter4)";
@@ -115,7 +115,7 @@ namespace SqlSeverFrame
         public string SearchImage(string username)//查找用户的头像
         {
             sqlCnt.Open();
-            string strSQL = "select ImageHead from LoginInfo where account=@letter1";
+            string strSQL = "select ImageHead from LoginInfo where Account=@letter1";
             SqlCommand cmd = Injection(strSQL,username);
             SqlDataReader dr;//创建DataReader对象
             dr = cmd.ExecuteReader();
@@ -128,7 +128,7 @@ namespace SqlSeverFrame
         public int UpdateState(string username, string LoginState)//更新用户的状态，在线，隐身，忙碌，请勿打扰，q我吧
         {
             sqlCnt.Open();
-            string strSQL = "update LoginInfo set AccountState=@letter1  where Account=@letter2";
+            string strSQL = "update LoginInfo set AccountState=@letter2  where Account=@letter1";
             SqlCommand cmd = Injection(strSQL,username,LoginState);
             int result = cmd.ExecuteNonQuery();
             sqlCnt.Close();
@@ -163,7 +163,7 @@ namespace SqlSeverFrame
         public int UpdateIsAlive(string username, string IsAlive)//修改用户的登录状态
         {
             sqlCnt.Open();
-            string strSQL = "update LoginInfo set IsAlive=@letter1 where Account=@letter2";
+            string strSQL = "update LoginInfo set IsAlive=@letter2 where Account=@letter1";
             SqlCommand cmd = Injection(strSQL,username,IsAlive);
             int result = cmd.ExecuteNonQuery();
             sqlCnt.Close();
@@ -201,9 +201,13 @@ namespace SqlSeverFrame
         }
         public int  IsFriends(string username,string friends)//查找是否已经是用户好友
         {
+            sqlCnt.Open();
             string strSQL = "select Friends from Friends where UserName=@letter1 and friends=@letter2";
             SqlCommand cmd = Injection(strSQL,username,friends);
-            int result = cmd.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            int result = da.Fill(ds, "LoginInfo");
+            sqlCnt.Close();
             return result;
         }
         public string[] SearchMessage(string username, string Receiver)//查找用户收到的消息，最近的十条
@@ -315,7 +319,7 @@ namespace SqlSeverFrame
             sqlCnt.Close();
             return User;
         }
-        public string SearchFriendsApplicationMessage(string sender,string receiver)//查找用户的好友申请信息
+        public string SearchFriendsApplicationMessage(string sender,string receiver)//查找用户的好友申请信息，指定好友
         {
             sqlCnt.Open();
             string strSQL = "select message from FriendsApplication where sender=@letter1 and receiver=@letter2";
@@ -348,7 +352,7 @@ namespace SqlSeverFrame
             return result;
         }
 
-        public int UpdatePassword(string username, string password)//修改用户的登录状态
+        public int UpdatePassword(string username, string password)//修改用户的登录密码
         {
             sqlCnt.Open();
             string strSQL = "update LoginInfo set password=@letter1 where Account=@letter2";

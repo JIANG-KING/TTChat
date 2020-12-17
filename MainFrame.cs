@@ -24,9 +24,9 @@ namespace SqlSeverFrame
         string head;
         private void MainFrame_Load(object sender, EventArgs e)
         {
-            s = new string[connect.SearchFriends(UserInfo.getUserName()).Length];
-            this.UserState.SelectedItem = UserInfo.getUserState();
-                head = connect.SearchImage(UserInfo.getUserName());
+            s = new string[connect.SearchFriends(UserInfo.GetUserName()).Length];
+            this.UserState.SelectedItem = UserInfo.GtUserState();
+                head = connect.SearchImage(UserInfo.GetUserName());
                 if (head!= "")
                 {
 
@@ -48,14 +48,13 @@ namespace SqlSeverFrame
                 }
             
             this.MainShowHead.Image = Image;
-            this.WelcomeLabel.Text = "欢迎！" +connect.SearchNickname(UserInfo.getUserName()).Replace("\\s*", "")+"("+UserInfo.getUserName()+")" + "用户";
-            int[] count = new int[connect.SearchFriends(UserInfo.getUserName()).Length];
-            for(int i = 0; i <connect.SearchFriends(UserInfo.getUserName()).Length; i++)
+            this.WelcomeLabel.Text = "欢迎！" +connect.SearchNickname(UserInfo.GetUserName()).Replace("\\s*", "")+"("+UserInfo.GetUserName()+")" + "用户";
+            for(int i = 0; i <connect.SearchFriends(UserInfo.GetUserName()).Length; i++)
             {
-                if (connect.SearchFriends(UserInfo.getUserName())[i] != null)
+                if (connect.SearchFriends(UserInfo.GetUserName())[i] != null)
                 {
                     
-                    s[i] = connect.SearchFriends(UserInfo.getUserName())[i];
+                    s[i] = connect.SearchFriends(UserInfo.GetUserName())[i];
                     this.FriendsList.Items.Add(connect.SearchNickname(s[i]).Replace("\\s*", "") + "("+s[i]+")");
                 }
                 else {
@@ -63,19 +62,33 @@ namespace SqlSeverFrame
                     break;
                 }
             }
-            connect.UpdateIsAlive(UserInfo.getUserName(), "1");
+            connect.UpdateIsAlive(UserInfo.GetUserName(), "1");
+
+
+            if (connect.SearchFriendsApplication(UserInfo.GetUserName())[0] != null)
+            {
+                this.newApplication.Visible = true;
+            }
+            else
+            {
+                this.newApplication.Visible = false;
+            }
+
         }
 
 
         private void MainFrame_FormClosed(object sender, FormClosedEventArgs e)
         {
-            connect.UpdateState(UserInfo.getUserName(), "离线");
-            connect.UpdateIsAlive(UserInfo.getUserName(), "0");
+            connect.UpdateState(UserInfo.GetUserName(), "离线");
+            connect.UpdateIsAlive(UserInfo.GetUserName(), "0");
+            Application.Restart();
+            
+
         }
 
         private void UserState_SelectedIndexChanged(object sender, EventArgs e)
         {
-            connect.UpdateState(UserInfo.getUserName(), this.UserState.SelectedItem.ToString());
+            connect.UpdateState(UserInfo.GetUserName(), this.UserState.SelectedItem.ToString());
         }
 
 
@@ -83,16 +96,16 @@ namespace SqlSeverFrame
         public static Dictionary<string, string> dc = new Dictionary<string, string>();
         private void FriendsList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            FriendsInfo.setUserName(s[this.FriendsList.SelectedIndex]);
+            FriendsInfo.SetUserName(s[this.FriendsList.SelectedIndex]);
             if (this.FriendsList.SelectedItem != null) 
             {
                 var frm = new Chatting(UserInfo, FriendsInfo);
 
-                if (!dc.ContainsValue(FriendsInfo.getUserName()))
+                if (!dc.ContainsValue(FriendsInfo.GetUserName()))
                 {
                     
                     frm.Show();
-                    dc.Add(FriendsInfo.getUserName(), FriendsInfo.getUserName());
+                    dc.Add(FriendsInfo.GetUserName(), FriendsInfo.GetUserName());
                 }
                 else
                 {
@@ -107,10 +120,10 @@ namespace SqlSeverFrame
         private void ReFreshButton_Click(object sender, EventArgs e)
         {
             this.FriendsList.Items.Clear();
-            s = new string[connect.SearchFriends(UserInfo.getUserName()).Length];
-            this.UserState.SelectedItem = connect.SearchUserState(UserInfo.getUserName());
-            UserInfo.setUserState(connect.SearchUserState(UserInfo.getUserName()));
-            if(head!= connect.SearchImage(UserInfo.getUserName()))
+            s = new string[connect.SearchFriends(UserInfo.GetUserName()).Length];
+            this.UserState.SelectedItem = connect.SearchUserState(UserInfo.GetUserName());
+            UserInfo.SetUserState(connect.SearchUserState(UserInfo.GetUserName()));
+            if(head!= connect.SearchImage(UserInfo.GetUserName()))
             {
                 if (head != "")
                 {
@@ -133,14 +146,13 @@ namespace SqlSeverFrame
 
                 this.MainShowHead.Image = Image;
             }
-            this.WelcomeLabel.Text = "欢迎！" + connect.SearchNickname(UserInfo.getUserName()).Replace("\\s*", "") + "(" + UserInfo.getUserName() + ")" + "用户";
-            int[] count = new int[connect.SearchFriends(UserInfo.getUserName()).Length];
-            for (int i = 0; i < connect.SearchFriends(UserInfo.getUserName()).Length; i++)
+            this.WelcomeLabel.Text = "欢迎！" + connect.SearchNickname(UserInfo.GetUserName()).Replace("\\s*", "") + "(" + UserInfo.GetUserName() + ")" + "用户";
+            for (int i = 0; i < connect.SearchFriends(UserInfo.GetUserName()).Length; i++)
             {
-                if (connect.SearchFriends(UserInfo.getUserName())[i] != null)
+                if (connect.SearchFriends(UserInfo.GetUserName())[i] != null)
                 {
 
-                    s[i] = connect.SearchFriends(UserInfo.getUserName())[i];
+                    s[i] = connect.SearchFriends(UserInfo.GetUserName())[i];
                     this.FriendsList.Items.Add(connect.SearchNickname(s[i]).Replace("\\s*", "") + "(" + s[i] + ")");
                 }
                 else
@@ -149,7 +161,11 @@ namespace SqlSeverFrame
                     break;
                 }
             }
-            connect.UpdateIsAlive(UserInfo.getUserName(), "1");
+            connect.UpdateIsAlive(UserInfo.GetUserName(), "1");
+            if (connect.SearchFriendsApplication(UserInfo.GetUserName())[0] != null)
+            {
+                this.newApplication.Visible = true;
+            }
         }
 
         private void AddFriendsButton_Click(object sender, EventArgs e)
@@ -163,5 +179,16 @@ namespace SqlSeverFrame
             FriendsApplication application = new FriendsApplication( UserInfo);
             application.Show(this);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            LoginFrame login = new LoginFrame();
+            login.Show(this);
+            this.Close();
+            this.Dispose();
+            this.OnClosed(e);
+        }
+
     }
 }

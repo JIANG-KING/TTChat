@@ -31,28 +31,31 @@ namespace SqlSeverFrame
         {
             this.FriendsAccountInput = new System.Windows.Forms.TextBox();
             this.Search = new System.Windows.Forms.Button();
-            this.FriendsHead = new System.Windows.Forms.PictureBox();
             this.FriendsNickName = new System.Windows.Forms.Label();
             this.SendFriendsApplication = new System.Windows.Forms.Button();
             this.UserState = new System.Windows.Forms.Label();
             this.ShowInfoLabel = new System.Windows.Forms.Label();
+            this.AccountLabel = new System.Windows.Forms.Label();
+            this.FriendsHead = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.FriendsHead)).BeginInit();
             this.SuspendLayout();
             // 
             // FriendsAccountInput
             // 
             this.FriendsAccountInput.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.FriendsAccountInput.Location = new System.Drawing.Point(16, 82);
+            this.FriendsAccountInput.Location = new System.Drawing.Point(16, 139);
             this.FriendsAccountInput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FriendsAccountInput.Name = "FriendsAccountInput";
             this.FriendsAccountInput.Size = new System.Drawing.Size(277, 38);
             this.FriendsAccountInput.TabIndex = 0;
+            this.FriendsAccountInput.TextChanged += new System.EventHandler(this.FriendsAccountInput_TextChanged);
+            this.FriendsAccountInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FriendsAccountInput_KeyPress);
             // 
             // Search
             // 
             this.Search.AutoSize = true;
             this.Search.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Search.Location = new System.Drawing.Point(16, 162);
+            this.Search.Location = new System.Drawing.Point(16, 234);
             this.Search.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(89, 37);
@@ -61,23 +64,12 @@ namespace SqlSeverFrame
             this.Search.UseVisualStyleBackColor = true;
             this.Search.Click += new System.EventHandler(this.Search_Click);
             // 
-            // FriendsHead
-            // 
-            this.FriendsHead.Location = new System.Drawing.Point(676, 21);
-            this.FriendsHead.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.FriendsHead.Name = "FriendsHead";
-            this.FriendsHead.Size = new System.Drawing.Size(267, 250);
-            this.FriendsHead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.FriendsHead.TabIndex = 2;
-            this.FriendsHead.TabStop = false;
-            // 
             // FriendsNickName
             // 
-            this.FriendsNickName.AutoSize = true;
             this.FriendsNickName.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.FriendsNickName.Location = new System.Drawing.Point(404, 21);
+            this.FriendsNickName.Location = new System.Drawing.Point(383, 21);
             this.FriendsNickName.Name = "FriendsNickName";
-            this.FriendsNickName.Size = new System.Drawing.Size(174, 27);
+            this.FriendsNickName.Size = new System.Drawing.Size(244, 67);
             this.FriendsNickName.TabIndex = 3;
             this.FriendsNickName.Text = "这里显示昵称";
             // 
@@ -85,7 +77,7 @@ namespace SqlSeverFrame
             // 
             this.SendFriendsApplication.AutoSize = true;
             this.SendFriendsApplication.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.SendFriendsApplication.Location = new System.Drawing.Point(156, 162);
+            this.SendFriendsApplication.Location = new System.Drawing.Point(139, 234);
             this.SendFriendsApplication.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SendFriendsApplication.Name = "SendFriendsApplication";
             this.SendFriendsApplication.Size = new System.Drawing.Size(184, 37);
@@ -98,7 +90,7 @@ namespace SqlSeverFrame
             // 
             this.UserState.AutoSize = true;
             this.UserState.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.UserState.Location = new System.Drawing.Point(405, 71);
+            this.UserState.Location = new System.Drawing.Point(384, 163);
             this.UserState.Name = "UserState";
             this.UserState.Size = new System.Drawing.Size(202, 24);
             this.UserState.TabIndex = 5;
@@ -114,11 +106,32 @@ namespace SqlSeverFrame
             this.ShowInfoLabel.TabIndex = 6;
             this.ShowInfoLabel.Text = "请输入要搜索的账号";
             // 
+            // AccountLabel
+            // 
+            this.AccountLabel.AutoSize = true;
+            this.AccountLabel.Font = new System.Drawing.Font("宋体", 16F);
+            this.AccountLabel.Location = new System.Drawing.Point(383, 88);
+            this.AccountLabel.Name = "AccountLabel";
+            this.AccountLabel.Size = new System.Drawing.Size(174, 27);
+            this.AccountLabel.TabIndex = 7;
+            this.AccountLabel.Text = "这里显示账号";
+            // 
+            // FriendsHead
+            // 
+            this.FriendsHead.Location = new System.Drawing.Point(676, 21);
+            this.FriendsHead.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.FriendsHead.Name = "FriendsHead";
+            this.FriendsHead.Size = new System.Drawing.Size(267, 250);
+            this.FriendsHead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.FriendsHead.TabIndex = 2;
+            this.FriendsHead.TabStop = false;
+            // 
             // FriendsMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(953, 453);
+            this.Controls.Add(this.AccountLabel);
             this.Controls.Add(this.ShowInfoLabel);
             this.Controls.Add(this.UserState);
             this.Controls.Add(this.SendFriendsApplication);
@@ -128,7 +141,8 @@ namespace SqlSeverFrame
             this.Controls.Add(this.FriendsAccountInput);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FriendsMain";
-            this.Text = "FriendsMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "好友添加";
             this.Load += new System.EventHandler(this.FriendsMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.FriendsHead)).EndInit();
             this.ResumeLayout(false);
@@ -145,5 +159,6 @@ namespace SqlSeverFrame
         private System.Windows.Forms.Button SendFriendsApplication;
         private System.Windows.Forms.Label UserState;
         private System.Windows.Forms.Label ShowInfoLabel;
+        private System.Windows.Forms.Label AccountLabel;
     }
 }

@@ -45,7 +45,7 @@ namespace SqlSeverFrame
             this.ShowMessage.Size = new System.Drawing.Size(841, 285);
             this.ShowMessage.TabIndex = 1;
             this.ShowMessage.Text = "";
-            this.ShowMessage.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.ShowMessage.TextChanged += new System.EventHandler(this.ShowMessage_TextChanged);
             // 
             // MessageInput
             // 

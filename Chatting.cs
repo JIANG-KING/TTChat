@@ -24,7 +24,7 @@ namespace SqlSeverFrame
         SQLSeverConnect connect = new SQLSeverConnect();
         private void ReciveMessage_Tick(object sender, EventArgs e)
         {
-            int[] ReceviverNumber = connect.SearchNumbers(FriendsInfo.getUserName(), UserInfo.getUserName());
+            int[] ReceviverNumber = connect.SearchNumbers(FriendsInfo.GetUserName(), UserInfo.GetUserName());
             Array.Sort(ReceviverNumber);
             for(int i = 0; i <ReceviverNumber.Length; i++)
             {
@@ -44,12 +44,10 @@ namespace SqlSeverFrame
 
         private void Chatting_Load(object sender, EventArgs e)
         {
-            this.Text = "正在与" + connect.SearchNickname(FriendsInfo.getUserName())+"("+FriendsInfo.getUserName()+")"+"聊天";
-            string[] ReceiverMessage = connect.SearchMessage(FriendsInfo.getUserName(),UserInfo.getUserName());
-            int[] ReceviverNumber = connect.SearchNumbers(FriendsInfo.getUserName(), UserInfo.getUserName());
+            this.Text = "正在与" + connect.SearchNickname(FriendsInfo.GetUserName())+"("+FriendsInfo.GetUserName()+")"+"聊天";
+            int[] ReceviverNumber = connect.SearchNumbers(FriendsInfo.GetUserName(), UserInfo.GetUserName());
             max = ReceviverNumber.Max();
-            string[] SendMessage = connect.SearchMessage(UserInfo.getUserName(), FriendsInfo.getUserName());
-            int[] SendNumber = connect.SearchNumbers(UserInfo.getUserName(), FriendsInfo.getUserName());
+            int[] SendNumber = connect.SearchNumbers(UserInfo.GetUserName(), FriendsInfo.GetUserName());
             int[] MainNumber = SendNumber.Concat(ReceviverNumber).ToArray();
             Array.Sort(MainNumber);
             for (int i = 0; i<MainNumber.Length; i++)
@@ -67,18 +65,12 @@ namespace SqlSeverFrame
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            ShowMessage.SelectionStart = ShowMessage.TextLength;
-            ShowMessage.ScrollToCaret();
-        }
-
         private void SengButton_Click(object sender, EventArgs e)
         {
 
             Thread.sleep(200);
-            connect.SendMessage(UserInfo.getUserName(),  this.MessageInput.Text,FriendsInfo.getUserName());
-            this.ShowMessage.Text += connect.SearchNickname(UserInfo.getUserName()) +"(" +UserInfo.getUserName() +")"+ DateTime.Now + "\r\n" + this.MessageInput.Text+ "\r\n";
+            connect.SendMessage(UserInfo.GetUserName(),  this.MessageInput.Text,FriendsInfo.GetUserName());
+            this.ShowMessage.Text += connect.SearchNickname(UserInfo.GetUserName()) +"(" +UserInfo.GetUserName() +")"+ DateTime.Now + "\r\n" + this.MessageInput.Text+ "\r\n";
             this.MessageInput.Text = "";
         }
 
@@ -89,8 +81,14 @@ namespace SqlSeverFrame
 
         private void Chatting_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MainFrame.dc.Remove(FriendsInfo.getUserName());
+            MainFrame.dc.Remove(FriendsInfo.GetUserName());
             
+        }
+
+        private void ShowMessage_TextChanged(object sender, EventArgs e)
+        {
+            ShowMessage.SelectionStart = ShowMessage.TextLength;
+            ShowMessage.ScrollToCaret();
         }
     }
 }

@@ -286,12 +286,6 @@
       <DependentUpon>MainFrame.cs</DependentUpon>
     </Compile>
     <Compile Include="MobileKey.cs" />
-    <Compile Include="PictureBoxTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PictureBoxTest.Designer.cs">
-      <DependentUpon>PictureBoxTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.cs">
@@ -316,6 +310,7 @@
     </Compile>
     <Compile Include="SQLSeverConnect.cs" />
     <Compile Include="UserInfo.cs" />
+    <Compile Include="ValidCode.cs" />
     <EmbeddedResource Include="Chatting.resx">
       <DependentUpon>Chatting.cs</DependentUpon>
     </EmbeddedResource>
@@ -330,9 +325,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainFrame.resx">
       <DependentUpon>MainFrame.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PictureBoxTest.resx">
-      <DependentUpon>PictureBoxTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -393,6 +385,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newmessage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

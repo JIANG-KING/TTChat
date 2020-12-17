@@ -25,14 +25,14 @@ namespace SqlSeverFrame
          SQLSeverConnect SQLSeverConnect = new SQLSeverConnect();
         private void FriendsApplication_Load(object sender, EventArgs e)
         {
-            string [] s = new string[SQLSeverConnect.SearchFriendsApplication(UserInfo.getUserName()).Length];
-            for (int i = 0; i < SQLSeverConnect.SearchFriendsApplication(UserInfo.getUserName()).Length; i++)
+            string [] s = new string[SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName()).Length];
+            for (int i = 0; i < SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName()).Length; i++)
             {
-                if (SQLSeverConnect.SearchFriendsApplication(UserInfo.getUserName())[i] != null)
+                if (SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[i] != null)
                 {
 
-                    s[i] = SQLSeverConnect.SearchFriendsApplication(UserInfo.getUserName())[i];
-                    this.ShowFriends.Items.Add(SQLSeverConnect.SearchNickname(s[i]).Replace("\\s*", "") + "(" + s[i] + ")"+"验证消息:"+SQLSeverConnect.SearchFriendsApplicationMessage(s[i], UserInfo.getUserName()));
+                    s[i] = SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[i];
+                    this.ShowFriends.Items.Add(SQLSeverConnect.SearchNickname(s[i]).Replace("\\s*", "") + "(" + s[i] + ")"+"验证消息:"+SQLSeverConnect.SearchFriendsApplicationMessage(s[i], UserInfo.GetUserName()));
                 }
                 else
                 {
@@ -46,9 +46,11 @@ namespace SqlSeverFrame
         {
             if (this.ShowFriends.SelectedItem != null)
             {
-                SQLSeverConnect.AddFriends(UserInfo.getUserName(), this.ShowFriends.SelectedItem.ToString());
-                SQLSeverConnect.DeleteApplication(UserInfo.getUserName(), this.ShowFriends.SelectedItem.ToString());
-                refresh_Click(sender,e);
+                SQLSeverConnect.AddFriends(UserInfo.GetUserName(), SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[this.ShowFriends.SelectedIndex]);
+                SQLSeverConnect.AddFriends(SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[this.ShowFriends.SelectedIndex], UserInfo.GetUserName());
+                SQLSeverConnect.DeleteApplication(SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[this.ShowFriends.SelectedIndex], UserInfo.GetUserName());
+                Refresh_Click(sender, e);
+                MessageBox.Show("添加成功", "提示");
             }
             else
             {
@@ -57,45 +59,39 @@ namespace SqlSeverFrame
 
         }
 
-        private void refresh_Click(object sender, EventArgs e)
+        private void ShowFriends_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.ShowFriends.SelectedItem != null)
+            {
+                SQLSeverConnect.AddFriends(UserInfo.GetUserName(), SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[this.ShowFriends.SelectedIndex]);
+                SQLSeverConnect.AddFriends(SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[this.ShowFriends.SelectedIndex], UserInfo.GetUserName());
+                SQLSeverConnect.DeleteApplication(SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[this.ShowFriends.SelectedIndex], UserInfo.GetUserName());
+                Refresh_Click(sender, e);
+                MessageBox.Show("添加成功", "提示");
+            }
+            else
+            {
+                MessageBox.Show("请选择要同意的好友申请", "提示");
+            }
+        }
+
+        private void Refresh_Click(object sender, EventArgs e)
         {
             this.ShowFriends.Items.Clear();
-            string[] s = new string[SQLSeverConnect.SearchFriendsApplication(UserInfo.getUserName()).Length];
-            for (int i = 0; i < SQLSeverConnect.SearchFriendsApplication(UserInfo.getUserName()).Length; i++)
+            string[] s = new string[SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName()).Length];
+            for (int i = 0; i < SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName()).Length; i++)
             {
-                if (SQLSeverConnect.SearchFriendsApplication(UserInfo.getUserName())[i] != null)
+                if (SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[i] != null)
                 {
 
-                    s[i] = SQLSeverConnect.SearchFriendsApplication(UserInfo.getUserName())[i];
-                    this.ShowFriends.Items.Add(SQLSeverConnect.SearchNickname(s[i]).Replace("\\s*", "") + "(" + s[i] + ")" + "验证消息:" + SQLSeverConnect.SearchFriendsApplicationMessage(s[i], UserInfo.getUserName()));
+                    s[i] = SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[i];
+                    this.ShowFriends.Items.Add(SQLSeverConnect.SearchNickname(s[i]).Replace("\\s*", "") + "(" + s[i] + ")" + "验证消息:" + SQLSeverConnect.SearchFriendsApplicationMessage(s[i], UserInfo.GetUserName()));
                 }
                 else
                 {
                     s[i] = "";
                     break;
                 }
-            }
-        }
-
-        private void ShowFriends_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void ShowFriends_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (this.ShowFriends.SelectedItem != null)
-            {
-                SQLSeverConnect.AddFriends(UserInfo.getUserName(), SQLSeverConnect.SearchFriendsApplication(UserInfo.getUserName())[this.ShowFriends.SelectedIndex]);
-                SQLSeverConnect.AddFriends(SQLSeverConnect.SearchFriendsApplication(UserInfo.getUserName())[this.ShowFriends.SelectedIndex], UserInfo.getUserName());
-                MessageBox.Show(SQLSeverConnect.SearchFriendsApplication(UserInfo.getUserName())[this.ShowFriends.SelectedIndex], "");
-                SQLSeverConnect.DeleteApplication(SQLSeverConnect.SearchFriendsApplication(UserInfo.getUserName())[this.ShowFriends.SelectedIndex], UserInfo.getUserName());
-                refresh_Click(sender, e);
-                MessageBox.Show("添加成功", "提示");
-            }
-            else
-            {
-                MessageBox.Show("请选择要同意的好友申请", "提示");
             }
         }
     }
