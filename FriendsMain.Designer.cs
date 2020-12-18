@@ -66,10 +66,10 @@ namespace SqlSeverFrame
             // 
             // FriendsNickName
             // 
-            this.FriendsNickName.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FriendsNickName.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FriendsNickName.Location = new System.Drawing.Point(383, 21);
             this.FriendsNickName.Name = "FriendsNickName";
-            this.FriendsNickName.Size = new System.Drawing.Size(244, 67);
+            this.FriendsNickName.Size = new System.Drawing.Size(242, 52);
             this.FriendsNickName.TabIndex = 3;
             this.FriendsNickName.Text = "这里显示昵称";
             // 
@@ -88,11 +88,10 @@ namespace SqlSeverFrame
             // 
             // UserState
             // 
-            this.UserState.AutoSize = true;
             this.UserState.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.UserState.Location = new System.Drawing.Point(384, 163);
+            this.UserState.Location = new System.Drawing.Point(383, 192);
             this.UserState.Name = "UserState";
-            this.UserState.Size = new System.Drawing.Size(202, 24);
+            this.UserState.Size = new System.Drawing.Size(194, 53);
             this.UserState.TabIndex = 5;
             this.UserState.Text = "这里显示在线状态";
             // 
@@ -108,11 +107,10 @@ namespace SqlSeverFrame
             // 
             // AccountLabel
             // 
-            this.AccountLabel.AutoSize = true;
-            this.AccountLabel.Font = new System.Drawing.Font("宋体", 16F);
-            this.AccountLabel.Location = new System.Drawing.Point(383, 88);
+            this.AccountLabel.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.AccountLabel.Location = new System.Drawing.Point(383, 104);
             this.AccountLabel.Name = "AccountLabel";
-            this.AccountLabel.Size = new System.Drawing.Size(174, 27);
+            this.AccountLabel.Size = new System.Drawing.Size(195, 51);
             this.AccountLabel.TabIndex = 7;
             this.AccountLabel.Text = "这里显示账号";
             // 

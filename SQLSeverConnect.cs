@@ -7,7 +7,7 @@ namespace SqlSeverFrame
     {
         private static readonly string constr = "Server=yun2333.top;Database=Chattools;user id=jiangyun;pwd=Jy1019878449";
         SqlConnection sqlCnt = new SqlConnection(constr);
-
+        
         /// <summary>
         /// 防止sql注入
         /// </summary>
@@ -96,24 +96,44 @@ namespace SqlSeverFrame
         /// <returns></returns>
         public int SqlSearch(string Account)
         {
+            try {
+                sqlCnt.Open();
+
             string strSQL = "select Account from LoginInfo where Account=@letter1";
             SqlCommand cmd = Injection(strSQL, Account);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             int a = da.Fill(ds, "LoginInfo");
-            return a;
+            sqlCnt.Close();
+            return a; 
+            }
+            catch
+            {
+                return 0;
+            }
+            
         }
         public int SqlInsert(string Account, string Password, string image, string NickName)//插入一个用户，用户注册时使用
         {
+            try 
+            {
             sqlCnt.Open();
             string strSQL = "INSERT INTO [dbo].[LoginInfo] ([Account],[Password],[ImageHead],[NickName]) VALUES (@letter1,@letter2,@letter3,@letter4)";
             SqlCommand cmd = Injection(strSQL,Account,Password,image,NickName);
             int result = cmd.ExecuteNonQuery();
             sqlCnt.Close();
             return result;
+            }
+            catch
+            {
+                return 0;
+            }
+            
         }
         public string SearchImage(string username)//查找用户的头像
         {
+            try
+            {
             sqlCnt.Open();
             string strSQL = "select ImageHead from LoginInfo where Account=@letter1";
             SqlCommand cmd = Injection(strSQL,username);
@@ -122,244 +142,438 @@ namespace SqlSeverFrame
             string s = "";
             if (dr.Read())
                 s = dr["imagehead"].ToString().Substring(0, 5);
+                dr.Close();
             sqlCnt.Close();
             return s;
+            }
+            catch (System.Exception)
+            {
+
+                return "";
+            }
+            
         }
         public int UpdateState(string username, string LoginState)//更新用户的状态，在线，隐身，忙碌，请勿打扰，q我吧
         {
-            sqlCnt.Open();
-            string strSQL = "update LoginInfo set AccountState=@letter2  where Account=@letter1";
-            SqlCommand cmd = Injection(strSQL,username,LoginState);
-            int result = cmd.ExecuteNonQuery();
-            sqlCnt.Close();
-            return result;
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "update LoginInfo set AccountState=@letter2  where Account=@letter1";
+                SqlCommand cmd = Injection(strSQL, username, LoginState);
+                int result = cmd.ExecuteNonQuery();
+                sqlCnt.Close();
+                return result;
+            }
+            catch (System.Exception)
+            {
+
+                return 0;
+            }
         }
         public string SearchUserState(string username)//查找用户的在线状态
         {
-            sqlCnt.Open();
-            string strSQL = "select AccountState from LoginInfo where Account=@letter1";
-            SqlCommand cmd = Injection(strSQL,username);
-            SqlDataReader dr;//创建DataReader对象
-            dr = cmd.ExecuteReader();
-            string s = "";
-            if (dr.Read())
-                s = dr["AccountState"].ToString();
-            sqlCnt.Close();
-            return s;
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "select AccountState from LoginInfo where Account=@letter1";
+                SqlCommand cmd = Injection(strSQL, username);
+                SqlDataReader dr;//创建DataReader对象
+                dr = cmd.ExecuteReader();
+                string s = "";
+                if (dr.Read())
+                    s = dr["AccountState"].ToString();
+                dr.Close();
+                sqlCnt.Close();
+                return s;
+            }
+            catch (System.Exception)
+            {
+                return "";
+            }
         }
         public string SearchNickname(string username)//查找用户的昵称
         {
-            sqlCnt.Open();
-            string strSQL = "select NickName from LoginInfo where Account=@letter1";
-            SqlCommand cmd =  Injection(strSQL, username);
-            SqlDataReader dr;//创建DataReader对象
-            dr = cmd.ExecuteReader();
             string s = "";
-            if (dr.Read())
-                s = dr["NickName"].ToString();
-            sqlCnt.Close();
-            return s;
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "select NickName from LoginInfo where Account=@letter1";
+                SqlCommand cmd = Injection(strSQL, username);
+                SqlDataReader dr;//创建DataReader对象
+                dr = cmd.ExecuteReader();
+                
+                if (dr.Read())
+                    s = dr["NickName"].ToString();
+                dr.Close();
+                sqlCnt.Close();
+                return s;
+            }
+            catch (System.Exception)
+            {
+
+                return s ;
+            }
         }
         public int UpdateIsAlive(string username, string IsAlive)//修改用户的登录状态
         {
-            sqlCnt.Open();
-            string strSQL = "update LoginInfo set IsAlive=@letter2 where Account=@letter1";
-            SqlCommand cmd = Injection(strSQL,username,IsAlive);
-            int result = cmd.ExecuteNonQuery();
-            sqlCnt.Close();
-            return result;
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "update LoginInfo set IsAlive=@letter2 where Account=@letter1";
+                SqlCommand cmd = Injection(strSQL, username, IsAlive);
+                int result = cmd.ExecuteNonQuery();
+                sqlCnt.Close();
+                return result;
+            }
+            catch (System.Exception)
+            {
+                return 0;
+            }
         }
         public int SearchIsAlive(string username)//查找用户是否已登录
         {
-            sqlCnt.Open();
-            string strSQL = "select IsAlive from LoginInfo where Account=@letter1";
-            SqlCommand cmd = Injection(strSQL,username);
-            SqlDataReader dr;//创建DataReader对象
-            dr = cmd.ExecuteReader();
-            string s = "";
-            if (dr.Read())
-                s = dr["IsALive"].ToString();
-            sqlCnt.Close();
-            return Integer.parseInt(s);
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "select IsAlive from LoginInfo where Account=@letter1";
+                SqlCommand cmd = Injection(strSQL, username);
+                SqlDataReader dr;//创建DataReader对象
+                dr = cmd.ExecuteReader();
+                string s = "";
+                if (dr.Read())
+                    s = dr["IsALive"].ToString();
+                dr.Close();
+                sqlCnt.Close();
+                return Integer.parseInt(s);
+            }
+            catch (System.Exception)
+            {
+
+                return 2;
+            }
         }
         public string[] SearchFriends(string username)//查找用户的好友
         {
-            sqlCnt.Open();
-            string strSQL = "select Friends from Friends where UserName=@letter1";
-            SqlCommand cmd = Injection(strSQL,username);
-            SqlDataReader dr;//创建DataReader对象
-            dr = cmd.ExecuteReader();
             string[] User = new string[2000];
-            int i = 0;
-            while (dr.Read())
+            try
             {
-                User[i] = dr["Friends"].ToString();
-                i++;
+                sqlCnt.Open();
+                string strSQL = "select Friends from Friends where UserName=@letter1";
+                SqlCommand cmd = Injection(strSQL, username);
+                SqlDataReader dr;//创建DataReader对象
+                dr = cmd.ExecuteReader();
+                int i = 0;
+                while (dr.Read())
+                {
+                    User[i] = dr["Friends"].ToString();
+                    i++;
+                }
+                dr.Close();
+                sqlCnt.Close();
+                return User;
             }
-            sqlCnt.Close();
-            return User;
+            catch (System.Exception)
+            {
+
+                return User;
+            }
         }
         public int  IsFriends(string username,string friends)//查找是否已经是用户好友
         {
-            sqlCnt.Open();
-            string strSQL = "select Friends from Friends where UserName=@letter1 and friends=@letter2";
-            SqlCommand cmd = Injection(strSQL,username,friends);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            int result = da.Fill(ds, "LoginInfo");
-            sqlCnt.Close();
-            return result;
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "select Friends from Friends where UserName=@letter1 and friends=@letter2";
+                SqlCommand cmd = Injection(strSQL, username, friends);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                int result = da.Fill(ds, "LoginInfo");
+                sqlCnt.Close();
+                return result;
+            }
+            catch (System.Exception)
+            {
+
+                return 1;
+            }
         }
         public string[] SearchMessage(string username, string Receiver)//查找用户收到的消息，最近的十条
         {
-            sqlCnt.Open();
-            string strSQL = "SELECT top(10)  [Message] FROM [Chattools].[dbo].[MeassageBox] where Sender=@letter1 And Receiver=@letter2 ORDER by SerialNumber deSC ";
-            SqlCommand cmd = Injection(strSQL,username,Receiver);
-            SqlDataReader dr;//创建DataReader对象
-            dr = cmd.ExecuteReader();
             string[] User = new string[10];
-            int i = 0;
-            while (dr.Read())
+            try
             {
-                User[i] = dr["Message"].ToString();
-                i++;
+                sqlCnt.Open();
+                string strSQL = "SELECT top(10)  [Message] FROM [Chattools].[dbo].[MeassageBox] where Sender=@letter1 And Receiver=@letter2 ORDER by SerialNumber deSC ";
+                SqlCommand cmd = Injection(strSQL, username, Receiver);
+                SqlDataReader dr;//创建DataReader对象
+                dr = cmd.ExecuteReader();
+
+                int i = 0;
+                while (dr.Read())
+                {
+                    User[i] = dr["Message"].ToString();
+                    i++;
+                }
+                dr.Close();
+                sqlCnt.Close();
+                return User;
             }
-            sqlCnt.Close();
-            return User;
+            catch (System.Exception)
+            {
+                return User;
+            }
         }
         public int SendMessage(string Sender, string Message, string Receiver)//将发送的消息上传到数据库
         {
-            sqlCnt.Open();
-            string strSQL = "INSERT INTO [dbo].[MeassageBox] ([Sender],[Message],[Receiver]) VALUES (@letter1,@letter2 ,@letter3)";
-            SqlCommand cmd = Injection(strSQL,Sender,Message,Receiver);
-           int result = cmd.ExecuteNonQuery();
-            sqlCnt.Close();
-            return result;
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "INSERT INTO [dbo].[MeassageBox] ([Sender],[Message],[Receiver]) VALUES (@letter1,@letter2 ,@letter3)";
+                SqlCommand cmd = Injection(strSQL, Sender, Message, Receiver);
+                int result = cmd.ExecuteNonQuery();
+                sqlCnt.Close();
+                return result;
+            }
+            catch (System.Exception)
+            {
+
+                return 0;
+            }
         }
         public int[] SearchNumbers(string username, string Receiver)//查找用户收到或发送的消息的序号
         {
-            sqlCnt.Open();
-            string strSQL = "SELECT top(10)  [SerialNumber] FROM [Chattools].[dbo].[MeassageBox] where Sender=@letter1 And Receiver=@letter2 ORDER by SerialNumber deSC ";
-            SqlCommand cmd = Injection(strSQL,username,Receiver);
-            SqlDataReader dr;//创建DataReader对象
-            dr = cmd.ExecuteReader();
             int[] User = new int[10];
-            int i = 0;
-            while (dr.Read())
+            try
             {
-                User[i] = Integer.parseInt(dr["SerialNumber"].ToString());
-                i++;
+                sqlCnt.Open();
+                string strSQL = "SELECT top(10)  [SerialNumber] FROM [Chattools].[dbo].[MeassageBox] where Sender=@letter1 And Receiver=@letter2 ORDER by SerialNumber deSC ";
+                SqlCommand cmd = Injection(strSQL, username, Receiver);
+                SqlDataReader dr;//创建DataReader对象
+                dr = cmd.ExecuteReader();
+
+                int i = 0;
+                while (dr.Read())
+                {
+                    User[i] = Integer.parseInt(dr["SerialNumber"].ToString());
+                    i++;
+                }
+                dr.Close();
+                sqlCnt.Close();
+                return User;
             }
-            sqlCnt.Close();
-            return User;
+            catch (System.Exception)
+            {
+
+                return User;
+            }
         }
         public string SearchMessageByNumber(string SerialNumber)//按序号查询消息
         {
-            sqlCnt.Open();
-            string strSQL = "select Message  from MeassageBox where SerialNumber=@letter1 ";
-            SqlCommand cmd = Injection(strSQL, SerialNumber);
-            SqlDataReader dr;//创建DataReader对象
-            dr = cmd.ExecuteReader();
-            string s="";
-            if (dr.Read())
+            string s = "";
+            try
             {
-                s = dr["Message"].ToString();
+                sqlCnt.Open();
+                string strSQL = "select Message  from MeassageBox where SerialNumber=@letter1 ";
+                SqlCommand cmd = Injection(strSQL, SerialNumber);
+                SqlDataReader dr;//创建DataReader对象
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    s = dr["Message"].ToString();
+                }
+                dr.Close();
+                sqlCnt.Close();
+                return s;
             }
-            sqlCnt.Close();
-            return s;
+            catch (System.Exception)
+            {
+
+                return s;
+            }
         }
         public string SearchSenDerByNumber(string SerialNumber)//按序号查询消息发送人
         {
-            sqlCnt.Open();
-            string strSQL = "select Sender  from MeassageBox where SerialNumber=@letter1 ";
-            SqlCommand cmd = Injection(strSQL, SerialNumber);
-            SqlDataReader dr;//创建DataReader对象
-            dr = cmd.ExecuteReader();
-            string s="";
-            if (dr.Read())
+            string s = "";
+            try
             {
-                s = dr["Sender"].ToString();
+                sqlCnt.Open();
+                string strSQL = "select Sender  from MeassageBox where SerialNumber=@letter1 ";
+                SqlCommand cmd = Injection(strSQL, SerialNumber);
+                SqlDataReader dr;//创建DataReader对象
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    s = dr["Sender"].ToString();
+                }
+                dr.Close();
+                sqlCnt.Close();
+                return s;
             }
-            sqlCnt.Close();
-            return s;
+            catch (System.Exception)
+            {
+
+                return s;
+            }
+        }
+        public string SearchSendTimeByNumber(string SerialNumber)//按序号查询消息
+        {
+            string s = "";
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "select SendTime  from MeassageBox where SerialNumber=@letter1 ";
+                SqlCommand cmd = Injection(strSQL, SerialNumber);
+                SqlDataReader dr;//创建DataReader对象
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    s = dr["SendTime"].ToString();
+                }
+                dr.Close();
+                sqlCnt.Close();
+                return s;
+            }
+            catch (System.Exception)
+            {
+                return s;
+            }
         }
         public int  AddFriends(string username,string Friends)//添加好友
         {
-            sqlCnt.Open();
-            string strSQL = "insert into Friends (Username,friends) values(@letter1,@letter2)";
-            SqlCommand cmd = Injection(strSQL, username,Friends);
-            int result = cmd.ExecuteNonQuery();
-            sqlCnt.Close();
-            return result;
+            try
+            {
+                sqlCnt.Open();
+                string strsql = "insert into friends (username,friends) values(@letter1,@letter2)";
+                SqlCommand cmd = Injection(strsql, username, Friends);
+                int result = cmd.ExecuteNonQuery();
+                sqlCnt.Close();
+                return result;
+            }
+            catch (System.Exception)
+            {
+
+                return 0;
+            }
         }
         public int SendFriendApplication(string sender,string message, string Friends)//发送好友申请
         {
-            sqlCnt.Open();
-            string strSQL = "insert into FriendsApplication (sender,message,receiver) values(@letter1,@letter2,@letter3)";
-            SqlCommand cmd = Injection(strSQL, sender,message, Friends);
-            int result = cmd.ExecuteNonQuery();
-            sqlCnt.Close();
-            return result;
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "insert into FriendsApplication (sender,message,receiver) values(@letter1,@letter2,@letter3)";
+                SqlCommand cmd = Injection(strSQL, sender, message, Friends);
+                int result = cmd.ExecuteNonQuery();
+                sqlCnt.Close();
+                return result;
+            }
+            catch (System.Exception)
+            {
+
+                return 0;
+            }
         }
         public string[] SearchFriendsApplication(string username)//查找用户的好友申请
         {
-            sqlCnt.Open();
-            string strSQL = "select sender from FriendsApplication where receiver=@letter1";
-            SqlCommand cmd = Injection(strSQL, username);
-            SqlDataReader dr;//创建DataReader对象
-            dr = cmd.ExecuteReader();
             string[] User = new string[2000];
-            int i = 0;
-            while (dr.Read())
+            try
             {
-                if (i >= 2000) break;
-                User[i] = dr["sender"].ToString();
-                i++;
+                sqlCnt.Open();
+                string strSQL = "select sender from FriendsApplication where receiver=@letter1";
+                SqlCommand cmd = Injection(strSQL, username);
+                SqlDataReader dr;//创建DataReader对象
+                dr = cmd.ExecuteReader();
+                
+                int i = 0;
+                while (dr.Read())
+                {
+                    if (i >= 2000) break;
+                    User[i] = dr["sender"].ToString();
+                    i++;
+                }
+                dr.Close();
+                sqlCnt.Close();
+                return User;
             }
-            sqlCnt.Close();
-            return User;
+            catch (System.Exception)
+            {
+
+                return User;
+            }
         }
         public string SearchFriendsApplicationMessage(string sender,string receiver)//查找用户的好友申请信息，指定好友
         {
-            sqlCnt.Open();
-            string strSQL = "select message from FriendsApplication where sender=@letter1 and receiver=@letter2";
-            SqlCommand cmd = Injection(strSQL, sender, receiver);
-            SqlDataReader dr;//创建DataReader对象
-            dr = cmd.ExecuteReader();
-            string User="";
-            if (dr.Read()) {User = dr["message"].ToString(); }           
-            sqlCnt.Close();
-            return User;
+            string User = "";
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "select message from FriendsApplication where sender=@letter1 and receiver=@letter2";
+                SqlCommand cmd = Injection(strSQL, sender, receiver);
+                SqlDataReader dr;//创建DataReader对象
+                dr = cmd.ExecuteReader();
+                if (dr.Read()) { User = dr["message"].ToString(); }
+                dr.Close();
+                sqlCnt.Close();
+                return User;
+            }
+            catch (System.Exception)
+            {
+
+                return User;
+            }
         }
         public int DeleteApplication(string sender,string receiver)//删除好友申请
-        {
-            sqlCnt.Open();
-            string strSQL = "delete from FriendsApplication where sender = @letter1 and receiver=@letter2";
-            SqlCommand cmd = Injection(strSQL, sender, receiver);
-            int result = cmd.ExecuteNonQuery();
-            sqlCnt.Close();
-            return result;
+        {try
+            {
+                sqlCnt.Open();
+                string strSQL = "delete from FriendsApplication where sender = @letter1 and receiver=@letter2";
+                SqlCommand cmd = Injection(strSQL, sender, receiver);
+                int result = cmd.ExecuteNonQuery();
+                sqlCnt.Close();
+                return result;
+            }
+            catch (System.Exception) { 
+                return 0; 
+            }
         }
         public int  IsSendApplication(string sender,string receiver)//查找是否已经存在好友申请
         {
-            sqlCnt.Open();
-            string strSQL = "select sender from FriendsApplication where sender=@letter1 and receiver=@letter2";
-            SqlCommand cmd = Injection(strSQL, sender, receiver);
-            DataSet dataSet = new DataSet();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            int result=da.Fill(dataSet, "sender");
-            sqlCnt.Close();
-            return result;
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "select sender from FriendsApplication where sender=@letter1 and receiver=@letter2";
+                SqlCommand cmd = Injection(strSQL, sender, receiver);
+                DataSet dataSet = new DataSet();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                int result = da.Fill(dataSet, "sender");
+                sqlCnt.Close();
+                return result;
+            }
+            catch (System.Exception)
+            {
+
+                return 0;
+            }
         }
 
         public int UpdatePassword(string username, string password)//修改用户的登录密码
         {
-            sqlCnt.Open();
-            string strSQL = "update LoginInfo set password=@letter1 where Account=@letter2";
-            SqlCommand cmd = Injection(strSQL, password, username);
-            int result = cmd.ExecuteNonQuery();
-            sqlCnt.Close();
-            return result;
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "update LoginInfo set password=@letter1 where Account=@letter2";
+                SqlCommand cmd = Injection(strSQL, password, username);
+                int result = cmd.ExecuteNonQuery();
+                sqlCnt.Close();
+                return result;
+            }
+            catch (System.Exception)
+            {
+
+                return 0;
+            }
         }
     }
     }

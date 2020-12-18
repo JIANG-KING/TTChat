@@ -273,6 +273,12 @@
     <Compile Include="FriendsMain.Designer.cs">
       <DependentUpon>FriendsMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Loading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Loading.Designer.cs">
+      <DependentUpon>Loading.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginFrame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -319,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FriendsMain.resx">
       <DependentUpon>FriendsMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Loading.resx">
+      <DependentUpon>Loading.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginFrame.resx">
       <DependentUpon>LoginFrame.cs</DependentUpon>
@@ -388,6 +397,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\newmessage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Load.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

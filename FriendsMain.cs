@@ -41,11 +41,8 @@ namespace SqlSeverFrame
             if (SQLSeverConnect.SqlSearch(this.FriendsAccountInput.Text) == 1)
             {
                 Image Image;
-                this.FriendsNickName.BorderStyle = (BorderStyle)2;
-                this.FriendsNickName.Text = "昵    称：" + SQLSeverConnect.SearchNickname(this.FriendsAccountInput.Text);
-                this.AccountLabel.BorderStyle = (BorderStyle)2;
-                this.AccountLabel.Text = "账     号：" + this.FriendsAccountInput.Text;
-                this.UserState.BorderStyle = (BorderStyle)2;
+                this.FriendsNickName.Text = "昵称：" + SQLSeverConnect.SearchNickname(this.FriendsAccountInput.Text);
+                this.AccountLabel.Text = "账号：" + this.FriendsAccountInput.Text;
                 this.UserState.Text = "在线状态：" + SQLSeverConnect.SearchUserState(this.FriendsAccountInput.Text);
                 string s = GetNumberAlpha(SQLSeverConnect.SearchImage(this.FriendsAccountInput.Text));
                 if (s != "")

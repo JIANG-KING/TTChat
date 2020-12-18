@@ -38,9 +38,9 @@ namespace SqlSeverFrame
             // 
             this.ShowFriends.FormattingEnabled = true;
             this.ShowFriends.ItemHeight = 15;
-            this.ShowFriends.Location = new System.Drawing.Point(353, 12);
+            this.ShowFriends.Location = new System.Drawing.Point(215, 12);
             this.ShowFriends.Name = "ShowFriends";
-            this.ShowFriends.Size = new System.Drawing.Size(461, 409);
+            this.ShowFriends.Size = new System.Drawing.Size(462, 439);
             this.ShowFriends.TabIndex = 0;
             this.ShowFriends.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ShowFriends_MouseDoubleClick);
             // 
@@ -48,7 +48,7 @@ namespace SqlSeverFrame
             // 
             this.RefreshButton.AutoSize = true;
             this.RefreshButton.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.RefreshButton.Location = new System.Drawing.Point(117, 45);
+            this.RefreshButton.Location = new System.Drawing.Point(39, 50);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(106, 38);
             this.RefreshButton.TabIndex = 1;
@@ -61,7 +61,7 @@ namespace SqlSeverFrame
             this.Agree.AutoSize = true;
             this.Agree.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Agree.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Agree.Location = new System.Drawing.Point(117, 165);
+            this.Agree.Location = new System.Drawing.Point(39, 156);
             this.Agree.Name = "Agree";
             this.Agree.Size = new System.Drawing.Size(106, 38);
             this.Agree.TabIndex = 2;
@@ -73,7 +73,7 @@ namespace SqlSeverFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 474);
+            this.ClientSize = new System.Drawing.Size(709, 484);
             this.Controls.Add(this.Agree);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.ShowFriends);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace SqlSeverFrame
@@ -81,7 +82,6 @@ namespace SqlSeverFrame
         {
             connect.UpdateState(UserInfo.GetUserName(), "离线");
             connect.UpdateIsAlive(UserInfo.GetUserName(), "0");
-            Application.Restart();
             
 
         }
@@ -99,20 +99,14 @@ namespace SqlSeverFrame
             FriendsInfo.SetUserName(s[this.FriendsList.SelectedIndex]);
             if (this.FriendsList.SelectedItem != null) 
             {
+                var load = new Loading(UserInfo, FriendsInfo);
                 var frm = new Chatting(UserInfo, FriendsInfo);
 
                 if (!dc.ContainsValue(FriendsInfo.GetUserName()))
-                {
-                    
-                    frm.Show();
+                {                    
+                    load.Show();
                     dc.Add(FriendsInfo.GetUserName(), FriendsInfo.GetUserName());
                 }
-                else
-                {
-                    frm.TopMost = true;
-                }
-                
-
             }
             
         }
@@ -162,9 +156,9 @@ namespace SqlSeverFrame
                 }
             }
             connect.UpdateIsAlive(UserInfo.GetUserName(), "1");
-            if (connect.SearchFriendsApplication(UserInfo.GetUserName())[0] != null)
+            if (connect.SearchFriendsApplication(UserInfo.GetUserName())[0] == null)
             {
-                this.newApplication.Visible = true;
+                this.newApplication.Visible = false;
             }
         }
 
@@ -180,15 +174,6 @@ namespace SqlSeverFrame
             application.Show(this);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            LoginFrame login = new LoginFrame();
-            login.Show(this);
-            this.Close();
-            this.Dispose();
-            this.OnClosed(e);
-        }
 
     }
 }
