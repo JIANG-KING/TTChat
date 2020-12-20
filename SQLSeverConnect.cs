@@ -8,11 +8,11 @@ namespace TTChat
     {
         private static readonly string constr = "Server=yun2333.top;Database=Chattools;user id=jiangyun;pwd=Jy1019878449";
         SqlConnection sqlCnt = new SqlConnection(constr);
-/// <summary>
-/// 无需防止SQL注入的方法
-/// </summary>
-/// <param name="sql"></param>
-/// <returns></returns>
+        /// <summary>
+        /// 无需防止SQL注入的方法
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
         public SqlCommand Injection(string sql)
         {
             SqlCommand command = new SqlCommand();
@@ -98,7 +98,7 @@ namespace TTChat
         /// <param name="letter4"></param>
         /// <param name="letter5"></param>
         /// <returns></returns>
-        public SqlCommand Injection(string sql, string letter1, string letter2, string letter3, string letter4,string letter5)
+        public SqlCommand Injection(string sql, string letter1, string letter2, string letter3, string letter4, string letter5)
         {
             SqlCommand command = new SqlCommand();
             command.CommandText = sql;
@@ -119,7 +119,7 @@ namespace TTChat
         public SqlDataAdapter SqlLogin(string username, string password)
         {
             string strSQL = "select account,password from LoginInfo where account=@letter1 and password=@letter2";
-            SqlCommand cmd = Injection(strSQL,username,password);        
+            SqlCommand cmd = Injection(strSQL, username, password);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             return da;
         }
@@ -130,84 +130,85 @@ namespace TTChat
         /// <returns></returns>
         public int SqlSearch(string Account)
         {
-            string s="";
-            int a=0;
+            string s = "";
+            int a = 0;
 
-                sqlCnt.Open();
+            sqlCnt.Open();
 
             string strSQL = "select Account from LoginInfo where Account=@letter1";
             SqlCommand cmd = Injection(strSQL, Account);
-                SqlDataReader dr;
+            SqlDataReader dr;
 
-                dr = cmd.ExecuteReader();
+            dr = cmd.ExecuteReader();
 
-                if (dr.Read())
-                    s = dr["Account"].ToString().Trim();
-                dr.Close();
-                sqlCnt.Close();
-                if (s == Account) a = 1;
-            return a; 
-            
-            
+            if (dr.Read())
+                s = dr["Account"].ToString().Trim();
+            dr.Close();
+            sqlCnt.Close();
+            if (s == Account) a = 1;
+            return a;
+
+
         }
         public int SqlInsert(string Account, string Password, string image, string NickName)//插入一个用户，用户注册时使用
         {
-            try 
+            try
             {
-            sqlCnt.Open();
-            string strSQL = "INSERT INTO [dbo].[LoginInfo] ([Account],[Password],[ImageHead],[NickName]) VALUES (@letter1,@letter2,@letter3,@letter4)";
-            SqlCommand cmd = Injection(strSQL,Account,Password,image,NickName);
-            int result = cmd.ExecuteNonQuery();
-            sqlCnt.Close();
-            return result;
+                sqlCnt.Open();
+                string strSQL = "INSERT INTO [dbo].[LoginInfo] ([Account],[Password],[ImageHead],[NickName]) VALUES (@letter1,@letter2,@letter3,@letter4)";
+                SqlCommand cmd = Injection(strSQL, Account, Password, image, NickName);
+                int result = cmd.ExecuteNonQuery();
+                sqlCnt.Close();
+                return result;
             }
             catch
             {
                 return 0;
             }
-            
+
         }
         public string SearchImage(string username)//查找用户的头像
         {
             string s = "emty";
             try
             {
-            sqlCnt.Open();
-            string strSQL = "select ImageHead from LoginInfo where Account=@letter1";
-            SqlCommand cmd = Injection(strSQL,username);
-            SqlDataReader dr;//创建DataReader对象
-            dr = cmd.ExecuteReader();
-            
-            if (dr.Read())
-                s = dr["imagehead"].ToString().Trim();
+                sqlCnt.Open();
+                string strSQL = "select ImageHead from LoginInfo where Account=@letter1";
+                SqlCommand cmd = Injection(strSQL, username);
+                SqlDataReader dr;//创建DataReader对象
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                    s = dr["imagehead"].ToString().Trim();
                 dr.Close();
-                
-            sqlCnt.Close();
-            return s;
+
+                sqlCnt.Close();
+                return s;
             }
             catch (System.Exception)
             {
                 sqlCnt.Close();
                 return "";
             }
-            
+
         }
-        public int UpdateUserInfo(string username,string imageHead,string NickName,string Signature)//更新用户的个人信息
-        { try
+        public int UpdateUserInfo(string username, string imageHead, string NickName, string Signature)//更新用户的个人信息
+        {
+            try
             {
                 sqlCnt.Open();
                 string strSQL = "UPDATE [dbo].[LoginInfo] SET [ImageHead] =@letter1 ,[NickName] = @letter2 ,[Signature] =@letter3 where Account=@letter4";
-                SqlCommand cmd = Injection(strSQL, imageHead,NickName,Signature,username);
+                SqlCommand cmd = Injection(strSQL, imageHead, NickName, Signature, username);
                 int result = cmd.ExecuteNonQuery();
                 sqlCnt.Close();
                 return result;
-        }
+            }
             catch (System.Exception)
             {
 
                 return 0;
             }
-}
+        }
         public int UpdateState(string username, string LoginState)//更新用户的状态，在线，隐身，忙碌，请勿打扰，q我吧
         {
             try
@@ -256,7 +257,7 @@ namespace TTChat
                 SqlCommand cmd = Injection(strSQL, username);
                 SqlDataReader dr;//创建DataReader对象
                 dr = cmd.ExecuteReader();
-                
+
                 if (dr.Read())
                     s = dr["NickName"].ToString().Trim();
                 dr.Close();
@@ -266,7 +267,7 @@ namespace TTChat
             catch (System.Exception)
             {
 
-                return s ;
+                return s;
             }
         }
         public string Signature(string username)//查找用户的个性签名
@@ -279,7 +280,7 @@ namespace TTChat
                 SqlCommand cmd = Injection(strSQL, username);
                 SqlDataReader dr;//创建DataReader对象
                 dr = cmd.ExecuteReader();
-                
+
                 if (dr.Read())
                     s = dr["Signature"].ToString().Trim();
                 dr.Close();
@@ -289,7 +290,7 @@ namespace TTChat
             catch (System.Exception)
             {
 
-                return s ;
+                return s;
             }
         }
         public int UpdateIsAlive(string username, string IsAlive)//修改用户的登录状态
@@ -372,7 +373,7 @@ namespace TTChat
                 return 0;
             }
         }
-        public int  IsFriends(string username,string friends)//查找是否已经是用户好友
+        public int IsFriends(string username, string friends)//查找是否已经是用户好友
         {
             try
             {
@@ -535,7 +536,7 @@ namespace TTChat
                 return s;
             }
         }
-        public int  AddFriends(string username,string Friends)//添加好友
+        public int AddFriends(string username, string Friends)//添加好友
         {
             try
             {
@@ -552,7 +553,7 @@ namespace TTChat
                 return 0;
             }
         }
-        public int SendFriendApplication(string sender,string message, string Friends)//发送好友申请
+        public int SendFriendApplication(string sender, string message, string Friends)//发送好友申请
         {
             try
             {
@@ -579,7 +580,7 @@ namespace TTChat
                 SqlCommand cmd = Injection(strSQL, username);
                 SqlDataReader dr;//创建DataReader对象
                 dr = cmd.ExecuteReader();
-                
+
                 int i = 0;
                 while (dr.Read())
                 {
@@ -597,7 +598,7 @@ namespace TTChat
                 return User;
             }
         }
-        public string SearchFriendsApplicationMessage(string sender,string receiver)//查找用户的好友申请信息，指定好友
+        public string SearchFriendsApplicationMessage(string sender, string receiver)//查找用户的好友申请信息，指定好友
         {
             string User = "";
             try
@@ -619,8 +620,9 @@ namespace TTChat
             }
         }
 
-        public int DeleteApplication(string sender,string receiver)//删除好友申请
-        {try
+        public int DeleteApplication(string sender, string receiver)//删除好友申请
+        {
+            try
             {
                 sqlCnt.Open();
                 string strSQL = "delete from FriendsApplication where sender = @letter1 and receiver=@letter2";
@@ -629,11 +631,12 @@ namespace TTChat
                 sqlCnt.Close();
                 return result;
             }
-            catch (System.Exception) { 
-                return 0; 
+            catch (System.Exception)
+            {
+                return 0;
             }
         }
-        public int  IsSendApplication(string sender,string receiver)//查找是否已经存在好友申请
+        public int IsSendApplication(string sender, string receiver)//查找是否已经存在好友申请
         {
             try
             {
@@ -675,10 +678,10 @@ namespace TTChat
             sqlCnt.Open();
             string strSQL = "select * from LoginInfo ";
             SqlCommand cmd = Injection(strSQL);
-            SqlDataAdapter da=new SqlDataAdapter(cmd);
-           
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
             sqlCnt.Close();
             return da;
         }
     }
-    }
+}

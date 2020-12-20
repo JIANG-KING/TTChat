@@ -22,14 +22,14 @@ namespace TTChat
             InitializeComponent();
             this.UserInfo = userInfo;
         }
-         Image Image;
-         string head;
+        Image Image;
+        string head;
         SQLSeverConnect Connect = new SQLSeverConnect();
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             if (Connect.UpdateUserInfo(UserInfo.GetUserName(), head, this.NickNameInput.Text, this.SignatureInput.Text) == 1)
             {
-                MessageBox.Show("修改成功","提示");
+                MessageBox.Show("修改成功", "提示");
             }
         }
         private void UpdateUserInfo_Load(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace TTChat
             ShowHead showHead = new ShowHead();
             showHead.ChangeText = (str) => head = str;
             showHead.ChangeHead = (imagehead) => Image = imagehead;
-            
+
             showHead.ShowDialog(this);
             this.HeadPictureBox.Image = Image;
         }

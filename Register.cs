@@ -27,7 +27,7 @@ namespace TTChat
         private void RegisterButton_Click(object sender, EventArgs e)
         {
             SQLSeverConnect connect = new SQLSeverConnect();
-            if (this.NickNameInput.Text!="")
+            if (this.NickNameInput.Text != "")
             {
                 if (this.UserName.Text != "")
                 {
@@ -81,7 +81,7 @@ namespace TTChat
                 {
                     MessageBox.Show("用户名不能为空", "提示");
                     UserName.Focus();
-                } 
+                }
             }
             else
             {
@@ -100,7 +100,7 @@ namespace TTChat
             showHead.ChangeText = (str) => HeadName = str;
             showHead.ChangeHead = (imagehead) => HeadImage = imagehead;
             showHead.ShowDialog(this);
-            
+
             this.imagehead.Image = HeadImage;
         }
 
@@ -244,17 +244,17 @@ namespace TTChat
 
         private void ConfirmPassword_Leave(object sender, EventArgs e)
         {
-            if(this.ConfirmPassword.Text!=this.Password.Text)
+            if (this.ConfirmPassword.Text != this.Password.Text)
             {
-this.ConfirmPasswordTips.Visible = true;
-            this.PasswordTips.Visible = true;
+                this.ConfirmPasswordTips.Visible = true;
+                this.PasswordTips.Visible = true;
             }
             else
             {
                 this.ConfirmPasswordTips.Visible = true;
                 this.ConfirmPasswordTips.Visible = false;
             }
-            
+
 
         }
 

@@ -18,7 +18,7 @@ namespace TTChat
             this.Close();
         }
         SQLSeverConnect connect = new SQLSeverConnect();
-        public  string GetNumberAlpha(string source)//确保字符串中不含非法字符
+        public string GetNumberAlpha(string source)//确保字符串中不含非法字符
         {
             string pattern = "[A-Za-z0-9]";
             string strRet = "";
@@ -31,10 +31,10 @@ namespace TTChat
         }
         private void ConfirmButton_Click(object sender, System.EventArgs e)
         {
-            DataSet ds=new DataSet();
+            DataSet ds = new DataSet();
             if (this.UserNameInput.Text == null || this.OldPasswordInput.Text == null || this.NewPasswordInput.Text == null || this.ConfirmPasswordInput.Text == null)
             {
-                if(this.UserNameInput.Text == null)
+                if (this.UserNameInput.Text == null)
                 {
                     MessageBox.Show("用户名不能为空", "提示");
                     UserNameInput.Focus();
@@ -59,7 +59,7 @@ namespace TTChat
             {
                 if (connect.SqlSearch(this.UserNameInput.Text) == 1)
                 {
-                    if(connect.SqlLogin(this.UserNameInput.Text,this.OldPasswordInput.Text).Fill(ds, "LoginInfo") != 0)
+                    if (connect.SqlLogin(this.UserNameInput.Text, this.OldPasswordInput.Text).Fill(ds, "LoginInfo") != 0)
                     {
                         DataTable tbl = ds.Tables[0];
                         DataRow row = tbl.Rows[0];

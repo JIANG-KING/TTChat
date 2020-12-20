@@ -45,9 +45,10 @@ namespace TTChat
         private Thread loadThread; //加载线程
 
         void LoadDataFunc()
-        {          
+        {
             //使用委托
-            this.Invoke(new Action(() => {
+            this.Invoke(new Action(() =>
+            {
                 LoadThread();
 
             }));
@@ -110,10 +111,10 @@ namespace TTChat
                 ShowMessage.SelectionAlignment = HorizontalAlignment.Right;
                 Thread.Sleep(200);
                 connect.SendMessage(UserInfo.GetUserName(), this.MessageInput.Text, FriendsInfo.GetUserName());
-                string s= connect.SearchNickname(UserInfo.GetUserName()) + "(" + UserInfo.GetUserName() + ")" + DateTime.Now + "\r\n" + this.MessageInput.Text + "\r\n";
+                string s = connect.SearchNickname(UserInfo.GetUserName()) + "(" + UserInfo.GetUserName() + ")" + DateTime.Now + "\r\n" + this.MessageInput.Text + "\r\n";
                 this.ShowMessage.AppendText(s);
                 this.MessageInput.Text = "";
-                MessageInput.Focus();             
+                MessageInput.Focus();
             }
 
         }
@@ -126,7 +127,7 @@ namespace TTChat
         private void Chatting_FormClosed(object sender, FormClosedEventArgs e)
         {
             MainFrame.FormList.Remove(FriendsInfo.GetUserName());
-            
+
         }
 
         private void ShowMessage_TextChanged(object sender, EventArgs e)

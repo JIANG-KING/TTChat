@@ -85,7 +85,7 @@ namespace TTChat
                 if (this.AccountInput.Text == "")
                 {
                     this.AccountInput.Focus();
-                    MessageBox.Show("用户名不能为空","提示");
+                    MessageBox.Show("用户名不能为空", "提示");
                 }
                 if (this.PasswordInput.Text == "")
                 {
@@ -115,8 +115,8 @@ namespace TTChat
             CheckNumberText = validCode.CheckCode;
         }
         private void LoginFrame_Load(object sender, EventArgs e)//加载验证码，设置默认在线状态
-        {          
-            LoginState.SelectedItem="在线";
+        {
+            LoginState.SelectedItem = "在线";
             CreatCode();
         }
 
@@ -171,8 +171,9 @@ namespace TTChat
                 //定义输入焦点在最后一个字符
                 AccountInput.SelectionStart = AccountInput.Text.Length;
             }
-            if (this.AccountInput.Text != "") { 
-            string s = SQLSeverConnect.SearchImage(this.AccountInput.Text);
+            if (this.AccountInput.Text != "")
+            {
+                string s = SQLSeverConnect.SearchImage(this.AccountInput.Text);
                 if (s != "")
                 {
 
@@ -188,7 +189,8 @@ namespace TTChat
                         default: Image = global::TTChat.Properties.Resources.empty; break;
                     }
                 }
-                else{
+                else
+                {
                     Image = global::TTChat.Properties.Resources.empty;
                 }
             }

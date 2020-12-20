@@ -12,8 +12,8 @@ namespace TTChat
         }
         public Action<Image> ChangeHead;
         public Action<string> ChangeText;
-        public  Image Image;
-        public  string HeadName;
+        public Image Image;
+        public string HeadName;
         private void Head1_Click(object sender, EventArgs e)
         {
             Image = global::TTChat.Properties.Resources._1;
@@ -100,6 +100,6 @@ namespace TTChat
         }
 
 
-       
+
     }
 }

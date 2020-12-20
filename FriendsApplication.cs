@@ -17,22 +17,22 @@ namespace TTChat
         {
             InitializeComponent();
         }
-        public FriendsApplication(UserInfo userInfo )
+        public FriendsApplication(UserInfo userInfo)
         {
             InitializeComponent();
             this.UserInfo = userInfo;
         }
-         SQLSeverConnect SQLSeverConnect = new SQLSeverConnect();
+        SQLSeverConnect SQLSeverConnect = new SQLSeverConnect();
         private void FriendsApplication_Load(object sender, EventArgs e)
         {
-            string [] s = new string[SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName()).Length];
+            string[] s = new string[SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName()).Length];
             for (int i = 0; i < SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName()).Length; i++)
             {
                 if (SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[i] != null)
                 {
 
                     s[i] = SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[i];
-                    this.ShowFriends.Items.Add(SQLSeverConnect.SearchNickname(s[i]).Replace("\\s*", "") + "(" + s[i] + ")"+"验证消息:"+SQLSeverConnect.SearchFriendsApplicationMessage(s[i], UserInfo.GetUserName()));
+                    this.ShowFriends.Items.Add(SQLSeverConnect.SearchNickname(s[i]).Replace("\\s*", "") + "(" + s[i] + ")" + "验证消息:" + SQLSeverConnect.SearchFriendsApplicationMessage(s[i], UserInfo.GetUserName()));
                 }
                 else
                 {
@@ -54,7 +54,7 @@ namespace TTChat
             }
             else
             {
-                MessageBox.Show("请选择要同意的好友申请","提示");
+                MessageBox.Show("请选择要同意的好友申请", "提示");
             }
 
         }
@@ -99,7 +99,7 @@ namespace TTChat
         {
             if (this.ShowFriends.SelectedItem != null)
             {
-                
+
                 SQLSeverConnect.DeleteApplication(SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[this.ShowFriends.SelectedIndex], UserInfo.GetUserName());
                 Refresh_Click(sender, e);
                 MessageBox.Show("删除成功", "提示");

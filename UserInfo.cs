@@ -10,7 +10,7 @@
             return username;
         }
         //设置用户名
-        public void SetUserName( string username)
+        public void SetUserName(string username)
         {
             this.username = username;
         }
@@ -39,7 +39,7 @@
 
             this.UserState = UserState;
         }
-        
+
 
     }
 }

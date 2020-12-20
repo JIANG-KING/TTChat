@@ -34,7 +34,7 @@ namespace TTChat
                 strRet += v.ToString();
             }
             return strRet;
-        }                                                        
+        }
         private void OldPasswordInput_TextChanged(object sender, System.EventArgs e)
         {
             var reg = new Regex("^^[A-Za-z0-9]*$");
@@ -171,10 +171,10 @@ namespace TTChat
                     {
                         if (this.NewPasswordInput.Text == this.ConfirmPasswordInput.Text)
                         {
-                            if(connect.UpdatePassword(this.UserInfo.GetUserName(), this.ConfirmPasswordInput.Text) == 1)
+                            if (connect.UpdatePassword(this.UserInfo.GetUserName(), this.ConfirmPasswordInput.Text) == 1)
                             {
-                            MessageBox.Show("修改成功", "提示");
-                            this.Close();
+                                MessageBox.Show("修改成功", "提示");
+                                this.Close();
                             }
 
                         }
