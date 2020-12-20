@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -81,7 +80,8 @@ namespace TTChat
         }
 
 
-
+        string Message = "";
+        string FormLabel = "";
         private void SendFriendsApplication_Click(object sender, EventArgs e)
         {
 
@@ -93,19 +93,45 @@ namespace TTChat
                     {
                         if (SQLSeverConnect.IsSendApplication(UserInfo.GetUserName(), this.FriendsAccountInput.Text) == 0)
                         {
-                            string Message = Interaction.InputBox("请输入验证消息", "提示", "", 100, 100);
+                            
+                            MessageInput input = new MessageInput();
+                            input.ChangeText = (str) => FormLabel = str;
+                            input.ChangeApplicationText = (mes) => Message = mes;
+                            input.ShowDialog(this);
+                            if (FormLabel == "Close") 
+                            {
+                                MessageBox.Show("取消发送", "提示");
+                            }
+                            else
+                            {
                             SQLSeverConnect.SendFriendApplication(UserInfo.GetUserName(), Message, this.FriendsAccountInput.Text);
                             MessageBox.Show("发送成功", "提示");
+                            }
+
                         }
                         else
                         {
                             DialogResult r1 = MessageBox.Show(" 已经发送过好友申请了，继续发送将覆盖好友申请 ", " 提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                             if (r1.ToString() == "OK")
                             {
+                                Point lo = this.Location;
                                 SQLSeverConnect.DeleteApplication(UserInfo.GetUserName(), this.FriendsAccountInput.Text);
-                                string Message = Interaction.InputBox("请输入验证消息", "提示", "", 100, 100);
-                                SQLSeverConnect.SendFriendApplication(UserInfo.GetUserName(), Message, this.FriendsAccountInput.Text);
-                                MessageBox.Show("发送成功", "提示");
+                                string Message = "";
+                                string FormLabel = "";
+                                MessageInput input = new MessageInput();
+                                input.ChangeText = (str) => FormLabel = str;
+                                input.ChangeApplicationText = (mes) => Message = mes;
+                                input.ShowDialog(this);
+                                if (FormLabel == "Close")
+                                {
+                                    MessageBox.Show("取消发送", "提示");
+                                }
+                                else
+                                {
+                                    MessageBox.Show(Message);
+                                    SQLSeverConnect.SendFriendApplication(UserInfo.GetUserName(), Message, this.FriendsAccountInput.Text);
+                                    MessageBox.Show("发送成功", "提示");
+                                }
                             }
                         }
                     }

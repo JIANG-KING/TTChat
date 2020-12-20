@@ -1,4 +1,4 @@
-﻿using java.lang;
+﻿
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -323,7 +323,9 @@ namespace TTChat
                     s = dr["IsALive"].ToString().Trim();
                 dr.Close();
                 sqlCnt.Close();
-                return Integer.parseInt(s);
+                int a = 0;
+                int.TryParse(s, out a);
+                return a;
             }
             catch (System.Exception)
             {
@@ -447,9 +449,12 @@ namespace TTChat
                 dr = cmd.ExecuteReader();
 
                 int i = 0;
+                int a = 0;
+                
                 while (dr.Read())
                 {
-                    User[i] = Integer.parseInt(dr["SerialNumber"].ToString().Trim());
+                    int.TryParse(dr["SerialNumber"].ToString().Trim(), out a);
+                    User[i] = a;
                     i++;
                 }
                 dr.Close();
