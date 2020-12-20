@@ -4,12 +4,13 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace SqlSeverFrame
+namespace TTChat
 {
     public partial class MainFrame : Form
     {
-        public UserInfo UserInfo;
+        public UserInfo UserInfo=new UserInfo();
         public UserInfo FriendsInfo=new UserInfo();
+        public UserInfo DeleteFriends=new UserInfo();
         public MainFrame()
         {
             InitializeComponent();
@@ -26,31 +27,33 @@ namespace SqlSeverFrame
         private void MainFrame_Load(object sender, EventArgs e)
         {
             s = new string[connect.SearchFriends(UserInfo.GetUserName()).Length];
+            
             this.UserState.SelectedItem = UserInfo.GtUserState();
-                head = connect.SearchImage(UserInfo.GetUserName());
+                head = connect.SearchImage(UserInfo.GetUserName()).Trim();
                 if (head!= "")
                 {
 
                     switch (head)
                     {
-                        case "head1": Image = global::SqlSeverFrame.Properties.Resources._1; break;
-                        case "head2": Image = global::SqlSeverFrame.Properties.Resources._2; break;
-                        case "head3": Image = global::SqlSeverFrame.Properties.Resources._3; break;
-                        case "head4": Image = global::SqlSeverFrame.Properties.Resources._4; break;
-                        case "head5": Image = global::SqlSeverFrame.Properties.Resources._5; break;
-                        case "head6": Image = global::SqlSeverFrame.Properties.Resources._6; break;
-                        case "head7": Image = global::SqlSeverFrame.Properties.Resources._7; break;
-                        default: Image = global::SqlSeverFrame.Properties.Resources.empty; break;
+                        case "head1": Image = global::TTChat.Properties.Resources._1; break;
+                        case "head2": Image = global::TTChat.Properties.Resources._2; break;
+                        case "head3": Image = global::TTChat.Properties.Resources._3; break;
+                        case "head4": Image = global::TTChat.Properties.Resources._4; break;
+                        case "head5": Image = global::TTChat.Properties.Resources._5; break;
+                        case "head6": Image = global::TTChat.Properties.Resources._6; break;
+                        case "head7": Image = global::TTChat.Properties.Resources._7; break;
+                        default: Image = global::TTChat.Properties.Resources.empty; break;
                     }
                 }
                 else
                 {
-                    Image = global::SqlSeverFrame.Properties.Resources.empty;
+                    Image = global::TTChat.Properties.Resources.empty;
                 }
             
             this.MainShowHead.Image = Image;
             this.WelcomeLabel.Text = "欢迎！" +connect.SearchNickname(UserInfo.GetUserName()).Replace("\\s*", "")+"("+UserInfo.GetUserName()+")" + "用户";
-            for(int i = 0; i <connect.SearchFriends(UserInfo.GetUserName()).Length; i++)
+            this.PersonalSignatureLabel.Text = "个性签名：" + connect.Signature(UserInfo.GetUserName());
+            for (int i = 0; i <connect.SearchFriends(UserInfo.GetUserName()).Length; i++)
             {
                 if (connect.SearchFriends(UserInfo.GetUserName())[i] != null)
                 {
@@ -92,20 +95,24 @@ namespace SqlSeverFrame
         }
 
 
-
-        public static Dictionary<string, string> dc = new Dictionary<string, string>();
+        public static Dictionary<string, Form> FormList = new Dictionary<string, Form>();
+        Chatting[] chat ;
         private void FriendsList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             FriendsInfo.SetUserName(s[this.FriendsList.SelectedIndex]);
+            chat = new Chatting[2000];
             if (this.FriendsList.SelectedItem != null) 
             {
-                var load = new Loading(UserInfo, FriendsInfo);
-                var frm = new Chatting(UserInfo, FriendsInfo);
-
-                if (!dc.ContainsValue(FriendsInfo.GetUserName()))
-                {                    
-                    load.Show();
-                    dc.Add(FriendsInfo.GetUserName(), FriendsInfo.GetUserName());
+                if (!FormList.ContainsKey(FriendsInfo.GetUserName()))
+                {
+                    chat[this.FriendsList.SelectedIndex] = new Chatting(UserInfo, FriendsInfo);            
+                    chat[this.FriendsList.SelectedIndex].Show();
+                    FormList.Add(FriendsInfo.GetUserName(), chat[this.FriendsList.SelectedIndex]);
+                }
+                else
+                {
+                    FormList[FriendsInfo.GetUserName()].TopMost = true;
+                    FormList[FriendsInfo.GetUserName()].TopMost = false;
                 }
             }
             
@@ -117,30 +124,32 @@ namespace SqlSeverFrame
             s = new string[connect.SearchFriends(UserInfo.GetUserName()).Length];
             this.UserState.SelectedItem = connect.SearchUserState(UserInfo.GetUserName());
             UserInfo.SetUserState(connect.SearchUserState(UserInfo.GetUserName()));
-            if(head!= connect.SearchImage(UserInfo.GetUserName()))
+            if(head!= connect.SearchImage(UserInfo.GetUserName().Trim()))
             {
                 if (head != "")
                 {
+                    head = connect.SearchImage(UserInfo.GetUserName().Trim());
                     switch (head)
                     {
-                        case "head1": Image = global::SqlSeverFrame.Properties.Resources._1; break;
-                        case "head2": Image = global::SqlSeverFrame.Properties.Resources._2; break;
-                        case "head3": Image = global::SqlSeverFrame.Properties.Resources._3; break;
-                        case "head4": Image = global::SqlSeverFrame.Properties.Resources._4; break;
-                        case "head5": Image = global::SqlSeverFrame.Properties.Resources._5; break;
-                        case "head6": Image = global::SqlSeverFrame.Properties.Resources._6; break;
-                        case "head7": Image = global::SqlSeverFrame.Properties.Resources._7; break;
-                        default: Image = global::SqlSeverFrame.Properties.Resources.empty; break;
+                        case "head1": Image = global::TTChat.Properties.Resources._1; break;
+                        case "head2": Image = global::TTChat.Properties.Resources._2; break;
+                        case "head3": Image = global::TTChat.Properties.Resources._3; break;
+                        case "head4": Image = global::TTChat.Properties.Resources._4; break;
+                        case "head5": Image = global::TTChat.Properties.Resources._5; break;
+                        case "head6": Image = global::TTChat.Properties.Resources._6; break;
+                        case "head7": Image = global::TTChat.Properties.Resources._7; break;
+                        default: Image = global::TTChat.Properties.Resources.empty; break;
                     }
                 }
                 else
                 {
-                    Image = global::SqlSeverFrame.Properties.Resources.empty;
+                    Image = global::TTChat.Properties.Resources.empty;
                 }
 
                 this.MainShowHead.Image = Image;
             }
             this.WelcomeLabel.Text = "欢迎！" + connect.SearchNickname(UserInfo.GetUserName()).Replace("\\s*", "") + "(" + UserInfo.GetUserName() + ")" + "用户";
+            this.PersonalSignatureLabel.Text = "个性签名：" + connect.Signature(UserInfo.GetUserName());
             for (int i = 0; i < connect.SearchFriends(UserInfo.GetUserName()).Length; i++)
             {
                 if (connect.SearchFriends(UserInfo.GetUserName())[i] != null)
@@ -161,19 +170,72 @@ namespace SqlSeverFrame
                 this.newApplication.Visible = false;
             }
         }
-
+        public static Dictionary<string, Form> AddFriendsForm = new Dictionary<string, Form>();
         private void AddFriendsButton_Click(object sender, EventArgs e)
         {
-            FriendsMain friends = new FriendsMain(UserInfo);
-            friends.Show(this);
+            if (!AddFriendsForm.ContainsKey(UserInfo.GetUserName()))
+            {
+                AddFriendsMain friends = new AddFriendsMain(UserInfo);
+                friends.Show();
+                AddFriendsForm.Add(UserInfo.GetUserName(), friends); 
+            }
+            else
+            {
+                AddFriendsForm[UserInfo.GetUserName()].TopMost = true;
+                AddFriendsForm[UserInfo.GetUserName()].TopMost = false;
+            }
         }
-
+        public static Dictionary<string, Form> FriendApplicationForm = new Dictionary<string, Form>();
         private void FriendApplication_Click(object sender, EventArgs e)
         {
-            FriendsApplication application = new FriendsApplication( UserInfo);
-            application.Show(this);
+            
+            if (!FriendApplicationForm.ContainsKey(UserInfo.GetUserName()))
+            {
+                FriendsApplication application = new FriendsApplication(UserInfo);
+                application.Show();
+                FriendApplicationForm.Add(UserInfo.GetUserName(), application);
+            }
+            else
+            {
+                FriendApplicationForm[UserInfo.GetUserName()].TopMost = true;
+                FriendApplicationForm[UserInfo.GetUserName()].TopMost = false;
+            }
         }
 
+        private void ReSetPasswordButton_Click(object sender, EventArgs e)
+        {
+            UserUpdatePassword updatePassword = new UserUpdatePassword(UserInfo);
+            updatePassword.Owner = this;
+            updatePassword.ShowDialog(this);
+            
+        }
 
+        private void DeleteFriendsButton_Click(object sender, EventArgs e)
+        {
+
+            if (this.FriendsList.SelectedItem != null)
+            {
+                if (connect.DeleteFriends(s[this.FriendsList.SelectedIndex], UserInfo.GetUserName()) == 1)
+                {
+                    if (connect.DeleteFriends(UserInfo.GetUserName(), s[this.FriendsList.SelectedIndex]) == 1)
+                { 
+                MessageBox.Show("删除成功", "提示");
+                ReFreshButton_Click(sender, e);
+                }
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("请选择要删除的好友", "提示");
+            }
+        }
+
+        private void UpdateUserInfo_Click(object sender, EventArgs e)
+        {
+            UpdateUserInfo Info = new UpdateUserInfo(UserInfo);
+            Info.ShowDialog(this);
+        }
     }
 }

@@ -7,12 +7,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace SqlSeverFrame
+namespace TTChat
 {
     public partial class LoginFrame : Form
     {
         public UserInfo UserInfo = new UserInfo();
-        public static Image Image = global::SqlSeverFrame.Properties.Resources.empty;//设定登录页面的初始用户头像
+        public static Image Image = global::TTChat.Properties.Resources.empty;//设定登录页面的初始用户头像
         public LoginFrame()
         {
             InitializeComponent();
@@ -54,6 +54,7 @@ namespace SqlSeverFrame
                             }
                             else
                             {
+
                                 MessageBox.Show("账号或者密码错误", "提示");
                                 AccountInput.Focus();
                             }
@@ -171,24 +172,24 @@ namespace SqlSeverFrame
                 AccountInput.SelectionStart = AccountInput.Text.Length;
             }
             if (this.AccountInput.Text != "") { 
-            string s = GetNumberAlpha(SQLSeverConnect.SearchImage(this.AccountInput.Text));
+            string s = SQLSeverConnect.SearchImage(this.AccountInput.Text);
                 if (s != "")
                 {
 
                     switch (s)
                     {
-                        case "head1": Image = global::SqlSeverFrame.Properties.Resources._1; break;
-                        case "head2": Image = global::SqlSeverFrame.Properties.Resources._2; break;
-                        case "head3": Image = global::SqlSeverFrame.Properties.Resources._3; break;
-                        case "head4": Image = global::SqlSeverFrame.Properties.Resources._4; break;
-                        case "head5": Image = global::SqlSeverFrame.Properties.Resources._5; break;
-                        case "head6": Image = global::SqlSeverFrame.Properties.Resources._6; break;
-                        case "head7": Image = global::SqlSeverFrame.Properties.Resources._7; break;
-                        default: Image = global::SqlSeverFrame.Properties.Resources.empty; break;
+                        case "head1": Image = global::TTChat.Properties.Resources._1; break;
+                        case "head2": Image = global::TTChat.Properties.Resources._2; break;
+                        case "head3": Image = global::TTChat.Properties.Resources._3; break;
+                        case "head4": Image = global::TTChat.Properties.Resources._4; break;
+                        case "head5": Image = global::TTChat.Properties.Resources._5; break;
+                        case "head6": Image = global::TTChat.Properties.Resources._6; break;
+                        case "head7": Image = global::TTChat.Properties.Resources._7; break;
+                        default: Image = global::TTChat.Properties.Resources.empty; break;
                     }
                 }
                 else{
-                    Image = global::SqlSeverFrame.Properties.Resources.empty;
+                    Image = global::TTChat.Properties.Resources.empty;
                 }
             }
             this.ShowHead.Image = Image;
@@ -259,6 +260,12 @@ namespace SqlSeverFrame
                 //定义输入焦点在最后一个字符
                 PasswordInput.SelectionStart = PasswordInput.Text.Length;
             }
+        }
+
+        private void ContactUsMenu_Click(object sender, EventArgs e)
+        {
+            Contact contact = new Contact();
+            contact.Show();
         }
     }
 }

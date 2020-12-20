@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SqlSeverFrame
+namespace TTChat
 {
     public class ValidCode//验证码生成类
     {
@@ -41,10 +41,10 @@ namespace SqlSeverFrame
         }
         #endregion
         #region Public Field
-        public enum CodeType { Words, Numbers, Characters, Alphas }
+        public enum CodeType { Words, Numbers, Characters, Alphas }//枚举存储验证码的类型
         #endregion
         #region Private Methods
-        private string GenerateNumbers()
+        private string GenerateNumbers()//随机数生成
         {
             string strOut = "";
             System.Random random = new Random();
@@ -55,7 +55,7 @@ namespace SqlSeverFrame
             }
             return strOut.Trim();
         }
-        private string GenerateCharacters()
+        private string GenerateCharacters()//随机字母生成
         {
             string strOut = "";
             System.Random random = new Random();
@@ -67,7 +67,7 @@ namespace SqlSeverFrame
             return strOut.Trim();
         }
         //
-        private string GenerateAlphas()
+        private string GenerateAlphas()//随机生成数字加字母
         {
             string strOut = "";
             string num = "";
@@ -86,7 +86,7 @@ namespace SqlSeverFrame
             }
             return strOut.Trim();
         }
-        private System.Drawing.Bitmap TwistImage(Bitmap srcBmp, bool bXDir, double dMultValue, double dPhase)
+        private System.Drawing.Bitmap TwistImage(Bitmap srcBmp, bool bXDir, double dMultValue, double dPhase)//扭曲图片，增加验证码识别难度
         {
             System.Drawing.Bitmap destBmp = new Bitmap(srcBmp.Width, srcBmp.Height);
             // 将位图背景填充为白色
@@ -138,7 +138,6 @@ namespace SqlSeverFrame
             }
             this.CheckCodes = checkCode;
             MemoryStream ms = null;
-            //
             if (checkCode == null || checkCode.Trim() == String.Empty)
                 return null;
             Bitmap image = new System.Drawing.Bitmap((int)Math.Ceiling((checkCode.Length * width)), (int)height);
@@ -160,7 +159,7 @@ namespace SqlSeverFrame
                 LinearGradientBrush brush = new LinearGradientBrush(new Rectangle(0, 0, image.Width, image.Height), Color.Blue, Color.DarkRed, 1.2f, true);
                 if (codetype != CodeType.Words)
                 {
-                    for (int i = 0; i < checkCode.Length; i++)
+                    for (int i = 0; i < checkCode.Length; i++)//将验证码绘入图片
                     {
                         g.DrawString(checkCode.Substring(i, 1), font, brush, 2 + i * width, 1);
                     }

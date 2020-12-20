@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace SqlSeverFrame
+namespace TTChat
 {
     public partial class Chatting : Form
     {
@@ -41,8 +41,27 @@ namespace SqlSeverFrame
                 }
             }
         }
-        
+
+        private Thread loadThread; //加载线程
+
+        void LoadDataFunc()
+        {          
+            //使用委托
+            this.Invoke(new Action(() => {
+                LoadThread();
+
+            }));
+        }
+
         private void Chatting_Load(object sender, EventArgs e)
+        {
+
+            loadThread = new Thread(new ThreadStart(LoadDataFunc));
+            loadThread.IsBackground = true;
+            loadThread.Start();
+
+        }
+        public void LoadThread()
         {
             this.Text = "正在与" + connect.SearchNickname(FriendsInfo.GetUserName()) + "(" + FriendsInfo.GetUserName() + ")" + "聊天";
             int[] ReceviverNumber = connect.SearchNumbers(FriendsInfo.GetUserName(), UserInfo.GetUserName());
@@ -60,8 +79,6 @@ namespace SqlSeverFrame
                         string s = "";
                         s += connect.SearchNickname(connect.SearchSenDerByNumber(MainNumber[i].ToString())) + "(" + connect.SearchSenDerByNumber(MainNumber[i].ToString()) + ")" + connect.SearchSendTimeByNumber(MainNumber[i].ToString()) + "\r\n";
                         s += connect.SearchMessageByNumber(MainNumber[i].ToString()) + "\r\n";
-
-                        //this.ShowMessage.Text += s;
                         this.ShowMessage.AppendText(s);
                     }
                     else
@@ -70,8 +87,6 @@ namespace SqlSeverFrame
                         string s = "";
                         s += connect.SearchNickname(connect.SearchSenDerByNumber(MainNumber[i].ToString())) + "(" + connect.SearchSenDerByNumber(MainNumber[i].ToString()) + ")" + connect.SearchSendTimeByNumber(MainNumber[i].ToString()) + "\r\n";
                         s += connect.SearchMessageByNumber(MainNumber[i].ToString()) + "\r\n";
-
-                        //this.ShowMessage.Text += s;
                         this.ShowMessage.AppendText(s);
                     }
 
@@ -93,7 +108,6 @@ namespace SqlSeverFrame
             else
             {
                 ShowMessage.SelectionAlignment = HorizontalAlignment.Right;
-                //MessageBox.Show(this.MessageInput.Text.Contains("\n").ToString());
                 Thread.Sleep(200);
                 connect.SendMessage(UserInfo.GetUserName(), this.MessageInput.Text, FriendsInfo.GetUserName());
                 string s= connect.SearchNickname(UserInfo.GetUserName()) + "(" + UserInfo.GetUserName() + ")" + DateTime.Now + "\r\n" + this.MessageInput.Text + "\r\n";
@@ -111,7 +125,7 @@ namespace SqlSeverFrame
 
         private void Chatting_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MainFrame.dc.Remove(FriendsInfo.GetUserName());
+            MainFrame.FormList.Remove(FriendsInfo.GetUserName());
             
         }
 

@@ -1,5 +1,5 @@
 ﻿
-namespace SqlSeverFrame
+namespace TTChat
 {
     partial class Chatting
     {
@@ -94,7 +94,9 @@ namespace SqlSeverFrame
             this.Controls.Add(this.SengButton);
             this.Controls.Add(this.MessageInput);
             this.Controls.Add(this.ShowMessage);
+            this.MaximizeBox = false;
             this.Name = "Chatting";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chatting";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Chatting_FormClosed);
             this.Load += new System.EventHandler(this.Chatting_Load);

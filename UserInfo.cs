@@ -1,4 +1,4 @@
-﻿namespace SqlSeverFrame
+﻿namespace TTChat
 {
     public class UserInfo
     {
@@ -14,8 +14,6 @@
         {
             this.username = username;
         }
-
-
         //密码
         private string Password;
         //获取密码
@@ -41,5 +39,7 @@
 
             this.UserState = UserState;
         }
+        
+
     }
 }

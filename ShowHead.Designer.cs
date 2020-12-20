@@ -1,4 +1,4 @@
-﻿namespace SqlSeverFrame
+﻿namespace TTChat
 {
     partial class ShowHead
     {
@@ -46,7 +46,7 @@
             // 
             // Head7
             // 
-            this.Head7.Image = global::SqlSeverFrame.Properties.Resources._7;
+            this.Head7.Image = global::TTChat.Properties.Resources._7;
             this.Head7.Location = new System.Drawing.Point(12, 460);
             this.Head7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Head7.Name = "Head7";
@@ -58,7 +58,7 @@
             // 
             // Head6
             // 
-            this.Head6.Image = global::SqlSeverFrame.Properties.Resources._6;
+            this.Head6.Image = global::TTChat.Properties.Resources._6;
             this.Head6.Location = new System.Drawing.Point(532, 233);
             this.Head6.Name = "Head6";
             this.Head6.Size = new System.Drawing.Size(200, 200);
@@ -69,7 +69,7 @@
             // 
             // Head5
             // 
-            this.Head5.Image = global::SqlSeverFrame.Properties.Resources._5;
+            this.Head5.Image = global::TTChat.Properties.Resources._5;
             this.Head5.Location = new System.Drawing.Point(272, 233);
             this.Head5.Name = "Head5";
             this.Head5.Size = new System.Drawing.Size(200, 200);
@@ -80,7 +80,7 @@
             // 
             // Head4
             // 
-            this.Head4.Image = global::SqlSeverFrame.Properties.Resources._4;
+            this.Head4.Image = global::TTChat.Properties.Resources._4;
             this.Head4.Location = new System.Drawing.Point(12, 233);
             this.Head4.Name = "Head4";
             this.Head4.Size = new System.Drawing.Size(200, 200);
@@ -91,7 +91,7 @@
             // 
             // Head3
             // 
-            this.Head3.Image = global::SqlSeverFrame.Properties.Resources._3;
+            this.Head3.Image = global::TTChat.Properties.Resources._3;
             this.Head3.Location = new System.Drawing.Point(532, 12);
             this.Head3.Name = "Head3";
             this.Head3.Size = new System.Drawing.Size(200, 200);
@@ -102,7 +102,7 @@
             // 
             // Head2
             // 
-            this.Head2.Image = global::SqlSeverFrame.Properties.Resources._2;
+            this.Head2.Image = global::TTChat.Properties.Resources._2;
             this.Head2.Location = new System.Drawing.Point(272, 12);
             this.Head2.Name = "Head2";
             this.Head2.Size = new System.Drawing.Size(200, 200);
@@ -113,7 +113,7 @@
             // 
             // Head1
             // 
-            this.Head1.Image = global::SqlSeverFrame.Properties.Resources._1;
+            this.Head1.Image = global::TTChat.Properties.Resources._1;
             this.Head1.Location = new System.Drawing.Point(12, 12);
             this.Head1.Name = "Head1";
             this.Head1.Size = new System.Drawing.Size(200, 200);
@@ -134,6 +134,8 @@
             this.Controls.Add(this.Head3);
             this.Controls.Add(this.Head2);
             this.Controls.Add(this.Head1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ShowHead";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "请选择你的头像";

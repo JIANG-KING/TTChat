@@ -1,5 +1,5 @@
 ﻿
-namespace SqlSeverFrame
+namespace TTChat
 {
     partial class ReSetPassword
     {
@@ -140,7 +140,7 @@ namespace SqlSeverFrame
             // 
             this.ReturnButton.AutoSize = true;
             this.ReturnButton.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ReturnButton.Location = new System.Drawing.Point(420, 353);
+            this.ReturnButton.Location = new System.Drawing.Point(328, 353);
             this.ReturnButton.Name = "ReturnButton";
             this.ReturnButton.Size = new System.Drawing.Size(128, 40);
             this.ReturnButton.TabIndex = 11;
@@ -152,7 +152,7 @@ namespace SqlSeverFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(546, 443);
             this.Controls.Add(this.ReturnButton);
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.ConfirmPasswordInput);
@@ -163,6 +163,8 @@ namespace SqlSeverFrame
             this.Controls.Add(this.NewPasswordLabel);
             this.Controls.Add(this.OldPasswordLabel);
             this.Controls.Add(this.UseNameLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ReSetPassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "重置密码";

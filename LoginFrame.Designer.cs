@@ -1,4 +1,4 @@
-﻿namespace SqlSeverFrame
+﻿namespace TTChat
 {
     partial class LoginFrame
     {
@@ -39,8 +39,13 @@
             this.RefreshButton = new System.Windows.Forms.Button();
             this.AccountText = new System.Windows.Forms.Label();
             this.LoginState = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.AboutMenui = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContactUsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowHead = new System.Windows.Forms.PictureBox();
             this.CheckNumber = new System.Windows.Forms.PictureBox();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ShowHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckNumber)).BeginInit();
             this.SuspendLayout();
@@ -162,10 +167,46 @@
             this.LoginState.Size = new System.Drawing.Size(121, 23);
             this.LoginState.TabIndex = 14;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(12, 417);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(526, 24);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Copyright©2020 Yunking.All Rights Reserved.";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutMenui});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.TabIndex = 16;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // AboutMenui
+            // 
+            this.AboutMenui.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ContactUsMenu});
+            this.AboutMenui.Name = "AboutMenui";
+            this.AboutMenui.Size = new System.Drawing.Size(53, 24);
+            this.AboutMenui.Text = "关于";
+            // 
+            // ContactUsMenu
+            // 
+            this.ContactUsMenu.Name = "ContactUsMenu";
+            this.ContactUsMenu.Size = new System.Drawing.Size(224, 26);
+            this.ContactUsMenu.Text = "联系我们";
+            this.ContactUsMenu.Click += new System.EventHandler(this.ContactUsMenu_Click);
+            // 
             // ShowHead
             // 
             this.ShowHead.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ShowHead.Image = global::SqlSeverFrame.Properties.Resources.empty;
+            this.ShowHead.Image = global::TTChat.Properties.Resources.empty;
             this.ShowHead.Location = new System.Drawing.Point(561, 15);
             this.ShowHead.Name = "ShowHead";
             this.ShowHead.Size = new System.Drawing.Size(200, 200);
@@ -188,6 +229,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.LoginState);
             this.Controls.Add(this.ShowHead);
             this.Controls.Add(this.RefreshButton);
@@ -201,11 +243,16 @@
             this.Controls.Add(this.AccountInput);
             this.Controls.Add(this.PasswordText);
             this.Controls.Add(this.AccountText);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "LoginFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "登录窗口";
             this.Load += new System.EventHandler(this.LoginFrame_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ShowHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckNumber)).EndInit();
             this.ResumeLayout(false);
@@ -227,6 +274,10 @@
         private System.Windows.Forms.PictureBox ShowHead;
         private System.Windows.Forms.Label AccountText;
         private System.Windows.Forms.ComboBox LoginState;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem AboutMenui;
+        private System.Windows.Forms.ToolStripMenuItem ContactUsMenu;
     }
 }
 

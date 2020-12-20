@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SqlSeverFrame.Properties {
+namespace TTChat.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -20,17 +20,6 @@ namespace SqlSeverFrame.Properties {
         public static Settings Default {
             get {
                 return defaultInstance;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=yunking.database.windows.net;Initial Catalog=LoginInfo;Persist Securi" +
-            "ty Info=True;User ID=jiangyun;Password=Jy1019878449")]
-        public string LoginInfoConnectionString {
-            get {
-                return ((string)(this["LoginInfoConnectionString"]));
             }
         }
     }

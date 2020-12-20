@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace SqlSeverFrame
+namespace TTChat
 {
     public partial class ReSetPassword : Form
     {
@@ -18,7 +18,7 @@ namespace SqlSeverFrame
             this.Close();
         }
         SQLSeverConnect connect = new SQLSeverConnect();
-        public  string GetNumberAlpha(string source)//去除数据库中查询数据中的空格，防止无法匹配头像
+        public  string GetNumberAlpha(string source)//确保字符串中不含非法字符
         {
             string pattern = "[A-Za-z0-9]";
             string strRet = "";

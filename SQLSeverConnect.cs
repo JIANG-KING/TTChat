@@ -1,13 +1,25 @@
 ﻿using java.lang;
+using System;
 using System.Data;
 using System.Data.SqlClient;
-namespace SqlSeverFrame
+namespace TTChat
 {
     class SQLSeverConnect
     {
         private static readonly string constr = "Server=yun2333.top;Database=Chattools;user id=jiangyun;pwd=Jy1019878449";
         SqlConnection sqlCnt = new SqlConnection(constr);
-        
+/// <summary>
+/// 无需防止SQL注入的方法
+/// </summary>
+/// <param name="sql"></param>
+/// <returns></returns>
+        public SqlCommand Injection(string sql)
+        {
+            SqlCommand command = new SqlCommand();
+            command.CommandText = sql;
+            command.Connection = sqlCnt;
+            return command;
+        }
         /// <summary>
         /// 防止sql注入
         /// </summary>
@@ -77,6 +89,28 @@ namespace SqlSeverFrame
             return command;
         }
         /// <summary>
+        /// 5个参数
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="letter1"></param>
+        /// <param name="letter2"></param>
+        /// <param name="letter3"></param>
+        /// <param name="letter4"></param>
+        /// <param name="letter5"></param>
+        /// <returns></returns>
+        public SqlCommand Injection(string sql, string letter1, string letter2, string letter3, string letter4,string letter5)
+        {
+            SqlCommand command = new SqlCommand();
+            command.CommandText = sql;
+            command.Parameters.AddWithValue("@letter1", letter1);
+            command.Parameters.AddWithValue("@letter2", letter2);
+            command.Parameters.AddWithValue("@letter3", letter3);
+            command.Parameters.AddWithValue("@letter4", letter4);
+            command.Parameters.AddWithValue("@letter5", letter5);
+            command.Connection = sqlCnt;
+            return command;
+        }
+        /// <summary>
         /// 登录验证
         /// </summary>
         /// <param name="username">用户名</param>
@@ -96,21 +130,24 @@ namespace SqlSeverFrame
         /// <returns></returns>
         public int SqlSearch(string Account)
         {
-            try {
+            string s="";
+            int a=0;
+
                 sqlCnt.Open();
 
             string strSQL = "select Account from LoginInfo where Account=@letter1";
             SqlCommand cmd = Injection(strSQL, Account);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            int a = da.Fill(ds, "LoginInfo");
-            sqlCnt.Close();
+                SqlDataReader dr;
+
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                    s = dr["Account"].ToString().Trim();
+                dr.Close();
+                sqlCnt.Close();
+                if (s == Account) a = 1;
             return a; 
-            }
-            catch
-            {
-                return 0;
-            }
+            
             
         }
         public int SqlInsert(string Account, string Password, string image, string NickName)//插入一个用户，用户注册时使用
@@ -132,6 +169,7 @@ namespace SqlSeverFrame
         }
         public string SearchImage(string username)//查找用户的头像
         {
+            string s = "emty";
             try
             {
             sqlCnt.Open();
@@ -139,20 +177,37 @@ namespace SqlSeverFrame
             SqlCommand cmd = Injection(strSQL,username);
             SqlDataReader dr;//创建DataReader对象
             dr = cmd.ExecuteReader();
-            string s = "";
+            
             if (dr.Read())
-                s = dr["imagehead"].ToString().Substring(0, 5);
+                s = dr["imagehead"].ToString().Trim();
                 dr.Close();
+                
             sqlCnt.Close();
             return s;
             }
             catch (System.Exception)
             {
-
+                sqlCnt.Close();
                 return "";
             }
             
         }
+        public int UpdateUserInfo(string username,string imageHead,string NickName,string Signature)//更新用户的个人信息
+        { try
+            {
+                sqlCnt.Open();
+                string strSQL = "UPDATE [dbo].[LoginInfo] SET [ImageHead] =@letter1 ,[NickName] = @letter2 ,[Signature] =@letter3 where Account=@letter4";
+                SqlCommand cmd = Injection(strSQL, imageHead,NickName,Signature,username);
+                int result = cmd.ExecuteNonQuery();
+                sqlCnt.Close();
+                return result;
+        }
+            catch (System.Exception)
+            {
+
+                return 0;
+            }
+}
         public int UpdateState(string username, string LoginState)//更新用户的状态，在线，隐身，忙碌，请勿打扰，q我吧
         {
             try
@@ -181,7 +236,7 @@ namespace SqlSeverFrame
                 dr = cmd.ExecuteReader();
                 string s = "";
                 if (dr.Read())
-                    s = dr["AccountState"].ToString();
+                    s = dr["AccountState"].ToString().Trim();
                 dr.Close();
                 sqlCnt.Close();
                 return s;
@@ -203,7 +258,30 @@ namespace SqlSeverFrame
                 dr = cmd.ExecuteReader();
                 
                 if (dr.Read())
-                    s = dr["NickName"].ToString();
+                    s = dr["NickName"].ToString().Trim();
+                dr.Close();
+                sqlCnt.Close();
+                return s;
+            }
+            catch (System.Exception)
+            {
+
+                return s ;
+            }
+        }
+        public string Signature(string username)//查找用户的个性签名
+        {
+            string s = "";
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "select Signature from LoginInfo where Account=@letter1";
+                SqlCommand cmd = Injection(strSQL, username);
+                SqlDataReader dr;//创建DataReader对象
+                dr = cmd.ExecuteReader();
+                
+                if (dr.Read())
+                    s = dr["Signature"].ToString().Trim();
                 dr.Close();
                 sqlCnt.Close();
                 return s;
@@ -241,7 +319,7 @@ namespace SqlSeverFrame
                 dr = cmd.ExecuteReader();
                 string s = "";
                 if (dr.Read())
-                    s = dr["IsALive"].ToString();
+                    s = dr["IsALive"].ToString().Trim();
                 dr.Close();
                 sqlCnt.Close();
                 return Integer.parseInt(s);
@@ -265,7 +343,7 @@ namespace SqlSeverFrame
                 int i = 0;
                 while (dr.Read())
                 {
-                    User[i] = dr["Friends"].ToString();
+                    User[i] = dr["Friends"].ToString().Trim();
                     i++;
                 }
                 dr.Close();
@@ -276,6 +354,22 @@ namespace SqlSeverFrame
             {
 
                 return User;
+            }
+        }
+        public int DeleteFriends(string sender, string receiver)//删除好友申请
+        {
+            try
+            {
+                sqlCnt.Open();
+                string strSQL = "delete from Friends where Username = @letter1 and friends=@letter2";
+                SqlCommand cmd = Injection(strSQL, sender, receiver);
+                int result = cmd.ExecuteNonQuery();
+                sqlCnt.Close();
+                return result;
+            }
+            catch (System.Exception)
+            {
+                return 0;
             }
         }
         public int  IsFriends(string username,string friends)//查找是否已经是用户好友
@@ -354,7 +448,7 @@ namespace SqlSeverFrame
                 int i = 0;
                 while (dr.Read())
                 {
-                    User[i] = Integer.parseInt(dr["SerialNumber"].ToString());
+                    User[i] = Integer.parseInt(dr["SerialNumber"].ToString().Trim());
                     i++;
                 }
                 dr.Close();
@@ -405,7 +499,7 @@ namespace SqlSeverFrame
 
                 if (dr.Read())
                 {
-                    s = dr["Sender"].ToString();
+                    s = dr["Sender"].ToString().Trim();
                 }
                 dr.Close();
                 sqlCnt.Close();
@@ -475,7 +569,7 @@ namespace SqlSeverFrame
                 return 0;
             }
         }
-        public string[] SearchFriendsApplication(string username)//查找用户的好友申请
+        public string[] SearchFriendsApplication(string username)//查找用户所有的好友申请
         {
             string[] User = new string[2000];
             try
@@ -524,6 +618,7 @@ namespace SqlSeverFrame
                 return User;
             }
         }
+
         public int DeleteApplication(string sender,string receiver)//删除好友申请
         {try
             {
@@ -574,6 +669,16 @@ namespace SqlSeverFrame
 
                 return 0;
             }
+        }
+        public SqlDataAdapter UserInfo()
+        {
+            sqlCnt.Open();
+            string strSQL = "select * from LoginInfo ";
+            SqlCommand cmd = Injection(strSQL);
+            SqlDataAdapter da=new SqlDataAdapter(cmd);
+           
+            sqlCnt.Close();
+            return da;
         }
     }
     }

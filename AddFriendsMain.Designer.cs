@@ -1,7 +1,7 @@
 ﻿
-namespace SqlSeverFrame
+namespace TTChat
 {
-    partial class FriendsMain
+    partial class AddFriendsMain
     {
         /// <summary>
         /// Required designer variable.
@@ -124,7 +124,7 @@ namespace SqlSeverFrame
             this.FriendsHead.TabIndex = 2;
             this.FriendsHead.TabStop = false;
             // 
-            // FriendsMain
+            // AddFriendsMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -137,10 +137,13 @@ namespace SqlSeverFrame
             this.Controls.Add(this.FriendsHead);
             this.Controls.Add(this.Search);
             this.Controls.Add(this.FriendsAccountInput);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "FriendsMain";
+            this.MaximizeBox = false;
+            this.Name = "AddFriendsMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "好友添加";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddFriendsMain_FormClosed);
             this.Load += new System.EventHandler(this.FriendsMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.FriendsHead)).EndInit();
             this.ResumeLayout(false);

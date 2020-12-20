@@ -10,16 +10,16 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SqlSeverFrame
+namespace TTChat
 {
-    public partial class FriendsMain : Form
+    public partial class AddFriendsMain : Form
     {
         public UserInfo UserInfo;
-        public FriendsMain()
+        public AddFriendsMain()
         {
             InitializeComponent();
         }
-        public FriendsMain(UserInfo userInfo)
+        public AddFriendsMain(UserInfo userInfo)
         {
             InitializeComponent();
             this.UserInfo = userInfo;
@@ -50,19 +50,19 @@ namespace SqlSeverFrame
 
                     switch (s)
                     {
-                        case "head1": Image = global::SqlSeverFrame.Properties.Resources._1; break;
-                        case "head2": Image = global::SqlSeverFrame.Properties.Resources._2; break;
-                        case "head3": Image = global::SqlSeverFrame.Properties.Resources._3; break;
-                        case "head4": Image = global::SqlSeverFrame.Properties.Resources._4; break;
-                        case "head5": Image = global::SqlSeverFrame.Properties.Resources._5; break;
-                        case "head6": Image = global::SqlSeverFrame.Properties.Resources._6; break;
-                        case "head7": Image = global::SqlSeverFrame.Properties.Resources._7; break;
-                        default: Image = global::SqlSeverFrame.Properties.Resources.empty; break;
+                        case "head1": Image = global::TTChat.Properties.Resources._1; break;
+                        case "head2": Image = global::TTChat.Properties.Resources._2; break;
+                        case "head3": Image = global::TTChat.Properties.Resources._3; break;
+                        case "head4": Image = global::TTChat.Properties.Resources._4; break;
+                        case "head5": Image = global::TTChat.Properties.Resources._5; break;
+                        case "head6": Image = global::TTChat.Properties.Resources._6; break;
+                        case "head7": Image = global::TTChat.Properties.Resources._7; break;
+                        default: Image = global::TTChat.Properties.Resources.empty; break;
                     }
                 }
                 else
                 {
-                    Image = global::SqlSeverFrame.Properties.Resources.empty;
+                    Image = global::TTChat.Properties.Resources.empty;
                 }
                 this.FriendsHead.BorderStyle = (BorderStyle)2;
                 this.FriendsHead.Image = Image;
@@ -158,6 +158,11 @@ namespace SqlSeverFrame
                 //定义输入焦点在最后一个字符
                 FriendsAccountInput.SelectionStart = FriendsAccountInput.Text.Length;
             }
+        }
+
+        private void AddFriendsMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MainFrame.AddFriendsForm.Remove(UserInfo.GetUserName());
         }
     }
 }

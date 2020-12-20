@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SqlSeverFrame
+namespace TTChat
 {
     public partial class FriendsApplication : Form
     {
@@ -93,6 +93,26 @@ namespace SqlSeverFrame
                     break;
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (this.ShowFriends.SelectedItem != null)
+            {
+                
+                SQLSeverConnect.DeleteApplication(SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[this.ShowFriends.SelectedIndex], UserInfo.GetUserName());
+                Refresh_Click(sender, e);
+                MessageBox.Show("删除成功", "提示");
+            }
+            else
+            {
+                MessageBox.Show("请选择要删除的好友申请", "提示");
+            }
+        }
+
+        private void FriendsApplication_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MainFrame.FriendApplicationForm.Remove(UserInfo.GetUserName());
         }
     }
 }
