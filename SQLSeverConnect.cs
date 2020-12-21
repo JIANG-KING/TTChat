@@ -688,5 +688,20 @@ namespace TTChat
             sqlCnt.Close();
             return da;
         }
+        public ConnectionState State()
+        {
+            try
+            {
+                sqlCnt.Open();
+            }
+            catch (Exception)
+            {
+            }
+            return sqlCnt.State;
+        }
+        public void ConnectClose()
+        {
+            sqlCnt.Close();
+        }
     }
 }

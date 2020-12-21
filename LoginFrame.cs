@@ -155,6 +155,7 @@ namespace TTChat
         /// <param name="e"></param>
         private void AccountInput_TextChanged(object sender, EventArgs e)
         {
+
             var reg = new Regex("^^[A-Za-z0-9]*$");
             var str = AccountInput.Text.Trim();
             var sb = new StringBuilder();
@@ -170,6 +171,16 @@ namespace TTChat
                 AccountInput.Text = sb.ToString();
                 //定义输入焦点在最后一个字符
                 AccountInput.SelectionStart = AccountInput.Text.Length;
+            }
+            if(SQLSeverConnect.State()!= ConnectionState.Open)
+            {
+                MessageBox.Show("网络连接失败,程序即将重启", "提示");
+               
+                Application.Restart();
+            }
+            else
+            {
+                SQLSeverConnect.ConnectClose();
             }
             if (this.AccountInput.Text != "")
             {
