@@ -41,5 +41,13 @@ namespace TTChat
                 this.Close();
             }
         }
+
+        private void MessageInput_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (text != "Open")
+            {
+                ChangeText(text);
+            }
+        }
     }
 }

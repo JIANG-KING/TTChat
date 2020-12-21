@@ -99,10 +99,13 @@ namespace TTChat
         {
             if (this.ShowFriends.SelectedItem != null)
             {
-
-                SQLSeverConnect.DeleteApplication(SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[this.ShowFriends.SelectedIndex], UserInfo.GetUserName());
-                Refresh_Click(sender, e);
-                MessageBox.Show("删除成功", "提示");
+                DialogResult result = MessageBox.Show(" 确认删除好友申请？", " 提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (result.ToString()=="OK")
+                {
+                    SQLSeverConnect.DeleteApplication(SQLSeverConnect.SearchFriendsApplication(UserInfo.GetUserName())[this.ShowFriends.SelectedIndex], UserInfo.GetUserName());
+                    Refresh_Click(sender, e);
+                    MessageBox.Show("删除成功", "提示"); 
+                }
             }
             else
             {

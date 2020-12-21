@@ -29,10 +29,11 @@ namespace TTChat
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FriendsApplication));
             this.ShowFriends = new System.Windows.Forms.ListBox();
             this.RefreshButton = new System.Windows.Forms.Button();
-            this.Agree = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.AgreeButton = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ShowFriends
@@ -57,40 +58,41 @@ namespace TTChat
             this.RefreshButton.UseVisualStyleBackColor = true;
             this.RefreshButton.Click += new System.EventHandler(this.Refresh_Click);
             // 
-            // Agree
+            // AgreeButton
             // 
-            this.Agree.AutoSize = true;
-            this.Agree.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Agree.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Agree.Location = new System.Drawing.Point(39, 141);
-            this.Agree.Name = "Agree";
-            this.Agree.Size = new System.Drawing.Size(106, 38);
-            this.Agree.TabIndex = 2;
-            this.Agree.Text = "同  意";
-            this.Agree.UseVisualStyleBackColor = true;
-            this.Agree.Click += new System.EventHandler(this.Agree_Click);
+            this.AgreeButton.AutoSize = true;
+            this.AgreeButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AgreeButton.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.AgreeButton.Location = new System.Drawing.Point(39, 141);
+            this.AgreeButton.Name = "AgreeButton";
+            this.AgreeButton.Size = new System.Drawing.Size(106, 38);
+            this.AgreeButton.TabIndex = 2;
+            this.AgreeButton.Text = "同  意";
+            this.AgreeButton.UseVisualStyleBackColor = true;
+            this.AgreeButton.Click += new System.EventHandler(this.Agree_Click);
             // 
-            // button1
+            // DeleteButton
             // 
-            this.button1.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(39, 233);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 38);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "删除";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.DeleteButton.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DeleteButton.Location = new System.Drawing.Point(39, 233);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(106, 38);
+            this.DeleteButton.TabIndex = 3;
+            this.DeleteButton.Text = "删除";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // FriendsApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(709, 484);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.Agree);
+            this.Controls.Add(this.DeleteButton);
+            this.Controls.Add(this.AgreeButton);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.ShowFriends);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FriendsApplication";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -106,7 +108,7 @@ namespace TTChat
 
         private System.Windows.Forms.ListBox ShowFriends;
         private System.Windows.Forms.Button RefreshButton;
-        private System.Windows.Forms.Button Agree;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button AgreeButton;
+        private System.Windows.Forms.Button DeleteButton;
     }
 }

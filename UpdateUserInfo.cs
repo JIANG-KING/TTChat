@@ -72,5 +72,16 @@ namespace TTChat
         {
             this.Close();
         }
+
+        private void SignatureInput_TextChanged(object sender, EventArgs e)
+        {
+            this.TextLabel.Text = this.SignatureInput.TextLength.ToString() + "/20";
+            if (this.SignatureInput.TextLength >= 20)
+            {
+                
+                MessageBox.Show("个性签名不能大于20个字符", "提示");
+                this.SignatureInput.Text = this.SignatureInput.Text.Substring(0, 20);
+            }
+        }
     }
 }

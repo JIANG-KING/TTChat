@@ -29,6 +29,7 @@ namespace TTChat
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserUpdatePassword));
             this.OldPasswordInput = new System.Windows.Forms.TextBox();
             this.NewPasswordInput = new System.Windows.Forms.TextBox();
             this.ConfirmPasswordInput = new System.Windows.Forms.TextBox();
@@ -41,7 +42,7 @@ namespace TTChat
             // OldPasswordInput
             // 
             this.OldPasswordInput.Location = new System.Drawing.Point(197, 28);
-            this.OldPasswordInput.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.OldPasswordInput.Margin = new System.Windows.Forms.Padding(5);
             this.OldPasswordInput.Name = "OldPasswordInput";
             this.OldPasswordInput.Size = new System.Drawing.Size(234, 36);
             this.OldPasswordInput.TabIndex = 0;
@@ -49,7 +50,7 @@ namespace TTChat
             // NewPasswordInput
             // 
             this.NewPasswordInput.Location = new System.Drawing.Point(197, 78);
-            this.NewPasswordInput.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.NewPasswordInput.Margin = new System.Windows.Forms.Padding(5);
             this.NewPasswordInput.Name = "NewPasswordInput";
             this.NewPasswordInput.Size = new System.Drawing.Size(234, 36);
             this.NewPasswordInput.TabIndex = 1;
@@ -57,7 +58,7 @@ namespace TTChat
             // ConfirmPasswordInput
             // 
             this.ConfirmPasswordInput.Location = new System.Drawing.Point(197, 127);
-            this.ConfirmPasswordInput.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ConfirmPasswordInput.Margin = new System.Windows.Forms.Padding(5);
             this.ConfirmPasswordInput.Name = "ConfirmPasswordInput";
             this.ConfirmPasswordInput.Size = new System.Drawing.Size(234, 36);
             this.ConfirmPasswordInput.TabIndex = 2;
@@ -117,11 +118,12 @@ namespace TTChat
             this.Controls.Add(this.OldPasswordInput);
             this.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.Name = "UserUpdatePassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " ";
+            this.Text = " 修改密码";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -24,7 +24,20 @@ namespace TTChat
         string[] s;
         Image Image;
         string head;
-        private void MainFrame_Load(object sender, EventArgs e)
+
+        private Thread loadThread; //加载线程
+
+        void LoadDataFunc()
+        {
+            //使用委托
+            this.Invoke(new Action(() =>
+            {
+                MainFrameLoadThread();
+
+            }));
+        }
+
+        public void MainFrameLoadThread()
         {
             s = new string[connect.SearchFriends(UserInfo.GetUserName()).Length];
 
@@ -79,6 +92,15 @@ namespace TTChat
                 this.newApplication.Visible = false;
             }
 
+        
+    }
+
+
+        private void MainFrame_Load(object sender, EventArgs e)
+        {
+            loadThread = new Thread(new ThreadStart(LoadDataFunc));
+            loadThread.IsBackground = true;
+            loadThread.Start();
         }
 
 
@@ -216,13 +238,19 @@ namespace TTChat
 
             if (this.FriendsList.SelectedItem != null)
             {
+                DialogResult result = MessageBox.Show(" 确认删除好友？", " 提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (result.ToString() == "OK")
+                {
                 if (connect.DeleteFriends(s[this.FriendsList.SelectedIndex], UserInfo.GetUserName()) == 1)
                 {
                     if (connect.DeleteFriends(UserInfo.GetUserName(), s[this.FriendsList.SelectedIndex]) == 1)
                     {
+
                         MessageBox.Show("删除成功", "提示");
                         ReFreshButton_Click(sender, e);
                     }
+                }
+
 
                 }
 

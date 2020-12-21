@@ -29,6 +29,7 @@ namespace TTChat
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReSetPassword));
             this.UseNameLabel = new System.Windows.Forms.Label();
             this.OldPasswordLabel = new System.Windows.Forms.Label();
             this.NewPasswordLabel = new System.Windows.Forms.Label();
@@ -164,6 +165,7 @@ namespace TTChat
             this.Controls.Add(this.OldPasswordLabel);
             this.Controls.Add(this.UseNameLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ReSetPassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

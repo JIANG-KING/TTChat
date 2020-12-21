@@ -29,6 +29,7 @@ namespace TTChat
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MessageInput));
             this.ApplicationInput = new System.Windows.Forms.TextBox();
             this.CancelApplicationButton = new System.Windows.Forms.Button();
             this.ConfirmButton = new System.Windows.Forms.Button();
@@ -71,11 +72,13 @@ namespace TTChat
             this.Controls.Add(this.CancelApplicationButton);
             this.Controls.Add(this.ApplicationInput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MessageInput";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "请输入验证消息";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MessageInput_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

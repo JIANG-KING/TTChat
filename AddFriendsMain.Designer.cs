@@ -29,6 +29,7 @@ namespace TTChat
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddFriendsMain));
             this.FriendsAccountInput = new System.Windows.Forms.TextBox();
             this.Search = new System.Windows.Forms.Button();
             this.FriendsNickName = new System.Windows.Forms.Label();
@@ -138,6 +139,7 @@ namespace TTChat
             this.Controls.Add(this.Search);
             this.Controls.Add(this.FriendsAccountInput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "AddFriendsMain";

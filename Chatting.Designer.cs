@@ -30,6 +30,7 @@ namespace TTChat
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Chatting));
             this.ShowMessage = new System.Windows.Forms.RichTextBox();
             this.MessageInput = new System.Windows.Forms.RichTextBox();
             this.ReciveMessage = new System.Windows.Forms.Timer(this.components);
@@ -94,6 +95,7 @@ namespace TTChat
             this.Controls.Add(this.SengButton);
             this.Controls.Add(this.MessageInput);
             this.Controls.Add(this.ShowMessage);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Chatting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

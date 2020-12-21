@@ -29,6 +29,7 @@ namespace TTChat
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Contact));
             this.EmailLabel = new System.Windows.Forms.Label();
             this.PhoneLabel = new System.Windows.Forms.Label();
             this.GitHubSite = new System.Windows.Forms.LinkLabel();
@@ -71,6 +72,7 @@ namespace TTChat
             this.Controls.Add(this.GitHubSite);
             this.Controls.Add(this.PhoneLabel);
             this.Controls.Add(this.EmailLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Contact";
