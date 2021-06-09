@@ -6,7 +6,7 @@ namespace TTChat
 {
     class SQLSeverConnect
     {
-        private static readonly string constr = "Server=yun2333.top;Database=Chattools;user id=jiangyun;pwd=Jy1019878449";
+        private static readonly string constr = "Server=*;Database=Chattools;user id=*;pwd=*";
         SqlConnection sqlCnt = new SqlConnection(constr);
         /// <summary>
         /// 无需防止SQL注入的方法
